@@ -3,109 +3,110 @@
 ## CrossFileUtils.java
 ## CrossFileUtils
 
-| Field | Type | Required | Min | Max | Other Validation |
-|---|---|---|---|---|---|
-| age | int |  | 0 |  |  |
+| Field | Required | Type | Min | Max | Email | Pattern | Other Validation |
+|---|---|---|---|---|---|---|---|
+| age |  | Integer | 0 |  |  |  | Must not be negative |
 
 
 ## User.java
 ## User
 
-| Field | Type | Required | Min | Max | Other Validation |
-|---|---|---|---|---|---|
-| name | String |  |  |  |  |
-| age | int |  | 0 |  | Must be non-negative |
+| Field | Required | Type | Min | Max | Email | Pattern | Other Validation |
+|---|---|---|---|---|---|---|---|
+| name |  | String |  |  |  |  |  |
+| age |  | Integer | 0 |  |  |  | Must be non-negative |
 
 
 ## app.js
-## UserController
+## `userForm` (AngularJS Form)
 
-| Field | Type | Required | Min | Max | Other Validation |
-|---|---|---|---|---|---|
-| name | String |  |  |  |  |
-| age | Number |  |  |  |  |
-| email | String |  |  |  |  |
+| Field | Required | Type | Min | Max | Email | Pattern | Other Validation |
+|---|---|---|---|---|---|---|---|
+| name |  | String |  |  |  |  |  |
+| age |  | Number |  |  |  |  |  |
+| email |  | String |  |  |  |  |  |
 
 
 ## cross_file_main.java
 ## Person
 
-| Field | Type | Required | Min | Max | Other Validation |
-|---|---|---|---|---|---|
-| age | int |  | 0 |  |  |
-
-
-## CrossFileUtils (Inferred from usage)
-
-| Field | Type | Required | Min | Max | Other Validation |
-|---|---|---|---|---|---|
-| age (input parameter) | int |  | 0 |  |  |
+| Field | Required | Type | Min | Max | Email | Pattern | Other Validation |
+|---|---|---|---|---|---|---|---|
+| age | Yes | Integer | 0 |  |  |  | Must be a non-negative integer |
 
 
 ## decorator.py
 ## UserModel
 
-| Field | Type | Required | Min | Max | Other Validation |
-|---|---|---|---|---|---|
-| email | str |  |  |  | must contain @ |
-| age | int |  | 0 |  | must be positive |
+| Field | Required | Type | Min | Max | Email | Pattern | Other Validation |
+|---|---|---|---|---|---|---|---|
+| email |  | str |  |  | True |  | must contain @ |
+| age |  | int | 0 |  |  |  | must be positive |
 
 
 ## dynamic_fields.py
 ## DynamicUser
 
-| Field | Type | Required | Min | Max | Other Validation |
-|---|---|---|---|---|---|
-| age |  | ✓ | 0 |  |  Must be positive |
+| Field | Required | Type | Min | Max | Email | Pattern | Other Validation |
+|---|---|---|---|---|---|---|---|
+| age |  |  | 0 |  |  |  | Must be positive |
 
 > **Note:** This file uses dynamic field creation (e.g., `setattr`). Static analysis may be incomplete.
+
+
+## index.html
+## userForm
+
+| Field | Required | Type | Min | Max | Email | Pattern | Other Validation |
+|---|---|---|---|---|---|---|---|
+| name | Yes | text |  |  |  |  |  |
+| age | Yes | number | 18 |  |  |  |  |
+| email | Yes | email |  |  | Yes |  |  |
 
 
 ## js_dynamic.js
 ## DynamicObj
 
-| Field | Type | Required | Min | Max | Other Validation |
-|---|---|---|---|---|---|
-| field_`Math.random()` | Number |  |  |  | Assigned dynamically; value is 42 |
-| `name` (set via `setField`) | Any |  |  |  | Set dynamically via `setField` method |
-| `value` (set via `setField`) | Any |  |  |  | Set dynamically via `setField` method |
+| Field          | Required | Type   | Min | Max | Email | Pattern | Other Validation |
+|-----------------|----------|--------|-----|-----|-------|---------|-----------------|
+| field_*.        |          |        |     |     |       |         |                  |
 
 
 ## validations.java
 ## AdvancedValidationCar
 
-| Field             | Type      | Required | Min     | Max      | Pattern                     | Email     | Positive | PositiveOrZero | Negative | NegativeOrZero | Past          | PastOrPresent | Future         | FutureOrPresent | DecimalMin   | DecimalMax     | Digits (integer/fraction) | AssertTrue | AssertFalse | Size (min/max) |
-|----------------------|------------|----------|----------|-----------|-----------------------------|------------|----------|-----------------|----------|-----------------|---------------|---------------|-----------------|-----------------|---------------|-----------------|-------------------------|-------------|-------------|-----------------|
-| vin                 | String    | ✓        |          |           |                             |            |          |                 |          |                 |               |               |                 |                 |               |                 |                         |             |             |                 |
-| ownerName           | String    | ✓        |          |           |                             |            |          |                 |          |                 |               |               |                 |                 |               |                 |                         |             |             |                 |
-| licensePlate        | String    |          |          |           | [A-Z]{2}[0-9]{2} [A-Z]{3} |            |          |                 |          |                 |               |               |                 |                 |               |                 |                         |             |             |                 |
-| year                | int       |          | 1886     | 2100      |                             |            |          |                 |          |                 |               |               |                 |                 |               |                 |                         |             |             |                 |
-| modelName           | String    |          |          |           |                             |            |          |                 |          |                 |               |               |                 |                 |               |                 |                         |             |             | 2/30           |
-| contactEmail        | String    |          |          |           |                             | ✓         |          |                 |          |                 |               |               |                 |                 |               |                 |                         |             |             |                 |
-| numberOfDoors       | int       |          |          |           |                             |            | ✓        |                 |          |                 |               |               |                 |                 |               |                 |                         |             |             |                 |
-| numberOfPreviousOwners | int       |          |          |           |                             |            |          | ✓               |          |                 |               |               |                 |                 |               |                 |                         |             |             |                 |
-| negativeTestValue   | int       |          |          |           |                             |            |          |                 | ✓        |                 |               |               |                 |                 |               |                 |                         |             |             |                 |
-| negativeOrZeroTestValue | int       |          |          |           |                             |            |          |                 |          | ✓               |               |               |                 |                 |               |                 |                         |             |             |                 |
-| registrationDate    | LocalDate  |          |          |           |                             |            |          |                 |          |                 | ✓           |               |                 |                 |               |                 |                         |             |             |                 |
-| lastServiceDate     | LocalDate  |          |          |           |                             |            |          |                 |          |                 |               | ✓           |                 |                 |               |                 |                         |             |             |                 |
-| insuranceExpiryDate | LocalDate  |          |          |           |                             |            |          |                 |          |                 |               |               | ✓           |                 |               |                 |                         |             |             |                 |
-| warrantyExpiryDate  | LocalDate  |          |          |           |                             |            |          |                 |          |                 |               |               |                 | ✓               |               |                 |                         |             |             |                 |
-| price               | BigDecimal |          |          |           |                             |            |          |                 |          |                 |               |               |                 |                 | 0.0          | 1000000.0      |                         |             |             |                 |
-| engineCapacity      | BigDecimal |          |          |           |                             |            |          |                 |          |                 |               |               |                 |                 |               |                 | 5/2                     |             |             |                 |
-| isInsured           | boolean   |          |          |           |                             |            |          |                 |          |                 |               |               |                 |                 |               |                 |                         | ✓           |             |                 |
-| isStolen            | boolean   |          |          |           |                             |            |          |                 |          |                 |               |               |                 |                 |               |                 |                         |             | ✓           |                 |
+| Field             | Required | Type      | Min     | Max      | Email | Pattern                     | Positive | PositiveOrZero | Negative | NegativeOrZero | Past           | PastOrPresent | Future          | FutureOrPresent | DecimalMin | DecimalMax     | Digits (integer,fraction) | AssertTrue | AssertFalse | Size (min,max) | Other Validation |
+|----------------------|----------|-----------|---------|----------|-------|-----------------------------|----------|-----------------|----------|-----------------|-----------------|-----------------|-----------------|-----------------|------------|-----------------|-------------------------|-------------|-------------|-----------------|-----------------|
+| vin                | Yes      | String    |         |          |       |                             |          |                 |          |                 |                 |                 |                 |                 |            |                 |                         |             |             |                 |                 |
+| ownerName          | Yes      | String    |         |          |       |                             |          |                 |          |                 |                 |                 |                 |                 |            |                 |                         |             |             |                 |                 |
+| licensePlate       |          | String    |         |          |       | [A-Z]{2}[0-9]{2} [A-Z]{3} |          |                 |          |                 |                 |                 |                 |                 |            |                 |                         |             |             |                 |                 |
+| year               |          | int       | 1886    | 2100     |       |                             |          |                 |          |                 |                 |                 |                 |                 |            |                 |                         |             |             |                 |                 |
+| modelName          |          | String    |         |          |       |                             |          |                 |          |                 |                 |                 |                 |                 |            |                 |                         |             |             | 2,30             |                 |
+| contactEmail       |          | String    |         |          | Yes   |                             |          |                 |          |                 |                 |                 |                 |                 |            |                 |                         |             |             |                 |                 |
+| numberOfDoors      |          | int       |         |          |       |                             | Yes      |                 |          |                 |                 |                 |                 |                 |            |                 |                         |             |             |                 |                 |
+| numberOfPreviousOwners |          | int       |         |          |       |                             |          | Yes              |          |                 |                 |                 |                 |                 |            |                 |                         |             |             |                 |                 |
+| negativeTestValue    |          | int       |         |          |       |                             |          |                 | Yes      |                 |                 |                 |                 |                 |            |                 |                         |             |             |                 |                 |
+| negativeOrZeroTestValue |          | int       |         |          |       |                             |          |                 |          | Yes              |                 |                 |                 |                 |            |                 |                         |             |             |                 |                 |
+| registrationDate   |          | LocalDate |         |          |       |                             |          |                 |          |                 | Yes           |                 |                 |                 |            |                 |                         |             |             |                 |                 |
+| lastServiceDate    |          | LocalDate |         |          |       |                             |          |                 |          |                 |                 | Yes              |                 |                 |            |                 |                         |             |             |                 |                 |
+| insuranceExpiryDate |          | LocalDate |         |          |       |                             |          |                 |          |                 |                 |                 | Yes           |                 |            |                 |                         |             |             |                 |                 |
+| warrantyExpiryDate  |          | LocalDate |         |          |       |                             |          |                 |          |                 |                 |                 |                 | Yes              |            |                 |                         |             |             |                 |                 |
+| price              |          | BigDecimal|         |          |       |                             |          |                 |          |                 |                 |                 |                 |                 | 0.0         | 1000000.0      |                         |             |             |                 |                 |
+| engineCapacity     |          | BigDecimal|         |          |       |                             |          |                 |          |                 |                 |                 |                 |                 |            |                 | 5,2                     |             |             |                 |                 |
+| isInsured          |          | boolean   |         |          |       |                             |          |                 |          |                 |                 |                 |                 |                 |            |                 |                         | Yes          |             |                 |                 |
+| isStolen           |          | boolean   |         |          |       |                             |          |                 |          |                 |                 |                 |                 |                 |            |                 |                         |             | Yes          |                 |                 |
 
 
 ## DynamicCar
 
-No statically analyzable validation logic present.
+No validation rules are present in the provided code for this class.  The `setField` method uses reflection (simulated here), making static analysis of validation impossible.
 
 
 ## validations.py
 ## User
 
-| Field | Type | Required | Min | Max | Other Validation |
-|---|---|---|---|---|---|
-| name | str | True |  |  | Cannot be empty |
-| age | int | True | 18 |  |  |
-| email | str | True |  |  | Must contain "@" symbol |
+| Field | Required | Type | Min | Max | Email | Pattern | Other Validation |
+|---|---|---|---|---|---|---|---|
+| name | Yes | str |  |  |  |  | Cannot be empty |
+| age | Yes | int | 18 |  |  |  |  |
+| email | Yes | str |  |  | Yes |  | Must contain "@" symbol |

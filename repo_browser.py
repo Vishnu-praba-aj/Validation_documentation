@@ -62,7 +62,7 @@ def get_github_code_files(owner, repo, branch):
     files = []
     for item in data.get('tree', []):
         path = item['path']
-        if item['type'] == 'blob' and path.endswith(('.py','.js','.java')):
+        if item['type'] == 'blob' and path.endswith(('.py','.js','.java','.html')):
             if not is_excluded(path):
                 files.append(path)
     return files
@@ -90,14 +90,14 @@ def get_bitbucket_code_files(owner, repo, branch):
     data = resp.json()
     for item in data.get('values', []):
         path = item['path']
-        if path.endswith(('.py','.js','.java')) and not is_excluded(path):
+        if path.endswith(('.py','.js','.java','.html')) and not is_excluded(path):
             files.append(path)
     while 'next' in data:
         resp = requests.get(data['next'])
         data = resp.json()
         for item in data.get('values', []):
             path = item['path']
-            if path.endswith(('.py','.js','.java')) and not is_excluded(path):
+            if path.endswith(('.py','.js','.java','.html')) and not is_excluded(path):
                 files.append(path)
     return files
 
