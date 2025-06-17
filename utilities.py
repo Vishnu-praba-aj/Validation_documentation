@@ -1,4 +1,3 @@
-import json
 import os
 import re
 
@@ -22,3 +21,15 @@ def find_function_definition(func_name, repo_dir):
                     if match:
                         return match.group(0)
     return ""
+
+def extract_controller_names(js_content):
+    return re.findall(r"\.controller\(['\"](\w+)['\"]", js_content)
+
+def find_htmls_for_controller(controller_name, html_files, fetch_content):
+    relevant_htmls = []
+    pattern = re.compile(r'ng-controller\s*=\s*[\'"]' + re.escape(controller_name) + r'[\'"]', re.IGNORECASE)
+    for html_file in html_files:
+        html_content = fetch_content(html_file)
+        if pattern.search(html_content):
+            relevant_htmls.append(html_content)
+    return relevant_htmls

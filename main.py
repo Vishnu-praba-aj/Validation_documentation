@@ -3,7 +3,7 @@ from repo_browser import (
     get_github_default_branch, get_github_code_files, 
     get_bitbucket_default_branch, get_bitbucket_code_files, fetch_bitbucket_file_content
 )
-from utilities import detect_dynamic_fields,extract_decorators
+from utilities import detect_dynamic_fields, extract_controller_names,extract_decorators, find_htmls_for_controller
 from llm import call_llm
 
 def main():
@@ -22,16 +22,34 @@ def main():
         return
 
     output = []
-    
+    html_files = [f for f in code_files if f.endswith('.html')]
+
     for file in code_files:
-        content = fetch_content(file)
-        decorators=extract_decorators(content)
-        llm_output=call_llm(file,content,decorators,repo)  
-        formatted_output = f"## {file}\n{llm_output}\n"
-        if detect_dynamic_fields(content):
-            notes = "> **Note:** This file uses dynamic field creation (e.g., `setattr`). Static analysis may be incomplete."
-            formatted_output += f"\n{notes}\n"
-        output.append(formatted_output)
+        if file.endswith('.js'):
+            content = fetch_content(file)
+            decorators = extract_decorators(content)
+            controller_names = extract_controller_names(content)
+            combined_html = ""
+            for controller_name in controller_names:
+                relevant_htmls = find_htmls_for_controller(controller_name, html_files,fetch_content)
+                if relevant_htmls:
+                    combined_html += "\n".join(relevant_htmls)
+            llm_output = call_llm(file, content, decorators, repo, html_content=combined_html)
+        elif file.endswith('.html'):
+            continue
+        else:
+            content = fetch_content(file)
+            decorators = extract_decorators(content)
+            llm_output = call_llm(file, content, decorators, repo)
+        
+        if file.endswith('.html'):
+            continue
+        else:
+            formatted_output = f"## {file}\n{llm_output}\n"
+            if detect_dynamic_fields(content):
+                notes = "> **Note:** This file uses dynamic field creation (e.g., `setattr`). Static analysis may be incomplete."
+                formatted_output += f"\n{notes}\n"
+            output.append(formatted_output)
 
     with open(f"{repo}_validation.md", "w", encoding="utf-8") as f:
         f.write(f"# Validation Documentation: {repo}\n\n")
