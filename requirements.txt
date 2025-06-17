@@ -1,4 +1,3 @@
 requests
 markdown
-rich
 google-generativeai

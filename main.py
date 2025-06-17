@@ -4,7 +4,7 @@ from repo_browser import (
     get_bitbucket_default_branch, get_bitbucket_code_files, fetch_bitbucket_file_content
 )
 from utilities import detect_dynamic_fields, extract_controller_names,extract_decorators, find_htmls_for_controller
-from llm import call_llm
+from llm import call_llm, test_llm_margin_of_error
 
 def main():
     url = input("Enter a repo URL : ").strip()
@@ -35,12 +35,14 @@ def main():
                 if relevant_htmls:
                     combined_html += "\n".join(relevant_htmls)
             llm_output = call_llm(file, content, decorators, repo, html_content=combined_html)
+            #test_llm_margin_of_error(call_llm, file, content, decorators, repo, html_content=combined_html, runs=10)
         elif file.endswith('.html'):
             continue
         else:
             content = fetch_content(file)
             decorators = extract_decorators(content)
             llm_output = call_llm(file, content, decorators, repo)
+            #test_llm_margin_of_error(call_llm, file, content, decorators, repo, runs=10)
         
         if file.endswith('.html'):
             continue
