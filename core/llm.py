@@ -1,20 +1,12 @@
-from dotenv import load_dotenv
-import os
 import google.generativeai as genai
-from repo_browser import extract_dependencies
-from utilities import find_function_definition
+from utils.repo_browser import extract_dependencies
+from utils.utilities import find_function_definition
+from utils.config import GENAI_API_KEY, LLM_MODEL
 
-load_dotenv() 
-genai_api_key = os.getenv("GENAI_API")
-
-genai.configure(api_key=genai_api_key)
-
-model = genai.GenerativeModel("gemini-1.5-flash")
+genai.configure(api_key=GENAI_API_KEY)
+model = genai.GenerativeModel(LLM_MODEL)
 
 def test_llm_margin_of_error(call_llm_func, filename, content, decorators, repo, html_content=None, runs=10):
-    """
-    Runs the LLM multiple times for the same input and calculates the margin of error.
-    """
     outputs = []
     for _ in range(runs):
         output = call_llm_func(filename, content, decorators, repo, html_content=html_content)
@@ -34,16 +26,15 @@ def call_llm(
     filename, content, decorators, repo,
     dep_to_file_map, fetch_content, html_content=None
 ):
-    dependencies = extract_dependencies(content)
+    # dependencies = extract_dependencies(content)
     dep_code_blocks = []
-    for dep in dependencies:
-        dep_file = dep_to_file_map.get(dep)
-        dep_code = ""
-        if dep_file:
-            dep_code = find_function_definition(dep, dep_file, fetch_content)
-        print(f"for dependency: {dep} : {dep_code} in {repo} (from {dep_file})")
-        if dep_code:
-            dep_code_blocks.append(f"# Dependency: {dep}\n{dep_code}")
+    # for dep in dependencies:
+    #     dep_file = dep_to_file_map.get(dep)
+    #     dep_code = ""
+    #     if dep_file:
+    #         dep_code = find_function_definition(dep, dep_file, fetch_content)
+    #     if dep_code:
+    #         dep_code_blocks.append(f"# Dependency: {dep}\n{dep_code}")
     prompt_parts = [
         "As an experienced code auditor, your task is to extract all validation logic from the code and format it as a Markdown table.\n"
     ]
@@ -59,7 +50,7 @@ def call_llm(
         )
     prompt_parts.append(
         f"Source file: '{filename}'\n{content}\n"
-        f"Decorators: {decorators}\n"
+        #f"Decorators: {decorators}\n"
         "Instructions:\n"
         "1. For each class, object or relevant entity without repetition, create a level-2 Markdown heading.\n"
         "2. Under each heading, create a Markdown table summarizing all validation rules for each field. Use columns such as: Field, Required, Type, Min, Max, Default, Pattern, Other Validation.\n"
@@ -67,6 +58,7 @@ def call_llm(
         "4. Leave cells blank if a constraint is not present for a field.\n"
         "5. Combine validation logic from dependencies, decorators, assertions, comments, utility functions, or HTML templates as needed.\n"
         "6. Ensure the Markdown tables are properly formatted and render correctly in standard Markdown viewers.\n"
+        "7. Do not include any code snippets, explanations or summary only the Markdown table.\n"
     )
     prompt = "\n".join(prompt_parts)
     try:

@@ -1,4 +1,3 @@
-import os
 import re
 
 def detect_dynamic_fields(file_content):
@@ -36,8 +35,6 @@ def find_htmls_for_controller(controller_name, html_files, fetch_content):
             relevant_htmls.append(html_content)
     return relevant_htmls
 
-import re
-
 def build_python_dep_map(code_files, fetch_content):
     dep_map = {}
     for file in code_files:
@@ -64,3 +61,23 @@ def build_ts_dep_map(code_files, fetch_content):
                     dep_path += '.ts'
                 dep_map[dep_name] = dep_path
     return dep_map
+
+def extract_entity_tables(llm_output):
+    lines = llm_output.splitlines()
+    entity_tables = {}
+    current_entity = None
+    current_type = None
+    buffer = []
+    for line in lines:
+        m = re.match(r"^##\s+`?(\w+)`?(?: function)?", line)
+        if m:
+            if current_entity and buffer:
+                entity_tables[current_entity] = (current_type, "\n".join(buffer))
+            current_entity = m.group(1)
+            current_type = "function" if "function" in line else "class"
+            buffer = [line]
+        else:
+            buffer.append(line)
+    if current_entity and buffer:
+        entity_tables[current_entity] = (current_type, "\n".join(buffer))
+    return entity_tables
