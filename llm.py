@@ -29,11 +29,12 @@ def test_llm_margin_of_error(call_llm_func, filename, content, decorators, repo,
     else:
         print("All outputs are identical.")
 
-def call_llm(filename, content, decorators,repo,html_content=None):
+def call_llm(filename, content, decorators,repo,code_files, fetch_content,html_content=None):
     dependencies = extract_dependencies(content)
     dep_code_blocks = []
     for dep in dependencies:
-        dep_code = find_function_definition(dep,repo)
+        dep_code = find_function_definition(dep, code_files, fetch_content)
+        print(f"for dependency: {dep} : {dep_code} in {repo}")
         if dep_code:
             dep_code_blocks.append(f"# Dependency: {dep}\n{dep_code}")
     prompt_parts = [
