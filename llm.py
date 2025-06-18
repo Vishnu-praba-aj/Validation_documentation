@@ -10,6 +10,7 @@ genai_api_key = os.getenv("GENAI_API")
 genai.configure(api_key=genai_api_key)
 
 model = genai.GenerativeModel("gemini-1.5-flash")
+
 def test_llm_margin_of_error(call_llm_func, filename, content, decorators, repo, html_content=None, runs=10):
     """
     Runs the LLM multiple times for the same input and calculates the margin of error.
@@ -29,16 +30,22 @@ def test_llm_margin_of_error(call_llm_func, filename, content, decorators, repo,
     else:
         print("All outputs are identical.")
 
-def call_llm(filename, content, decorators,repo,code_files, fetch_content,html_content=None):
+def call_llm(
+    filename, content, decorators, repo,
+    dep_to_file_map, fetch_content, html_content=None
+):
     dependencies = extract_dependencies(content)
     dep_code_blocks = []
     for dep in dependencies:
-        dep_code = find_function_definition(dep, code_files, fetch_content)
-        print(f"for dependency: {dep} : {dep_code} in {repo}")
+        dep_file = dep_to_file_map.get(dep)
+        dep_code = ""
+        if dep_file:
+            dep_code = find_function_definition(dep, dep_file, fetch_content)
+        print(f"for dependency: {dep} : {dep_code} in {repo} (from {dep_file})")
         if dep_code:
             dep_code_blocks.append(f"# Dependency: {dep}\n{dep_code}")
     prompt_parts = [
-    "As an experienced code auditor, your task is to extract all validation logic from the code and format it as a Markdown table.\n"
+        "As an experienced code auditor, your task is to extract all validation logic from the code and format it as a Markdown table.\n"
     ]
     if dep_code_blocks:
         prompt_parts.append(

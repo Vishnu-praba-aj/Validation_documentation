@@ -1,186 +1,193 @@
 # Validation Documentation: parking_app
 
+## User
+
+| Field      | Required | Type    | Min | Max | Default | Pattern | Other Validation             |
+|-------------|----------|---------|-----|-----|---------|---------|-----------------------------|
+| name       | Yes      | String  |     |     |         |         |                             |
+| age        | Yes      | Integer | 0   |     |         |         | Must be positive             |
+| email      | Yes      | String  |     |     |         | @       | Must contain "@" symbol     |
+| password   | Yes      | String  | 8   |     |         |         | Minimum length validation     |
+
+
+
+## Admin
+
+| Field          | Required | Type    | Min | Max | Default | Pattern | Other Validation             |
+|-----------------|----------|---------|-----|-----|---------|---------|-----------------------------|
+| name           | Yes      | String  |     |     |         |         |                             |
+| age            | Yes      | Integer | 0   |     |         |         | Must be positive             |
+| email          | Yes      | String  |     |     |         | @       | Must contain "@" symbol     |
+| access_level   | Yes      | Integer | 1   | 10  |         |         | Must be between 1 and 10     |
+
+
+
+## Car
+
+| Field         | Required | Type    | Min       | Max | Default | Pattern | Other Validation             |
+|----------------|----------|---------|------------|-----|---------|---------|-----------------------------|
+| licensePlate  | Yes      | String  | 5          |     |         |         | Minimum length 5 characters |
+| year          | Yes      | Integer | 1886       |     |         |         | Must be >= 1886              |
+
+
+
+## Product
+
+| Field      | Required | Type    | Min | Max | Default | Pattern | Other Validation             |
+|-------------|----------|---------|-----|-----|---------|---------|-----------------------------|
+| name       | Yes      | String  |     |     |         |         |                             |
+| price      | Yes      | Number  | 0   |     |         |         | Must be non-negative          |
+
+
+
+## Inventory
+
+| Field      | Required | Type    | Min | Max | Default | Pattern | Other Validation             |
+|-------------|----------|---------|-----|-----|---------|---------|-----------------------------|
+| item.name  | Yes      | String  |     |     |         |         | Item and its name are required |
+
+
+
 ## Person
 
-| Field | Required | Type | Min | Max | Default | Pattern | Other Validation |
-|---|---|---|---|---|---|---|---|
-| age | Yes | Integer | 0 |  |  |  | Must be non-negative |
+| Field      | Required | Type    | Min | Max | Default | Pattern | Other Validation             |
+|-------------|----------|---------|-----|-----|---------|---------|-----------------------------|
+| age        | Yes      | Integer | 0   |     |         |         | Must be non-negative          |
 
-## `validate_age` Function
+## No Specific Entities Found for Validation
 
-| Field | Required | Type | Min | Max | Default | Pattern | Other Validation |
-|---|---|---|---|---|---|---|---|
-| age | Yes | Integer | 0 |  |  |  | Must be non-negative (raises ValueError if < 0) |
+The provided code only contains a single function, `validate_age`, which performs age validation.  There are no classes or objects with fields to validate. Therefore, a table summarizing field-level validation rules cannot be created.  The `validate_age` function's logic is summarized below.
 
 
-There's only one validation function provided, `validate_age`,  so only one table is needed.  No other validation logic was present in the provided source code or dependencies.
+| Function | Parameter | Required | Type | Min | Max | Default | Pattern | Other Validation |
+|---|---|---|---|---|---|---|---|---|
+| `validate_age` | `age` | Yes | Integer | 0 |  |  |  | Must be non-negative |
+
+
+The `validate_age` function raises a `ValueError` if the input `age` is negative.  This is captured in the "Other Validation" column.  No other validation logic is present in the provided code.
 
 ## UserModel
 
-| Field | Required | Type | Min | Max | Default | Pattern | Other Validation | email_must_have_at | age_positive |
-|---|---|---|---|---|---|---|---|---|---|
-| email | True | str |  |  |  |  | must contain @ | ✅ |  |
-| age | True | int | 0 |  |  |  | must be positive |  | ✅ |
+| Field | Required | Type | Min | Max | Default | Pattern | Other Validation |
+|---|---|---|---|---|---|---|---|
+| email | True | str |  |  |  |  | must contain @ |
+| age | True | int | 0 |  |  |  | must be positive |
 
 ## DynamicUser
 
-| Field      | Required | Type    | Min | Max | Default | Pattern | Other Validation |
-|-------------|----------|---------|-----|-----|---------|---------|-----------------|
-| age        |          | Integer | 0   |     |         |         | Must be positive |
-| `field_name` | Yes | String |  |  | | |  |
-| `value` | Yes |  Any |  |  | | |  |
+| Field      | Required | Type    | Min | Max | Default | Pattern | Other Validation             |
+|-------------|----------|---------|-----|-----|---------|---------|---------------------------------|
+| age        | No       | Integer | 0   |     |         |         | Must be positive (if field exists) |
+| *dynamic*  | No       | Varies  |     |     |         |         |  Validation depends on the field name and value. |
 
-
-
-## Dependency `__init__` (Implicit in `validate_age`)
-
-The provided dependency snippet doesn't specify the exact validation logic within `validate_age`.  Therefore, a more complete definition of `validate_age` is needed to populate the table below.  Assumptions are made below in the absence of its definition.
-
-
-| Field      | Required | Type    | Min | Max | Default | Pattern | Other Validation |
-|-------------|----------|---------|-----|-----|---------|---------|-----------------|
-| age        | Yes      | Integer | 0   |     |         |         |  (Assuming `validate_age` enforces positivity) |
-
-
-**Note:** The validation rules are inferred from the provided code snippets.  A more comprehensive understanding of `validate_age` is crucial for a complete and accurate validation summary.  The `value` field in `DynamicUser` has no explicit validation beyond whatever type checking `setattr` might inherently perform.  Similarly,  `field_name` in `DynamicUser` has no explicit validation.  The "Yes" in the "Required" columns reflects that the constructors require these values to be supplied.
+**Note:** The `DynamicUser` class allows for dynamic field creation, so a comprehensive table listing all potential fields and their validation rules is not possible. The table above includes validation for the `age` field (if it exists) and a row for dynamic fields, noting the dynamic nature of the validation.
 
 ## AdvancedValidationCar
 
-| Field             | Required | Type        | Min      | Max      | Default | Pattern                     | Email     | Positive | PositiveOrZero | Negative | NegativeOrZero | Past             | PastOrPresent   | Future            | FutureOrPresent | DecimalMin | DecimalMax     | Digits (integer,fraction) | AssertTrue | AssertFalse | Size (min, max) | Other Validation |
-|----------------------|----------|-------------|-----------|-----------|---------|-----------------------------|-----------|----------|-----------------|----------|-----------------|-----------------|-----------------|-----------------|-----------------|-------------|-----------------|------------------------|------------|-------------|-----------------|-----------------|
-| vin                | Yes       | String      |           |           |         |                             |           |          |                 |          |                 |                 |                 |                 |                 |             |                 |                        |            |             |                 |                 |
-| ownerName          | Yes       | String      |           |           |         |                             |           |          |                 |          |                 |                 |                 |                 |                 |             |                 |                        |            |             |                 |                 |
-| licensePlate       | Yes       | String      |           |           |         | `[A-Z]{2}[0-9]{2} [A-Z]{3}` |           |          |                 |          |                 |                 |                 |                 |                 |             |                 |                        |            |             |                 |                 |
-| year               | Yes       | int         | 1886      | 2100      |         |                             |           |          |                 |          |                 |                 |                 |                 |                 |             |                 |                        |            |             |                 |                 |
-| modelName          | Yes       | String      |           |           |         |                             |           |          |                 |          |                 |                 |                 |                 |                 |             |                 |                        |            |             | 2, 30           |                 |
-| contactEmail       | Yes       | String      |           |           |         |                             | Yes       |          |                 |          |                 |                 |                 |                 |                 |             |                 |                        |            |             |                 |                 |
-| numberOfDoors      | Yes       | int         |           |           |         |                             |           | Yes      |                 |          |                 |                 |                 |                 |                 |             |                 |                        |            |             |                 |                 |
-| numberOfPreviousOwners | Yes       | int         |           |           |         |                             |           |          | Yes              |          |                 |                 |                 |                 |                 |             |                 |                        |            |             |                 |                 |
-| negativeTestValue  | Yes       | int         |           |           |         |                             |           |          |                 | Yes      |                 |                 |                 |                 |                 |             |                 |                        |            |             |                 |                 |
-| negativeOrZeroTestValue | Yes       | int         |           |           |         |                             |           |          |                 |          | Yes              |                 |                 |                 |                 |             |                 |                        |            |             |                 |                 |
-| registrationDate   | Yes       | LocalDate   |           |           |         |                             |           |          |                 |          |                 | Yes              |                 |                 |                 |             |                 |                        |            |             |                 |                 |
-| lastServiceDate    | Yes       | LocalDate   |           |           |         |                             |           |          |                 |          |                 |                 | Yes              |                 |                 |             |                 |                        |            |             |                 |                 |
-| insuranceExpiryDate | Yes       | LocalDate   |           |           |         |                             |           |          |                 |          |                 |                 |                 | Yes              |                 |             |                 |                        |            |             |                 |                 |
-| warrantyExpiryDate  | Yes       | LocalDate   |           |           |         |                             |           |          |                 |          |                 |                 |                 |                 | Yes              |             |                 |                        |            |             |                 |                 |
-| price              | Yes       | BigDecimal  | 0.0        | 1000000.0 |         |                             |           |          |                 |          |                 |                 |                 |                 |                 | Yes          | Yes             |                        |            |             |                 |                 |
-| engineCapacity     | Yes       | BigDecimal  |           |           |         |                             |           |          |                 |          |                 |                 |                 |                 |                 |             |                 | 5, 2                |            |             |                 |                 |
-| isInsured          | Yes       | boolean     |           |           |         |                             |           |          |                 |          |                 |                 |                 |                 |                 |             |                 |                        | Yes         |             |                 |                 |
-| isStolen           | Yes       | boolean     |           |           |         |                             |           |          |                 |          |                 |                 |                 |                 |                 |             |                 |                        |            | Yes          |                 |                 |
+| Field             | Required | Type          | Min      | Max      | Default | Pattern                 | Email      | Positive | PositiveOrZero | Negative | NegativeOrZero | Past           | PastOrPresent | Future          | FutureOrPresent | DecimalMin | DecimalMax    | Digits (integer,fraction) | AssertTrue | AssertFalse | Size (min,max) | Other Validation |
+|----------------------|----------|---------------|----------|----------|---------|--------------------------|------------|----------|-----------------|----------|-----------------|-----------------|-----------------|-----------------|-----------------|-------------|----------------|--------------------------|-------------|-------------|-----------------|--------------------|
+| vin                | Yes      | String        |          |          |         |                          |            |          |                 |          |                 |                 |                 |                 |                 |             |                |                          |             |             |                 |                    |
+| ownerName          | Yes      | String        |          |          |         |                          |            |          |                 |          |                 |                 |                 |                 |                 |             |                |                          |             |             |                 |                    |
+| licensePlate       | No       | String        |          |          |         | [A-Z]{2}[0-9]{2} [A-Z]{3} |            |          |                 |          |                 |                 |                 |                 |                 |             |                |                          |             |             |                 |                    |
+| year               | No       | int           | 1886     | 2100     |         |                          |            |          |                 |          |                 |                 |                 |                 |                 |             |                |                          |             |             |                 |                    |
+| modelName          | No       | String        |          |          |         |                          |            |          |                 |          |                 |                 |                 |                 |                 |             |                |                          |             |             | 2, 30            |                    |
+| contactEmail       | No       | String        |          |          |         |                          | Yes        |          |                 |          |                 |                 |                 |                 |                 |             |                |                          |             |             |                 |                    |
+| numberOfDoors      | No       | int           |          |          |         |                          |            | Yes      |                 |          |                 |                 |                 |                 |                 |             |                |                          |             |             |                 |                    |
+| numberOfPreviousOwners | No       | int           |          |          |         |                          |            |          | Yes              |          |                 |                 |                 |                 |                 |             |                |                          |             |             |                 |                    |
+| negativeTestValue  | No       | int           |          |          |         |                          |            |          |                 | Yes      |                 |                 |                 |                 |                 |             |                |                          |             |             |                 |                    |
+| negativeOrZeroTestValue | No       | int           |          |          |         |                          |            |          |                 |          | Yes              |                 |                 |                 |                 |             |                |                          |             |             |                 |                    |
+| registrationDate   | No       | LocalDate     |          |          |         |                          |            |          |                 |          |                 | Yes           |                 |                 |                 |             |                |                          |             |             |                 |                    |
+| lastServiceDate    | No       | LocalDate     |          |          |         |                          |            |          |                 |          |                 |                 | Yes              |                 |                 |             |                |                          |             |             |                 |                    |
+| insuranceExpiryDate | No       | LocalDate     |          |          |         |                          |            |          |                 |          |                 |                 |                 | Yes           |                 |             |                |                          |             |             |                 |                    |
+| warrantyExpiryDate  | No       | LocalDate     |          |          |         |                          |            |          |                 |          |                 |                 |                 |                 | Yes              |             |                |                          |             |             |                 |                    |
+| price               | No       | BigDecimal    | 0.0       | 1000000.0 |         |                          |            |          |                 |          |                 |                 |                 |                 |                 | Yes         | Yes            |                          |             |             |                 |                    |
+| engineCapacity      | No       | BigDecimal    |          |          |         |                          |            |          |                 |          |                 |                 |                 |                 |                 |             |                | 5,2                     |             |             |                 |                    |
+| isInsured           | No       | boolean       |          |          |         |                          |            |          |                 |          |                 |                 |                 |                 |                 |             |                |                          | Yes          |             |                 |                    |
+| isStolen            | No       | boolean       |          |          |         |                          |            |          |                 |          |                 |                 |                 |                 |                 |             |                |                          |             | Yes          |                 |                    |
 
 
 
 ## DynamicCar
 
-No validation logic is present in this class.  The comment indicates that validation would happen dynamically at runtime, which is outside the scope of static code analysis.
+No validation logic is present within the `DynamicCar` class itself.  The `setField` method uses reflection (simulated here), making static analysis of validation impossible.  Therefore, no table is created for this class.
 
 ## DynamicObj
 
-| Field           | Required | Type    | Min | Max | Default | Pattern | Other Validation |
-|-----------------|----------|---------|-----|-----|---------|---------|-------------------|
-| `field_*`       |          | Number  |     |     | 42      |         | Dynamically named; generated randomly during object creation |
-|  `name` (set via `setField`) |          |  Any    |     |     |         |         | No explicit validation in `setField` itself.  Validation depends on how `setField` is used. |
+| Field        | Required | Type   | Min | Max | Default | Pattern | Other Validation |
+|--------------|----------|--------|-----|-----|---------|---------|-----------------|
+| `field_*`    |          | Number |     |     | 42      |         | Dynamically named, generated during construction. Value is not validated beyond assignment. |
+| Any other field (set via `setField`) |          | Any    |     |     |         |         | No explicit validation; values are assigned directly. |
 
 
-**Note:** The `DynamicObj` class has dynamically generated field names, making static validation difficult.  The table reflects the known aspects of the validation:  a number field is created with a default of 42.  However, subsequent calls to `setField` could add fields of any type and with any constraints not explicitly encoded in the provided code.  Therefore, validation heavily depends on external factors and the context of how `setField` is utilized.
-
-## User
-
-| Field      | Required | Type    | Min | Max | Default | Pattern             | Other Validation                                      |
-|-------------|----------|---------|-----|-----|---------|----------------------|------------------------------------------------------|
-| username   | Yes      | String  |     |     |         |                      | Must be unique                                      |
-| email      | Yes      | String  |     |     |         |                      | Must be unique, valid email format (HTML5 type="email") |
-| password   | Yes      | String  |     |     |         |                      |                                                      |
-
-
+**Note:** The `DynamicObj` class lacks explicit validation rules.  Field names are dynamically generated, and values are set without type checking or range limitations.  The "Other Validation" column highlights the dynamic nature of field names and the absence of other constraints.
 
 ## Login
 
-| Field      | Required | Type    | Min | Max | Default | Pattern | Other Validation                     |
-|-------------|----------|---------|-----|-----|---------|---------|--------------------------------------|
-| username   | Yes      | String  |     |     |         |         |                                      |
-| password   | Yes      | String  |     |     |         |         | Must match stored password in database |
+| Field      | Required | Type    | Min | Max | Default | Pattern | Other Validation                               |
+|------------|----------|---------|-----|-----|---------|---------|---------------------------------------------------|
+| username   | Yes      | String  |     |     |         |         | Must exist in the database                     |
+| password   | Yes      | String  |     |     |         |         | Must match the password in the database        |
 
 ## ParkingLot
 
-| Field                | Required | Type             | Min     | Max     | Default | Pattern | Other Validation                                                                    |
-|-----------------------|----------|-----------------|---------|---------|---------|---------|------------------------------------------------------------------------------------|
-| prime_location_name | Yes      | String          |         |         |         |         |                                                                                    |
-| price_per_hour       | Yes      | Float/Decimal   |         |         |         |         | Must be a non-negative number                                                    |
-| address              | Yes      | String          |         |         |         |         |                                                                                    |
-| pin_code             | Yes      | String          |         |         |         |         |                                                                                    |
-| max_number_of_spots  | Yes      | Integer         | 1       |         |         |         | Must be greater than or equal to the number of currently occupied spots on delete |
+| Field                | Required | Type             | Min     | Max       | Default | Pattern | Other Validation                                           |
+|-----------------------|----------|-------------------|---------|-----------|---------|---------|-----------------------------------------------------------|
+| prime_location_name | Yes      | String           |         |           |         |         |                                                           |
+| price_per_hour       | Yes      | Float/Integer    |         |           |         |         | Must be a positive number                               |
+| address              | Yes      | String           |         |           |         |         |                                                           |
+| pin_code             | Yes      | String/Integer   |         |           |         |         |                                                           |
+| max_number_of_spots  | Yes      | Integer          | 1       |           |         |         | Must be a positive integer. Cannot reduce if spots occupied |
 
 
 
 ## ParkingSpot
 
-| Field          | Required | Type    | Min | Max | Default | Pattern | Other Validation |
-|-----------------|----------|---------|-----|-----|---------|---------|-------------------|
-| lot_id         | Yes      | Integer |     |     |         |         |                  |
-| spot_number    | Yes      | String  |     |     |         |         |                  |
-| status         | Yes      | String  |     |     | 'A'    |         | 'A' for Available, 'O' for Occupied |
+| Field       | Required | Type    | Min | Max | Default | Pattern | Other Validation |
+|-------------|----------|---------|-----|-----|---------|---------|--------------------|
+| lot_id      | Yes      | Integer |     |     |         |         |                   |
+| spot_number | Yes      | String  |     |     |         |         |                   |
+| status      | Yes      | String  |     |     | 'A'     |         | 'A' for available, 'O' for occupied |
 
 
 
 ## Reservation
 
-| Field                | Required | Type             | Min     | Max     | Default | Pattern | Other Validation                                               |
-|-----------------------|----------|-----------------|---------|---------|---------|---------|-------------------------------------------------------------------|
-| spot_id              | Yes      | Integer         |         |         |         |         |                                                                   |
-| user_id              | Yes      | Integer         |         |         |         |         |                                                                   |
-| parking_timestamp    | Yes      | DateTime        |         |         |         |         | Automatically set to current UTC time upon creation             |
-| leaving_timestamp    | No       | DateTime        |         |         |         |         | Set upon release of the spot; null initially                    |
-| parking_cost         | No       | Float/Decimal   | 0       |         | 0       |         | Calculated upon spot release based on duration and price per hour |
+| Field              | Required | Type             | Min   | Max   | Default | Pattern | Other Validation                                     |
+|----------------------|----------|-------------------|-------|-------|---------|---------|-----------------------------------------------------|
+| spot_id             | Yes      | Integer          |       |       |         |         |                                                     |
+| user_id             | Yes      | Integer          |       |       |         |         |                                                     |
+| parking_timestamp   | Yes      | DateTime         |       |       |         |         | Automatically set to current UTC time on creation     |
+| leaving_timestamp   | No       | DateTime         |       |       |         |         | Automatically set to current UTC time on spot release |
+| parking_cost        | No       | Float            | 0     |       | 0       |         | Calculated based on duration and price_per_hour       |
 
 
 
+## Booking Request (book_parking_spot)
 
-## Book Parking Spot Request
-
-| Field    | Required | Type    | Min | Max | Default | Pattern | Other Validation |
-|----------|----------|---------|-----|-----|---------|---------|-------------------|
-| user_id  | Yes      | Integer |     |     |         |         |                  |
-
-
-
-## Update Parking Lot Request
-
-| Field                | Required | Type             | Min     | Max     | Default | Pattern | Other Validation                                                              |
-|-----------------------|----------|-----------------|---------|---------|---------|---------|---------------------------------------------------------------------------------|
-| max_number_of_spots  | No       | Integer         |         |         |         |         | Must be greater than or equal to the number of currently occupied spots     |
-| prime_location_name | No       | String          |         |         |         |         |                                                                                |
-| price_per_hour       | No       | Float/Decimal   |         |         |         |         | Must be a non-negative number                                                |
-| address              | No       | String          |         |         |         |         |                                                                                |
-| pin_code             | No       | String          |         |         |         |         |                                                                                |
-
-## Admin
-
-| Field      | Required | Type      | Min | Max | Default | Pattern | Other Validation |
-|--------------|----------|-----------|-----|-----|---------|---------|-------------------|
-| username    | True     | String    |     | 50  |         |         | Unique             |
-| password    |          | String    |     | 100 |         |         |                   |
-
-## Car (Java)
-
-| Field          | Required | Type    | Min     | Max     | Default | Pattern | Other Validation                     |
-|-----------------|----------|---------|---------|---------|---------|---------|--------------------------------------|
-| licensePlate   | Yes      | String  | 5       |         |         |         | Minimum length of 5 characters        |
-| year           | Yes      | Integer | 1886    |         |         |         | Must be greater than or equal to 1886 |
+| Field     | Required | Type    | Min | Max | Default | Pattern | Other Validation                                   |
+|-----------|----------|---------|-----|-----|---------|---------|---------------------------------------------------|
+| user_id   | Yes      | Integer |     |     |         |         | User ID must exist in the database.             |
 
 
 
-## Product (JavaScript)
+## Update Parking Lot Request (update_parking_lot)
 
-| Field | Required | Type   | Min | Max | Default | Pattern | Other Validation                |
-|-------|----------|--------|-----|-----|---------|---------|------------------------------------|
-| name  | Yes      | String |     |     |         |         |                                    |
-| price | Yes      | Number | 0   |     |         |         | Must be non-negative             |
+| Field                | Required | Type             | Min     | Max       | Default | Pattern | Other Validation                                           |
+|-----------------------|----------|-------------------|---------|-----------|---------|---------|-----------------------------------------------------------|
+| prime_location_name | No       | String           |         |           |         |         |                                                           |
+| price_per_hour       | No       | Float/Integer    |         |           |         |         | Must be a positive number                               |
+| address              | No       | String           |         |           |         |         |                                                           |
+| pin_code             | No       | String/Integer   |         |           |         |         |                                                           |
+| max_number_of_spots  | No       | Integer          | 1       |           |         |         | Must be a positive integer. Cannot reduce if spots occupied |
+
+## Parking Spot
+
+| Field           | Required | Type         | Min     | Max       | Default | Pattern | Other Validation                               |
+|-----------------|----------|---------------|----------|------------|---------|----------|-----------------------------------------------|
+| id               | Yes      | INTEGER       |          |            |         |          | Must be unique (Primary Key)                 |
+| lot_id          | Yes      | INTEGER       |          |            |         |          | Must be a valid foreign key referencing parking_lot |
+| spot_number      | Yes      | VARCHAR(10)  |          |            |         |          |                                               |
+| status           | Yes      | VARCHAR(1)   |          |            |         |          |  Should be a single character (e.g., 'O' or 'A') |
 
 
-
-## Inventory (JavaScript)
-
-| Field | Required | Type    | Min | Max | Default | Pattern | Other Validation          |
-|-------|----------|---------|-----|-----|---------|---------|-----------------------------|
-| item  | Yes      | Object  |     |     |         |         | Must have a name property |
 

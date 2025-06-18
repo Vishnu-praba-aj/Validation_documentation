@@ -1,7 +1,8 @@
 from repo_browser import (
     fetch_github_file_content, is_bitbucket_url, is_github_url, parse_repo_url,
     get_github_default_branch, get_github_code_files, 
-    get_bitbucket_default_branch, get_bitbucket_code_files, fetch_bitbucket_file_content
+    get_bitbucket_default_branch, get_bitbucket_code_files, fetch_bitbucket_file_content,
+    extract_dependencies_with_files
 )
 from utilities import detect_dynamic_fields, extract_controller_names,extract_decorators, find_htmls_for_controller
 from llm import call_llm, test_llm_margin_of_error
@@ -63,14 +64,16 @@ def main():
                 relevant_htmls = find_htmls_for_controller(controller_name, html_files,fetch_content)
                 if relevant_htmls:
                     combined_html += "\n".join(relevant_htmls)
-            llm_output = call_llm(file, content, decorators, repo,code_files, fetch_content, html_content=combined_html)
+            dep_to_file_map = extract_dependencies_with_files(code_files, fetch_content)
+            llm_output = call_llm(file, content, decorators, repo, dep_to_file_map, fetch_content, html_content=combined_html)
             #test_llm_margin_of_error(call_llm, file, content, decorators, repo, html_content=combined_html, runs=10)
         elif file.endswith('.html'):
             continue
         else:
             content = fetch_content(file)
             decorators = extract_decorators(content)
-            llm_output = call_llm(file, content, decorators, repo,code_files, fetch_content)
+            dep_to_file_map = extract_dependencies_with_files(code_files, fetch_content)
+            llm_output = call_llm(file, content, decorators, repo, dep_to_file_map, fetch_content)
             #test_llm_margin_of_error(call_llm, file, content, decorators, repo, runs=10)
         
         if file.endswith('.html'):
