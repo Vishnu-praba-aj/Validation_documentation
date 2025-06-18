@@ -7,6 +7,7 @@ EXCLUDED_DIRS = [
     ".venv/", "venv/", "env/", "virtualenv/",
     "node_modules/", "bower_components/", "jspm_packages/",
     ".git/", ".svn/", ".hg/", ".bzr/","__pycache__/",
+    "environments/", "e2e/"
 ]
 
 EXCLUDED_FILES = [
@@ -19,6 +20,9 @@ EXCLUDED_FILES = [
     "__pycache__", "*.pyc", "*.egg", "*.dist-info", "*.a", "*.lib",
     "dist/", "build/", "coverage/", ".tox/", "node_modules/","__init__.py",
     "package-lock.json", "yarn-error.log", "yarn.lock", "pnpm-lock.yaml",
+    'angular.json', 'tsconfig.json', 'tsconfig.app.json', 'tsconfig.spec.json',
+    'tslint.json', 'karma.conf.js', 'package.json', 'package-lock.json',
+    '.editorconfig', '.browserslistrc', 'README.md'
 ]
 
 def is_bitbucket_url(url):
@@ -122,19 +126,15 @@ def extract_dependencies_with_files(code_files, fetch_content):
     Handles both Python and TypeScript (Angular) standard structures.
     """
     dep_to_file = {}
-
-    # First, build a map for all possible definitions
     name_to_file = {}
 
     for file in code_files:
         content = fetch_content(file)
-        # Python: function and class definitions
         if file.endswith('.py'):
             for match in re.finditer(r'def\s+(\w+)\s*\(', content):
                 name_to_file[match.group(1)] = file
             for match in re.finditer(r'class\s+(\w+)\s*[\(:]', content):
                 name_to_file[match.group(1)] = file
-        # TypeScript: class, interface, and function definitions
         elif file.endswith('.ts'):
             for match in re.finditer(r'(?:export\s+)?class\s+(\w+)', content):
                 name_to_file[match.group(1)] = file
@@ -143,23 +143,19 @@ def extract_dependencies_with_files(code_files, fetch_content):
             for match in re.finditer(r'function\s+(\w+)\s*\(', content):
                 name_to_file[match.group(1)] = file
 
-    # Now, extract dependencies from each file and map them to their definition file
     for file in code_files:
         content = fetch_content(file)
-        # Python imports
         if file.endswith('.py'):
             imports = re.findall(r'from\s+(\S+)\s+import\s+(\w+)', content)
             for _, name in imports:
                 if name in name_to_file:
                     dep_to_file[name] = name_to_file[name]
-            # Decorators and function calls
             for name in re.findall(r'@(\w+)', content):
                 if name in name_to_file:
                     dep_to_file[name] = name_to_file[name]
             for name in re.findall(r'(\w+)\(', content):
                 if name in name_to_file:
                     dep_to_file[name] = name_to_file[name]
-        # TypeScript imports
         elif file.endswith('.ts'):
             # import { X } from './x.service';
             for match in re.finditer(r'import\s+\{?\s*(\w+)\s*\}?\s+from\s+[\'"](.+?)[\'"]', content):
