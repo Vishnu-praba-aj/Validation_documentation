@@ -9,7 +9,7 @@ model = genai.GenerativeModel(LLM_MODEL)
 def test_llm_margin_of_error(call_llm_func, filename, content, decorators, repo, html_content=None, runs=10):
     outputs = []
     for _ in range(runs):
-        output = call_llm_func(filename, content, decorators, repo, html_content=html_content)
+        output = call_llm_func(filename, content, decorators, repo,dep_to_file_map=None,fetch_content=None, html_content=html_content)
         outputs.append(output.strip())
     unique_outputs = set(outputs)
     margin_of_error = (len(unique_outputs) - 1) / runs
@@ -53,12 +53,13 @@ def call_llm(
         #f"Decorators: {decorators}\n"
         "Instructions:\n"
         "1. For each class, object or relevant entity without repetition, create a level-2 Markdown heading.\n"
-        "2. Under each heading, create a Markdown table summarizing all validation rules for each field. Use columns such as: Field, Required, Type, Min, Max, Default, Pattern, Other Validation.\n"
+        "2. Under each heading, create a Markdown table summarizing all validation rules for each field.Include fields with no validation too. Use columns such as: Field, Required, Type, Min, Max,Length, Default, Pattern, Other Validation.\n"
         "3. Add columns for each validation present in the code. Use 'Other Validation' column for special cases\n"
         "4. Leave cells blank if a constraint is not present for a field.\n"
         "5. Combine validation logic from dependencies, decorators, assertions, comments, utility functions, or HTML templates as needed.\n"
         "6. Ensure the Markdown tables are properly formatted and render correctly in standard Markdown viewers.\n"
-        "7. Do not include any code snippets, explanations or summary only the Markdown table.\n"
+        "7. Be consistent in the responses. Always use Yes or No for required column"
+        "8. Do not include any code snippets, explanations or summary only the Markdown table.\n"
     )
     prompt = "\n".join(prompt_parts)
     try:
