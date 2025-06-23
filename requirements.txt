@@ -1,3 +1,7 @@
-requests
-markdown
-google-generativeai
+PyMuPDF
+openai
+pandas
+json
+google.generativeai
+os
+re

@@ -1,0 +1,10 @@
+Account Holder Name
+Account Number
+IFSC Code
+Period
+Opening Balance
+Closing Balance
+Transaction Date
+Description
+Amount
+Transaction Type
