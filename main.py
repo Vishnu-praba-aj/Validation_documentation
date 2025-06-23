@@ -6,7 +6,7 @@ def main():
     source = input("Enter a repo URL: ").strip()
     repo_name = source.split("/")[-1].split("\\")[-1]
     file_objs = get_input_files(source)
-    output_tables = process_files(file_objs, repo_name)
+    output_tables = process_files(file_objs)
 
     output_dir = os.path.join(os.getcwd(), "output")
     os.makedirs(output_dir, exist_ok=True)

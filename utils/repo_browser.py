@@ -1,5 +1,4 @@
 import os
-import re
 import requests
 import fnmatch
 
@@ -110,66 +109,3 @@ def fetch_bitbucket_file_content(owner, repo, file_path, branch):
     if resp.status_code != 200:
         raise Exception(f"Could not fetch file: {file_path}")
     return resp.text
-
-def extract_dependencies(file_content):
-    imports = re.findall(r'from\s+(\S+)\s+import\s+(\w+)', file_content)
-    used = set()
-    for _, name in imports:
-        used.add(name)
-    used.update(re.findall(r'@(\w+)', file_content))
-    used.update(re.findall(r'(\w+)\(', file_content))
-    return used
-
-def extract_dependencies_with_files(code_files, fetch_content):
-    """
-    Returns a dict mapping dependency name to the file where it is defined.
-    Handles both Python and TypeScript (Angular) standard structures.
-    """
-    dep_to_file = {}
-    name_to_file = {}
-
-    for file in code_files:
-        content = fetch_content(file)
-        if file.endswith('.py'):
-            for match in re.finditer(r'def\s+(\w+)\s*\(', content):
-                name_to_file[match.group(1)] = file
-            for match in re.finditer(r'class\s+(\w+)\s*[\(:]', content):
-                name_to_file[match.group(1)] = file
-        elif file.endswith('.ts'):
-            for match in re.finditer(r'(?:export\s+)?class\s+(\w+)', content):
-                name_to_file[match.group(1)] = file
-            for match in re.finditer(r'(?:export\s+)?interface\s+(\w+)', content):
-                name_to_file[match.group(1)] = file
-            for match in re.finditer(r'function\s+(\w+)\s*\(', content):
-                name_to_file[match.group(1)] = file
-
-    for file in code_files:
-        content = fetch_content(file)
-        if file.endswith('.py'):
-            imports = re.findall(r'from\s+(\S+)\s+import\s+(\w+)', content)
-            for _, name in imports:
-                if name in name_to_file:
-                    dep_to_file[name] = name_to_file[name]
-            for name in re.findall(r'@(\w+)', content):
-                if name in name_to_file:
-                    dep_to_file[name] = name_to_file[name]
-            for name in re.findall(r'(\w+)\(', content):
-                if name in name_to_file:
-                    dep_to_file[name] = name_to_file[name]
-        elif file.endswith('.ts'):
-            # import { X } from './x.service';
-            for match in re.finditer(r'import\s+\{?\s*(\w+)\s*\}?\s+from\s+[\'"](.+?)[\'"]', content):
-                dep_name, dep_path = match.groups()
-                # Try to resolve the file path
-                if not dep_path.endswith('.ts'):
-                    dep_path += '.ts'
-                # Try to find the file in code_files
-                dep_file = next((f for f in code_files if f.endswith(dep_path)), None)
-                if dep_file:
-                    dep_to_file[dep_name] = dep_file
-            # Class, interface, or function usage
-            for name in re.findall(r'(\w+)\(', content):
-                if name in name_to_file:
-                    dep_to_file[name] = name_to_file[name]
-
-    return dep_to_file
