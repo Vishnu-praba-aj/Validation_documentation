@@ -1,0 +1,14 @@
+Future Bank Statement
+
+Customer Name: Priya Verma
+A/C No.: 1234567890
+IFSC Code: FUTB0005678
+Branch Location: Indiranagar, Bangalore
+Period: 01/05/2024 - 31/05/2024
+
+Start Balance: Rs. 50,000.00
+
+Transactions:
+Date        Details                        Amount     Dr/Cr     Balance
+---------------------------------------------------------------------------
+03-05-2024  ATM Withdrawal                 5,000.00   Dr        45,000.00

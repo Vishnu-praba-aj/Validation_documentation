@@ -1,0 +1,13 @@
+SafeBank - Account Summary
+
+Account Holder: Anil Kumar
+Account #: 9988776655
+IFSC: SAFE0004321
+Branch: Koramangala
+Statement Dates: May 1, 2024 to May 31, 2024
+
+Opening Bal: 2,00,000.00
+
+Txn Date   Narration                   Amt        Type      Bal
+-----------------------------------------------------------------
+05/05/2024  Salary Credit              50,000.00  Credit    2,50,000.00

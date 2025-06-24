@@ -1,34 +1,29 @@
-from utils.repo_browser import (
-    fetch_github_file_content, fetch_bitbucket_file_content,
-    is_bitbucket_url, is_github_url, parse_repo_url,
-    get_github_default_branch, get_github_code_files,
-    get_bitbucket_default_branch, get_bitbucket_code_files
-)
 import os
+from input.repo_browser import get_files_from_repo
+from input.file_input import extract_text_from_file
+from utils.document_utils import read_custom_fields
 
-def get_files_from_repo(url):
-    owner, repo = parse_repo_url(url)
-    if is_bitbucket_url(url):
-        branch = get_bitbucket_default_branch(owner, repo)
-        code_files = get_bitbucket_code_files(owner, repo, branch)
-        fetch_content = lambda f: fetch_bitbucket_file_content(owner, repo, f, branch)
-    elif is_github_url(url):
-        branch = get_github_default_branch(owner, repo)
-        code_files = get_github_code_files(owner, repo, branch)
-        fetch_content = lambda f: fetch_github_file_content(owner, repo, f, branch)
+def handle_input(input_path_or_url, fields_txt=None):
+    if input_path_or_url.startswith("http"):
+        files = get_files_from_repo(input_path_or_url)
+        return {
+            "type": "code_repo",
+            "repo_name": input_path_or_url.rstrip("/").split("/")[-1],
+            "files": files
+        }
     else:
-        raise Exception("Unsupported repo URL")
-    file_objs = []
-    for f in code_files:
-        file_objs.append({
-            "path": f,
-            "type": os.path.splitext(f)[1],
-            "content": fetch_content(f)
-        })
-    return file_objs
+        if not fields_txt:
+            raise ValueError("Field definitions .txt path is required for document input.")
+        
+        if not os.path.exists(fields_txt):
+            raise FileNotFoundError(f"Custom fields file not found: {fields_txt}")
 
-def get_input_files(source):
-    if source.startswith("http"):
-        return get_files_from_repo(source)
-    else:
-        raise NotImplementedError("Only repo URLs are supported")
+        text = extract_text_from_file(input_path_or_url)
+        fields = read_custom_fields(fields_txt)
+        filename = os.path.splitext(os.path.basename(input_path_or_url))[0]
+        return {
+            "type": "document",
+            "text": text,
+            "fields": fields,
+            "filename": filename
+        }

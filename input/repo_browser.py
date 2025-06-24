@@ -109,3 +109,24 @@ def fetch_bitbucket_file_content(owner, repo, file_path, branch):
     if resp.status_code != 200:
         raise Exception(f"Could not fetch file: {file_path}")
     return resp.text
+
+def get_files_from_repo(url):
+    owner, repo = parse_repo_url(url)
+    if is_bitbucket_url(url):
+        branch = get_bitbucket_default_branch(owner, repo)
+        code_files = get_bitbucket_code_files(owner, repo, branch)
+        fetch_content = lambda f: fetch_bitbucket_file_content(owner, repo, f, branch)
+    elif is_github_url(url):
+        branch = get_github_default_branch(owner, repo)
+        code_files = get_github_code_files(owner, repo, branch)
+        fetch_content = lambda f: fetch_github_file_content(owner, repo, f, branch)
+    else:
+        raise Exception("Unsupported repo URL")
+    file_objs = []
+    for f in code_files:
+        file_objs.append({
+            "path": f,
+            "type": os.path.splitext(f)[1],
+            "content": fetch_content(f)
+        })
+    return file_objs

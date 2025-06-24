@@ -1,12 +1,10 @@
-from core.llm import call_llm
-from utils.utilities import (
-    extract_controller_names, find_htmls_for_controller, extract_entity_tables
-)
+from core.llm import init_agent_chat
+from utils.validation_utils import extract_controller_names, extract_entity_tables, find_htmls_for_controller
 
-def process_files(file_objs):
-    output = []
+def process_validation(file_objs):
+    chat = init_agent_chat("ValidationAgent")
+    outputs = []
     html_files = [f for f in file_objs if f["type"] == ".html"]
-
     fetch_content = lambda p: next(f["content"] for f in file_objs if f["path"] == p)
 
     all_entity_tables = {}
@@ -16,10 +14,10 @@ def process_files(file_objs):
         content = file["content"]
         if file["type"] == ".html":
             continue
-        
+
+        combined_html = ""
         if file["type"] == ".js":
             controller_names = extract_controller_names(content)
-            combined_html = ""
             for controller_name in controller_names:
                 relevant_htmls = find_htmls_for_controller(
                     controller_name,
@@ -28,12 +26,14 @@ def process_files(file_objs):
                 )
                 if relevant_htmls:
                     combined_html += "\n".join(relevant_htmls)
-            llm_output = call_llm(file["path"], content, html_content=combined_html)
-        else:
-            llm_output = call_llm(file["path"], content)
-        
-        formatted_output = f"## {file['path']}\n{llm_output}\n"
-        output.append(formatted_output)
+
+        prompt = f"Source file: {file['path']}\n{content}\n"
+        if combined_html:
+            prompt += f"\nAssociated HTML templates:\n{combined_html}\n"
+
+        response = chat.send_message(prompt)
+        llm_output = response.text.strip()
+        outputs.append((file['path'], llm_output))
 
         entity_tables = extract_entity_tables(llm_output)
         for entity, (etype, table) in entity_tables.items():
@@ -45,8 +45,5 @@ def process_files(file_objs):
     for entity, (etype, table) in all_entity_tables.items():
         if etype == "class":
             output_tables.append(table)
-        # Optionally, include functions used in multiple files:
-        # elif etype == "function" and len(entity_usage[entity]) > 1:
-        #     output_tables.append(table)
-    
+
     return output_tables
