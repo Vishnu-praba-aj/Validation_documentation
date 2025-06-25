@@ -5,7 +5,12 @@ from utils.document_utils import read_custom_fields
 
 def handle_input(input_path_or_url, fields_txt=None):
     if input_path_or_url.startswith("http"):
-        files = get_files_from_repo(input_path_or_url)
+        try:
+            files = get_files_from_repo(input_path_or_url)
+            if not files:
+                raise ValueError("No valid code files found in the repository.")
+        except Exception as e:
+            raise ValueError(f"Failed to fetch repo files: {e}")
         return {
             "type": "code_repo",
             "repo_name": input_path_or_url.rstrip("/").split("/")[-1],
