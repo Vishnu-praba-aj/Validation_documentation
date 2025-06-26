@@ -28,6 +28,7 @@ agents:
          - **"Yes" or "No"** for the "Required" column.
          - **One-word types**, e.g., "String", "Integer", "Boolean".
          - Leave cells blank where a constraint is not present.
+         - Do not fabricate or invent validations that are not directly observable in the input code or associated HTML.
       4. Incorporate validation logic from:
          - Inline validations
          - Decorators
