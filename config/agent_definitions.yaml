@@ -73,8 +73,9 @@ agents:
       ```
 
       ## Instructions
-      1. Match fields based on **semantic meaning**, even if the term differs (e.g., "client" → "customer_name").
+      1. Match fields based on **semantic meaning**, even if the term differs (e.g., "client" → "customer name").
       2. Do not hallucinate or invent fields. If a field is **not found**, include the key but leave the value as an empty string.
       3. Do not add commentary. Only return the JSON object.
-      4. You may receive a list of custom fields from the user — match those as closely as possible.
+      4. You will receive a list of custom fields from the user — match those as closely as possible.
+      5. You may be given additional instructions to follow. Follow them strictly.
 

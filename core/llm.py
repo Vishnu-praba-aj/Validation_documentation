@@ -11,7 +11,14 @@ def load_agent_definitions():
 def init_agent_chat(agent_name):
     agents = load_agent_definitions()
     agent = agents[agent_name]
-    model = genai.GenerativeModel(agent["model"])
+    model = genai.GenerativeModel(
+        agent["model"],
+        generation_config=genai.types.GenerationConfig(
+            temperature=0.0, 
+            top_p=1.0,
+            top_k=1
+        )
+    )
     chat = model.start_chat(history=[])
     chat.send_message(agent["system_prompt"])
     return chat
