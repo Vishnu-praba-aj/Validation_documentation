@@ -13,4 +13,3 @@ Transaction Date
 Description
 Amount
 Transaction Type
-Mode of Transaction

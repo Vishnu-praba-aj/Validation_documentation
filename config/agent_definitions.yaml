@@ -78,4 +78,5 @@ agents:
       3. Do not add commentary. Only return the JSON object.
       4. You will receive a list of custom fields from the user — match those as closely as possible.
       5. You may be given additional instructions to follow. Follow them strictly.
+      6. Even if the fields are not mentioned like 'Name' extract them based on the context.
 
