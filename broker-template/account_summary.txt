@@ -1,0 +1,24 @@
+
+Account Holder: Neha Sharma
+Account Number: 50201000123456
+Branch: Mumbai Central
+IFSC Code: HDFC0001234
+Account Type: Savings
+Statement Period: 01-Jan-2024 to 31-Mar-2024
+
+--- Transaction Summary ---
+Date        | Description                       | Withdrawals | Deposits | Balance
+01-Jan-2024 | ATM Withdrawal                    | 5000.00     |          | 25000.00
+03-Jan-2024 | NEFT from Rajiv Kapoor            |             | 15000.00 | 40000.00
+10-Jan-2024 | UPI Payment to Amazon             | 3200.00     |          | 36800.00
+15-Jan-2024 | Salary Credit                     |             | 50000.00 | 86800.00
+20-Jan-2024 | EMI Debit - Home Loan             | 24000.00    |          | 62800.00
+28-Jan-2024 | Interest Credit                   |             | 400.00   | 63200.00
+03-Feb-2024 | UPI Payment to Flipkart           | 2500.00     |          | 60700.00
+12-Feb-2024 | NEFT from ABC Pvt Ltd             |             | 12000.00 | 72700.00
+25-Feb-2024 | ATM Withdrawal                    | 10000.00    |          | 62700.00
+01-Mar-2024 | Credit Card Payment               | 15000.00    |          | 47700.00
+15-Mar-2024 | Salary Credit                     |             | 51000.00 | 98700.00
+31-Mar-2024 | UPI Payment to BigBasket          | 2200.00     |          | 96500.00
+
+Closing Balance: ₹96,500.00

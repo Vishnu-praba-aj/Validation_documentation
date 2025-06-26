@@ -1,10 +1,16 @@
-Account Holder Name
+Bank Name
+Branch Name
+Customer Name
 Account Number
+Customer ID
+Account Type
 IFSC Code
-Period
 Opening Balance
 Closing Balance
+Period
+Generated On
 Transaction Date
 Description
 Amount
 Transaction Type
+Mode of Transaction
