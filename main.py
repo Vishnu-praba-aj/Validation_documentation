@@ -32,6 +32,7 @@ def main():
         elif result["type"] == "document":
             print("Processing document")
             response = process_document(result["text"], result["fields"], user_prompt)
+            print("Processing complete. Extracting fields...",response)
             json_result = parse_json(response)
             output_path = os.path.join(OUTPUT_DIR, f"{result['filename']}_extracted.xlsx")
             export_to_excel(json_result, output_path)

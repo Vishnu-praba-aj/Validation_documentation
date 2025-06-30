@@ -1,11 +1,11 @@
 Bank of Tomorrow Ltd.
 Statement of Account
 
-Name: Mr. Rajiv Sharma  
-Account Number: 987654321012  
-IFSC : BOTM0001234  
-Branch: MG Road, Bangalore  
-Statement Period: 01-May-2024 to 31-May-2024  
+Mr. Rajiv Sharma  
+987654321012  
+BOTM0001234  
+MG Road, Bangalore  
+01-May-2024 to 31-May-2024  
 
 Opening Balance: ₹1,25,000.00  
 
