@@ -63,8 +63,7 @@ agents:
        
        ## Perspective
         Always extract field values from the perspective of the client  or counterparty mentioned in the "To:" section of the document. For example:
-        - If "To: ABC" is listed and ABC is marked as the "Buyer", return "Buy" for the transaction type.
-        
+        - If "To: ABC" is listed and ABC is marked as the "Buyer", return "Buy" for the transaction type. 
 
       ## Example
       ```json
