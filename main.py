@@ -2,7 +2,7 @@ import os
 import time
 from input.handler import handle_input
 from core.validation_processor import process_validation
-from core.document_processor import process_document
+from core.document_processor import process_document,process_doc
 from utils.document_utils import export_to_excel, parse_json
 from utils.logging import setup_logger, log_duration
 
@@ -36,7 +36,7 @@ def main():
         elif result["type"] == "document":
             print("Processing document")
             logger.info("Processing document")
-            response = process_document(result["text"], result["fields"], user_prompt) 
+            response = process_doc(source, result["fields"], user_prompt) 
             logger.info("Processing complete. Extracting fields...")
             print("Processing complete. Extracting fields...",response)
             start = time.perf_counter()

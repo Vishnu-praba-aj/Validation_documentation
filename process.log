@@ -371,3 +371,27 @@
 2025-07-02 11:32:51,471 INFO Processing complete. Extracting fields...
 2025-07-02 11:32:51,473 INFO Post processing output from LLM took 0.000 seconds
 2025-07-02 11:32:51,541 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\trade_data_report_extracted.xlsx
+2025-07-02 19:06:38,825 INFO PDF text extraction took 0.097 seconds
+2025-07-02 19:06:38,847 INFO Processing document
+2025-07-02 19:06:38,847 ERROR Unexpected error occurred: init_agent_chat() got an unexpected keyword argument 'file'
+2025-07-02 19:07:21,851 INFO PDF text extraction took 0.014 seconds
+2025-07-02 19:07:21,852 INFO Processing document
+2025-07-02 19:07:21,860 INFO DocumentAgent and chat initialization took 0.007 seconds
+2025-07-02 19:07:39,377 INFO System prompt send took 17.516 seconds
+2025-07-02 19:07:39,378 INFO DocumentAgent chat loading took 17.525 seconds
+2025-07-02 19:07:39,379 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 19:07:43,586 INFO DocumentAgent response took 4.207 seconds
+2025-07-02 19:10:18,094 INFO DocumentAgent response (interactive) took 3.296 seconds
+2025-07-02 19:10:39,107 INFO Processing complete. Extracting fields...
+2025-07-02 19:10:39,109 INFO Post processing output from LLM took 0.001 seconds
+2025-07-02 19:10:39,555 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 19:10:53,346 INFO PDF text extraction took 0.020 seconds
+2025-07-02 19:10:53,349 INFO Processing document
+2025-07-02 19:10:53,358 INFO DocumentAgent and chat initialization took 0.008 seconds
+2025-07-02 19:11:07,300 INFO System prompt send took 13.941 seconds
+2025-07-02 19:11:07,301 INFO DocumentAgent chat loading took 13.951 seconds
+2025-07-02 19:11:07,302 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 19:11:11,341 INFO DocumentAgent response took 4.039 seconds
+2025-07-02 19:11:18,166 INFO Processing complete. Extracting fields...
+2025-07-02 19:11:18,167 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 19:11:18,398 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx

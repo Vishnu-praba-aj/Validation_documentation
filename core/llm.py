@@ -12,7 +12,7 @@ def load_agent_definitions():
     with open(AGENT_DEFINITION_PATH, "r") as f:
         return yaml.safe_load(f)["agents"]
 
-def init_agent_chat(agent_name):
+def init_agent_chat(agent_name, file_path=None):
     start = time.perf_counter()
     agents = load_agent_definitions()
     agent = agents[agent_name]
@@ -27,6 +27,10 @@ def init_agent_chat(agent_name):
     chat = model.start_chat(history=[])
     log_duration(logger, f"{agent_name} and chat initialization", start)
     start = time.perf_counter()
-    chat.send_message(agent["system_prompt"])
+    if file_path:
+        uploaded_file = genai.upload_file(file_path)
+        chat.send_message([uploaded_file, agent["system_prompt"]])
+    else:
+        chat.send_message(agent["system_prompt"])
     log_duration(logger, "System prompt send", start)
     return chat

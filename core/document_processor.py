@@ -37,3 +37,39 @@ def process_document(text, fields, user_prompt=""):
         print("LLM Response:\n", response.text.strip())
 
     return response.text.strip()
+
+def process_doc(file,fields,user_prompt=""):
+    start = time.perf_counter()
+    start = time.perf_counter()
+    chat = init_agent_chat("DocumentAgent", file_path=file)
+    log_duration(logger, "DocumentAgent chat loading", start)
+
+    start = time.perf_counter()
+    field_list = ", ".join(fields)
+    prompt = f"""Extract the following fields: {field_list}
+    {user_prompt.strip() if user_prompt.strip() else ""}
+    """
+    log_duration(logger, "DocumentAgent Prompt construction", start)
+
+    start = time.perf_counter()
+    response = chat.send_message([prompt.strip()])
+    log_duration(logger, "DocumentAgent response", start) 
+
+    print("LLM Response:\n", response.text.strip())
+
+    while True:
+        cont = input("Do you want to continue the chat with the LLM? (yes/no): ").strip().lower()
+        if cont != "yes":
+            break
+        user_input = input("Enter your message for the LLM: ").strip()
+        if not user_input:
+            print("No input provided. Exiting chat.")
+            break
+        start = time.perf_counter()
+        response = chat.send_message(user_input)
+        log_duration(logger, "DocumentAgent response (interactive)", start)
+        print("LLM Response:\n", response.text.strip())
+
+    return response.text.strip()
+
+    
