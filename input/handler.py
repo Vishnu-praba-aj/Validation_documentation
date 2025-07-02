@@ -1,16 +1,22 @@
 import os
+import time
 from input.repo_browser import get_files_from_repo
 from input.file_input import extract_text_from_file
 from utils.document_utils import read_custom_fields
+from utils.logging import log_duration, setup_logger
+
+logger = setup_logger()
 
 def handle_input(input_path_or_url, fields_txt=None):
     if input_path_or_url.startswith("http"):
+        start = time.perf_counter()
         try:
             files = get_files_from_repo(input_path_or_url)
             if not files:
                 raise ValueError("No valid code files found in the repository.")
         except Exception as e:
             raise ValueError(f"Failed to fetch repo files: {e}")
+        log_duration(logger, "Repository files fetching", start)
         return {
             "type": "code_repo",
             "repo_name": input_path_or_url.rstrip("/").split("/")[-1],

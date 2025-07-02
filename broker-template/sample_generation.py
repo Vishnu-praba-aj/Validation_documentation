@@ -8,11 +8,6 @@ def generate_trade_confirmation_pdf(output_file):
 
    
 
-    # Contact details
-    c.setFont("Helvetica", 10)
-    c.drawString(50, height - 100, "To : CITIBANK, N.A / Attn :")
-    c.drawString(50, height - 115, "Tel : +91 (44) 4444 4444 / Fax :")
-    c.drawString(50, height - 130, "Date : May 11, 2020")
 
     # Title
     c.setFont("Helvetica-Bold", 10)
@@ -20,7 +15,7 @@ def generate_trade_confirmation_pdf(output_file):
 
     # Trade details
     details = [
-        ("Buyer", "CITI"),
+        ("Buyer", "XYZ"),
         ("Seller", "ABC"),
         ("Our reference number", "1234567890/9876543210"),
         ("Note Reference", "VPJ241204"),
@@ -53,7 +48,7 @@ def generate_trade_confirmation_pdf(output_file):
     c.drawString(200, y, "CLEARSTREAM BANKING S.A / CEDELULLXXX")
     y -= 15
     c.drawString(50, y, "                          ")
-    c.drawString(200, y, "CITIKHXXXX")
+    c.drawString(200, y, "XYZIKHXXXX")
     y -= 15
     c.drawString(50, y, "                          ")
     c.drawString(200, y, "12345")
@@ -87,3 +82,4 @@ def generate_trade_confirmation_pdf(output_file):
 
 # Generate the PDF
 generate_trade_confirmation_pdf("Trade_Confirmation.pdf")
+print("Saved")

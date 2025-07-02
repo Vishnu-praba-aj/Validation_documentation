@@ -7,11 +7,10 @@ def read_custom_fields(path):
         return [line.strip() for line in f if line.strip()]
     
 def export_to_excel(data, output_file="extracted_data.xlsx"):
-    user_fields = data.get("user_fields", [])
-    doc_fields = data.get("document_fields", [])
+    custom_fields = data.get("user_fields", [])
+    label = data.get("document_fields", [])
     values = data.get("values", [])
 
-    # Ensure all values are lists of the same length (pad with empty strings if needed)
     max_len = max([len(v) if isinstance(v, list) else 1 for v in values] + [1])
     value_rows = []
     for i in range(max_len):
@@ -23,14 +22,10 @@ def export_to_excel(data, output_file="extracted_data.xlsx"):
                 row.append(v if i == 0 else "")
         value_rows.append(row)
 
-    # Build the DataFrame rows
     rows = []
 
-    # First row: CustomFields
-    rows.append(["CustomFields"] + user_fields)
-    # Second row: Label (document_fields)
-    rows.append(["Label"] + doc_fields)
-    # Data rows: values with Ref as blank or auto-number
+    rows.append(["CustomFields"] + custom_fields)
+    rows.append(["Label"] + label)
     for idx, val_row in enumerate(value_rows, 1):
         rows.append([str(idx)] + val_row)
 
@@ -48,5 +43,4 @@ def parse_json(response):
         return json.loads(cleaned_json)
     except json.JSONDecodeError:
         print("Gemini response is not valid JSON.")
-        # Return empty lists for the three keys as per new prompt
         return {"user_fields": [], "document_fields": [], "values": []}

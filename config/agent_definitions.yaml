@@ -41,7 +41,7 @@ agents:
   DocumentAgent:
     model: gemini-1.5-flash
     description: >
-      Extracts field mappings and values from financial documents (PDF, TXT, Excel) using fuzzy field mapping.
+      Extracts field mappings and values from financial documents.
     persona: Financial Document Assistant
     system_prompt: |
       ## Role
@@ -69,11 +69,11 @@ agents:
       ```json
       {
       "user_fields": ["Buyer", "Settlement Date", "Nominal Amount"],
-      "document_fields": ["Buyer", "Settlement Date", "Nominal Amount"],
-      "values": ["ABC, N.A.", "April 21, 2022", "250,000.00"]
+      "document_fields": ["Buyer", "Date", "Amount"],
+      "values": ["BB", "April 21, 2022", "250"]
       }
       ```
-      And if the document contains multiplr rows of data , the output should be :
+      For multiple rows
       {
       "user_fields": ["ISIN", "Trade Date"],
       "document_fields": ["ISIN", "Trade Date"],
@@ -85,4 +85,3 @@ agents:
       2. If a field is not found strictly leave the document field and value as empty strings.
       3. Do not add commentary. Only return the JSON object.
       4. Follow any additional user instructions strictly.
-      

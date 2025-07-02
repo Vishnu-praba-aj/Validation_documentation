@@ -1,0 +1,82 @@
+2025-07-02 08:34:51,109 INFO Repository files fetching took 3.542 seconds
+2025-07-02 08:34:51,130 INFO Processing repository for validation
+2025-07-02 08:34:51,135 INFO ValidationAgent and chat initialization took 0.004 seconds
+2025-07-02 08:34:53,413 INFO System prompt send took 2.278 seconds
+2025-07-02 08:34:53,413 INFO ValidationAgent chat loading took 2.283 seconds
+2025-07-02 08:34:53,414 INFO ValidationAgent prompt construction for User.java took 0.000 seconds
+2025-07-02 08:34:54,635 INFO ValidationAgent response for User.java took 1.221 seconds
+2025-07-02 08:34:54,636 INFO ValidationAgent prompt construction for app.js took 1.222 seconds
+2025-07-02 08:34:56,107 INFO ValidationAgent response for app.js took 1.470 seconds
+2025-07-02 08:34:56,126 INFO ValidationAgent prompt construction for cross_file_main.java took 1.489 seconds
+2025-07-02 08:34:57,246 INFO ValidationAgent response for cross_file_main.java took 1.120 seconds
+2025-07-02 08:34:57,247 INFO ValidationAgent prompt construction for cross_file_utils.java took 1.121 seconds
+2025-07-02 08:34:58,360 INFO ValidationAgent response for cross_file_utils.java took 1.113 seconds
+2025-07-02 08:34:58,360 INFO ValidationAgent prompt construction for decorator_validation.py took 1.113 seconds
+2025-07-02 08:34:59,894 INFO ValidationAgent response for decorator_validation.py took 1.533 seconds
+2025-07-02 08:34:59,894 INFO ValidationAgent prompt construction for dynamic_fields.py took 1.534 seconds
+2025-07-02 08:35:01,028 INFO ValidationAgent response for dynamic_fields.py took 1.133 seconds
+2025-07-02 08:35:01,028 INFO ValidationAgent prompt construction for validations.java took 1.134 seconds
+2025-07-02 08:35:05,957 INFO ValidationAgent response for validations.java took 4.928 seconds
+2025-07-02 08:35:05,958 INFO ValidationAgent prompt construction for validations.py took 4.929 seconds
+2025-07-02 08:35:07,722 INFO ValidationAgent response for validations.py took 1.764 seconds
+2025-07-02 08:35:07,723 INFO Post-processing validation output took 0.000 seconds
+2025-07-02 09:10:00,801 INFO PDF text extraction took 0.073 seconds
+2025-07-02 09:10:00,805 INFO Processing document
+2025-07-02 09:10:00,849 INFO DocumentAgent and chat initialization took 0.044 seconds
+2025-07-02 09:10:02,524 INFO System prompt send took 1.675 seconds
+2025-07-02 09:10:02,525 INFO DocumentAgent chat loading took 1.719 seconds
+2025-07-02 09:10:02,525 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 09:10:04,412 INFO DocumentAgent response took 1.887 seconds
+2025-07-02 09:10:06,362 INFO Processing complete. Extracting fields...
+2025-07-02 09:10:06,364 INFO Post processing output from LLM took 0.001 seconds
+2025-07-02 09:10:07,108 INFO Excel file saved at: C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 09:11:21,542 INFO PDF text extraction took 0.014 seconds
+2025-07-02 09:11:21,545 INFO Processing document
+2025-07-02 09:11:21,554 INFO DocumentAgent and chat initialization took 0.008 seconds
+2025-07-02 09:11:23,157 INFO System prompt send took 1.602 seconds
+2025-07-02 09:11:23,158 INFO DocumentAgent chat loading took 1.612 seconds
+2025-07-02 09:11:23,158 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 09:11:24,954 INFO DocumentAgent response took 1.796 seconds
+2025-07-02 09:11:26,441 INFO Processing complete. Extracting fields...
+2025-07-02 09:11:26,442 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 09:11:26,928 INFO Excel file saved at: C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 09:18:00,935 INFO PDF text extraction took 0.068 seconds
+2025-07-02 09:18:00,940 INFO Processing document
+2025-07-02 09:18:00,967 INFO DocumentAgent and chat initialization took 0.026 seconds
+2025-07-02 09:18:04,320 INFO System prompt send took 3.353 seconds
+2025-07-02 09:18:04,321 INFO DocumentAgent chat loading took 3.381 seconds
+2025-07-02 09:18:04,321 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 09:18:06,113 INFO DocumentAgent response took 1.791 seconds
+2025-07-02 09:18:08,502 INFO Processing complete. Extracting fields...
+2025-07-02 09:18:08,522 INFO Post processing output from LLM took 0.019 seconds
+2025-07-02 09:18:09,174 INFO Excel file saved at: C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 09:20:07,384 INFO PDF text extraction took 0.013 seconds
+2025-07-02 09:20:07,387 INFO Processing document
+2025-07-02 09:20:07,414 INFO DocumentAgent and chat initialization took 0.025 seconds
+2025-07-02 09:20:10,646 INFO System prompt send took 3.232 seconds
+2025-07-02 09:20:10,648 INFO DocumentAgent chat loading took 3.260 seconds
+2025-07-02 09:20:10,649 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 09:20:12,741 INFO DocumentAgent response took 2.091 seconds
+2025-07-02 09:20:15,896 INFO Processing complete. Extracting fields...
+2025-07-02 09:20:15,898 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 09:20:16,430 INFO Excel file saved at: C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 09:27:36,603 INFO PDF text extraction took 0.018 seconds
+2025-07-02 09:27:36,606 INFO Processing document
+2025-07-02 09:27:36,613 INFO DocumentAgent and chat initialization took 0.005 seconds
+2025-07-02 09:27:40,568 INFO System prompt send took 3.954 seconds
+2025-07-02 09:27:40,570 INFO DocumentAgent chat loading took 3.962 seconds
+2025-07-02 09:27:40,571 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 09:27:42,582 INFO DocumentAgent response took 2.011 seconds
+2025-07-02 09:27:44,675 INFO Processing complete. Extracting fields...
+2025-07-02 09:27:44,677 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 09:27:45,191 INFO Excel file saved at: C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 09:35:05,740 INFO PDF text extraction took 0.013 seconds
+2025-07-02 09:35:05,743 INFO Processing document
+2025-07-02 09:35:05,780 INFO DocumentAgent and chat initialization took 0.036 seconds
+2025-07-02 09:35:08,807 INFO System prompt send took 3.026 seconds
+2025-07-02 09:35:08,809 INFO DocumentAgent chat loading took 3.065 seconds
+2025-07-02 09:35:08,810 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 09:35:10,765 INFO DocumentAgent response took 1.953 seconds
+2025-07-02 09:35:13,642 INFO Processing complete. Extracting fields...
+2025-07-02 09:35:13,644 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 09:35:14,163 INFO Excel file saved at: C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\output\Trade_Confirmation_extracted.xlsx

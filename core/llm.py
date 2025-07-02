@@ -1,6 +1,10 @@
 import google.generativeai as genai
 import yaml
 from config.settings import GENAI_API_KEY, AGENT_DEFINITION_PATH
+from utils.logging import log_duration, setup_logger  
+import time
+
+logger = setup_logger()
 
 genai.configure(api_key=GENAI_API_KEY)
 
@@ -9,6 +13,7 @@ def load_agent_definitions():
         return yaml.safe_load(f)["agents"]
 
 def init_agent_chat(agent_name):
+    start = time.perf_counter()
     agents = load_agent_definitions()
     agent = agents[agent_name]
     model = genai.GenerativeModel(
@@ -20,5 +25,8 @@ def init_agent_chat(agent_name):
         )
     )
     chat = model.start_chat(history=[])
+    log_duration(logger, f"{agent_name} and chat initialization", start)
+    start = time.perf_counter()
     chat.send_message(agent["system_prompt"])
+    log_duration(logger, "System prompt send", start)
     return chat

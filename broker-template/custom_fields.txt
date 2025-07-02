@@ -1,16 +1,9 @@
-Bank Name
-Branch Name
-Customer Name
-Account Number
-Customer ID
-Account Type
-IFSC Code
-Opening Balance
-Closing Balance
-Period
-Generated On
-Transaction Date
-Description
-Amount
-Transaction Type
-Mode of Transaction
+Trade Date 
+Settlement Date
+Transaction (Buy/Sell)
+Net Amount or Consideration Amount or Nominal Amount
+Unit Price or Price
+Units or Shares
+ISIN or RIC 
+Currency
+Company Name or Bank Name
