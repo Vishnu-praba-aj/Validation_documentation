@@ -80,3 +80,294 @@
 2025-07-02 09:35:13,642 INFO Processing complete. Extracting fields...
 2025-07-02 09:35:13,644 INFO Post processing output from LLM took 0.000 seconds
 2025-07-02 09:35:14,163 INFO Excel file saved at: C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:03:10,058 INFO PDF text extraction took 0.105 seconds
+2025-07-02 10:03:10,060 INFO Processing document
+2025-07-02 10:03:10,081 INFO DocumentAgent and chat initialization took 0.021 seconds
+2025-07-02 10:03:12,545 INFO System prompt send took 2.463 seconds
+2025-07-02 10:03:12,545 INFO DocumentAgent chat loading took 2.486 seconds
+2025-07-02 10:03:12,546 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:03:14,569 INFO DocumentAgent response took 2.023 seconds
+2025-07-02 10:03:18,374 INFO Processing complete. Extracting fields...
+2025-07-02 10:03:18,414 INFO Post processing output from LLM took 0.038 seconds
+2025-07-02 10:03:18,837 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:06:05,431 INFO PDF text extraction took 0.007 seconds
+2025-07-02 10:06:05,433 INFO Processing document
+2025-07-02 10:06:05,479 INFO DocumentAgent and chat initialization took 0.046 seconds
+2025-07-02 10:06:08,632 INFO System prompt send took 3.152 seconds
+2025-07-02 10:06:08,632 INFO DocumentAgent chat loading took 3.199 seconds
+2025-07-02 10:06:08,633 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:06:10,677 INFO DocumentAgent response took 2.044 seconds
+2025-07-02 10:06:23,625 INFO Processing complete. Extracting fields...
+2025-07-02 10:06:23,627 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:06:23,901 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:08:41,948 INFO PDF text extraction took 0.012 seconds
+2025-07-02 10:08:41,949 INFO Processing document
+2025-07-02 10:08:41,986 INFO DocumentAgent and chat initialization took 0.036 seconds
+2025-07-02 10:08:45,303 INFO System prompt send took 3.317 seconds
+2025-07-02 10:08:45,304 INFO DocumentAgent chat loading took 3.354 seconds
+2025-07-02 10:08:45,305 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:08:47,164 INFO DocumentAgent response took 1.858 seconds
+2025-07-02 10:09:14,772 INFO Processing complete. Extracting fields...
+2025-07-02 10:09:14,774 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:09:15,024 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:11:36,721 INFO PDF text extraction took 0.014 seconds
+2025-07-02 10:11:36,723 INFO Processing document
+2025-07-02 10:11:36,760 INFO DocumentAgent and chat initialization took 0.036 seconds
+2025-07-02 10:11:40,132 INFO System prompt send took 3.371 seconds
+2025-07-02 10:11:40,132 INFO DocumentAgent chat loading took 3.409 seconds
+2025-07-02 10:11:40,132 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:11:42,217 INFO DocumentAgent response took 2.084 seconds
+2025-07-02 10:12:35,326 INFO Processing complete. Extracting fields...
+2025-07-02 10:12:35,328 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:12:35,621 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:19:14,972 INFO PDF text extraction took 0.012 seconds
+2025-07-02 10:19:14,973 INFO Processing document
+2025-07-02 10:19:15,004 INFO DocumentAgent and chat initialization took 0.031 seconds
+2025-07-02 10:19:18,548 INFO System prompt send took 3.543 seconds
+2025-07-02 10:19:18,548 INFO DocumentAgent chat loading took 3.575 seconds
+2025-07-02 10:19:18,549 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:19:20,699 INFO DocumentAgent response took 2.150 seconds
+2025-07-02 10:19:40,318 INFO DocumentAgent response (interactive) took 2.258 seconds
+2025-07-02 10:20:01,815 INFO Processing complete. Extracting fields...
+2025-07-02 10:20:01,817 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:20:02,054 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:21:56,550 INFO PDF text extraction took 0.013 seconds
+2025-07-02 10:21:56,552 INFO Processing document
+2025-07-02 10:21:56,584 INFO DocumentAgent and chat initialization took 0.032 seconds
+2025-07-02 10:21:59,419 INFO System prompt send took 2.835 seconds
+2025-07-02 10:21:59,420 INFO DocumentAgent chat loading took 2.868 seconds
+2025-07-02 10:21:59,421 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:22:01,365 INFO DocumentAgent response took 1.944 seconds
+2025-07-02 10:22:17,813 INFO Processing complete. Extracting fields...
+2025-07-02 10:22:17,815 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:22:18,089 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:22:31,578 INFO PDF text extraction took 0.020 seconds
+2025-07-02 10:22:31,580 INFO Processing document
+2025-07-02 10:22:31,588 INFO DocumentAgent and chat initialization took 0.007 seconds
+2025-07-02 10:22:34,442 INFO System prompt send took 2.854 seconds
+2025-07-02 10:22:34,443 INFO DocumentAgent chat loading took 2.862 seconds
+2025-07-02 10:22:34,444 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:22:36,488 INFO DocumentAgent response took 2.045 seconds
+2025-07-02 10:24:23,604 INFO Processing complete. Extracting fields...
+2025-07-02 10:24:23,606 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:24:23,862 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:24:38,794 INFO PDF text extraction took 0.013 seconds
+2025-07-02 10:24:38,796 INFO Processing document
+2025-07-02 10:24:38,871 INFO DocumentAgent and chat initialization took 0.075 seconds
+2025-07-02 10:24:42,053 INFO System prompt send took 3.180 seconds
+2025-07-02 10:24:42,054 INFO DocumentAgent chat loading took 3.258 seconds
+2025-07-02 10:24:42,055 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:24:44,238 INFO DocumentAgent response took 2.183 seconds
+2025-07-02 10:25:21,798 INFO Processing complete. Extracting fields...
+2025-07-02 10:25:21,800 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:25:22,037 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:25:44,260 INFO PDF text extraction took 0.013 seconds
+2025-07-02 10:25:44,262 INFO Processing document
+2025-07-02 10:25:44,300 INFO DocumentAgent and chat initialization took 0.038 seconds
+2025-07-02 10:25:47,131 INFO System prompt send took 2.830 seconds
+2025-07-02 10:25:47,131 INFO DocumentAgent chat loading took 2.869 seconds
+2025-07-02 10:25:47,132 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:25:49,205 INFO DocumentAgent response took 2.073 seconds
+2025-07-02 10:26:04,244 INFO Processing complete. Extracting fields...
+2025-07-02 10:26:04,246 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:26:04,515 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:28:45,980 INFO PDF text extraction took 0.014 seconds
+2025-07-02 10:28:45,981 INFO Processing document
+2025-07-02 10:28:46,015 INFO DocumentAgent and chat initialization took 0.033 seconds
+2025-07-02 10:28:50,457 INFO System prompt send took 4.441 seconds
+2025-07-02 10:28:50,458 INFO DocumentAgent chat loading took 4.476 seconds
+2025-07-02 10:28:50,460 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:28:52,505 INFO DocumentAgent response took 2.044 seconds
+2025-07-02 10:28:57,760 INFO Processing complete. Extracting fields...
+2025-07-02 10:28:57,761 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:28:58,048 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:29:18,733 INFO PDF text extraction took 0.015 seconds
+2025-07-02 10:29:18,736 INFO Processing document
+2025-07-02 10:29:18,746 INFO DocumentAgent and chat initialization took 0.009 seconds
+2025-07-02 10:29:22,405 INFO System prompt send took 3.658 seconds
+2025-07-02 10:29:22,405 INFO DocumentAgent chat loading took 3.668 seconds
+2025-07-02 10:29:22,406 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:29:24,452 INFO DocumentAgent response took 2.046 seconds
+2025-07-02 10:29:54,062 INFO DocumentAgent response (interactive) took 2.090 seconds
+2025-07-02 10:30:01,403 INFO Processing complete. Extracting fields...
+2025-07-02 10:30:01,405 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:30:01,682 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:34:44,101 INFO PDF text extraction took 0.016 seconds
+2025-07-02 10:34:44,103 INFO Processing document
+2025-07-02 10:34:44,130 INFO DocumentAgent and chat initialization took 0.026 seconds
+2025-07-02 10:35:03,260 INFO System prompt send took 19.129 seconds
+2025-07-02 10:35:03,261 INFO DocumentAgent chat loading took 19.157 seconds
+2025-07-02 10:35:03,261 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:35:07,189 INFO DocumentAgent response took 3.928 seconds
+2025-07-02 10:35:32,878 INFO Processing complete. Extracting fields...
+2025-07-02 10:35:32,879 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:35:33,140 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:35:45,151 INFO PDF text extraction took 0.012 seconds
+2025-07-02 10:35:45,156 INFO Processing document
+2025-07-02 10:35:45,164 INFO DocumentAgent and chat initialization took 0.008 seconds
+2025-07-02 10:36:09,292 INFO System prompt send took 24.127 seconds
+2025-07-02 10:36:09,293 INFO DocumentAgent chat loading took 24.136 seconds
+2025-07-02 10:36:09,293 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:36:15,593 INFO DocumentAgent response took 6.299 seconds
+2025-07-02 10:36:22,776 INFO Processing complete. Extracting fields...
+2025-07-02 10:36:22,777 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:36:23,002 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:37:03,182 INFO PDF text extraction took 0.013 seconds
+2025-07-02 10:37:03,183 INFO Processing document
+2025-07-02 10:37:03,189 INFO DocumentAgent and chat initialization took 0.005 seconds
+2025-07-02 10:38:53,874 INFO PDF text extraction took 0.013 seconds
+2025-07-02 10:38:53,875 INFO Processing document
+2025-07-02 10:38:53,883 INFO DocumentAgent and chat initialization took 0.007 seconds
+2025-07-02 10:39:09,335 INFO System prompt send took 15.451 seconds
+2025-07-02 10:39:09,335 INFO DocumentAgent chat loading took 15.459 seconds
+2025-07-02 10:39:09,336 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:39:12,011 INFO DocumentAgent response took 2.675 seconds
+2025-07-02 10:39:18,782 INFO Processing complete. Extracting fields...
+2025-07-02 10:39:18,783 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:39:19,010 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:40:09,236 INFO PDF text extraction took 0.016 seconds
+2025-07-02 10:40:09,239 INFO Processing document
+2025-07-02 10:40:09,270 INFO DocumentAgent and chat initialization took 0.030 seconds
+2025-07-02 10:40:13,982 INFO System prompt send took 4.711 seconds
+2025-07-02 10:40:13,983 INFO DocumentAgent chat loading took 4.742 seconds
+2025-07-02 10:40:13,983 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:40:16,038 INFO DocumentAgent response took 2.054 seconds
+2025-07-02 10:40:21,132 INFO Processing complete. Extracting fields...
+2025-07-02 10:40:21,134 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:40:21,439 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:42:39,316 INFO PDF text extraction took 0.014 seconds
+2025-07-02 10:42:39,318 INFO Processing document
+2025-07-02 10:42:39,350 INFO DocumentAgent and chat initialization took 0.030 seconds
+2025-07-02 10:42:55,337 INFO System prompt send took 15.986 seconds
+2025-07-02 10:42:55,338 INFO DocumentAgent chat loading took 16.018 seconds
+2025-07-02 10:42:55,338 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:42:57,940 INFO DocumentAgent response took 2.601 seconds
+2025-07-02 10:44:23,770 INFO Processing complete. Extracting fields...
+2025-07-02 10:44:23,772 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:44:24,019 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:44:37,652 INFO PDF text extraction took 0.013 seconds
+2025-07-02 10:44:37,654 INFO Processing document
+2025-07-02 10:44:37,693 INFO DocumentAgent and chat initialization took 0.038 seconds
+2025-07-02 10:44:41,159 INFO System prompt send took 3.466 seconds
+2025-07-02 10:44:41,160 INFO DocumentAgent chat loading took 3.505 seconds
+2025-07-02 10:44:41,160 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:44:43,002 INFO DocumentAgent response took 1.841 seconds
+2025-07-02 10:44:48,277 INFO Processing complete. Extracting fields...
+2025-07-02 10:44:48,279 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:44:48,513 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:45:26,418 INFO PDF text extraction took 0.008 seconds
+2025-07-02 10:45:26,419 INFO Processing document
+2025-07-02 10:45:26,446 INFO DocumentAgent and chat initialization took 0.027 seconds
+2025-07-02 10:45:30,005 INFO System prompt send took 3.558 seconds
+2025-07-02 10:45:30,006 INFO DocumentAgent chat loading took 3.587 seconds
+2025-07-02 10:45:30,006 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:45:31,847 INFO DocumentAgent response took 1.840 seconds
+2025-07-02 10:45:36,494 INFO Processing complete. Extracting fields...
+2025-07-02 10:45:36,495 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:45:36,727 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:46:08,791 INFO PDF text extraction took 0.014 seconds
+2025-07-02 10:46:08,793 INFO Processing document
+2025-07-02 10:46:08,801 INFO DocumentAgent and chat initialization took 0.007 seconds
+2025-07-02 10:46:12,887 INFO System prompt send took 4.085 seconds
+2025-07-02 10:46:12,887 INFO DocumentAgent chat loading took 4.093 seconds
+2025-07-02 10:46:12,888 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:46:14,958 INFO DocumentAgent response took 2.069 seconds
+2025-07-02 10:46:18,723 INFO Processing complete. Extracting fields...
+2025-07-02 10:46:18,725 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:46:18,937 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:46:44,581 INFO PDF text extraction took 0.007 seconds
+2025-07-02 10:46:44,583 INFO Processing document
+2025-07-02 10:46:44,593 INFO DocumentAgent and chat initialization took 0.009 seconds
+2025-07-02 10:46:47,374 INFO System prompt send took 2.781 seconds
+2025-07-02 10:46:47,375 INFO DocumentAgent chat loading took 2.791 seconds
+2025-07-02 10:46:47,375 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:46:49,364 INFO DocumentAgent response took 1.989 seconds
+2025-07-02 10:46:57,994 INFO Processing complete. Extracting fields...
+2025-07-02 10:46:57,996 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:46:58,263 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:51:32,562 ERROR File error: Custom fields file not found: D:\Desktop\Projects\test\Validation_documentation\broker-template\custom_fields.txtD:\Desktop\Projects\test\Validation_documentation\broker-template\custom_fields.txt
+2025-07-02 10:51:43,992 INFO PDF text extraction took 0.013 seconds
+2025-07-02 10:51:43,993 INFO Processing document
+2025-07-02 10:51:44,021 ERROR Input error: 'charmap' codec can't decode byte 0x9d in position 4942: character maps to <undefined>
+2025-07-02 10:52:16,848 INFO PDF text extraction took 0.013 seconds
+2025-07-02 10:52:16,849 INFO Processing document
+2025-07-02 10:52:16,881 INFO DocumentAgent and chat initialization took 0.031 seconds
+2025-07-02 10:52:20,529 INFO System prompt send took 3.647 seconds
+2025-07-02 10:52:20,529 INFO DocumentAgent chat loading took 3.679 seconds
+2025-07-02 10:52:20,530 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:52:22,564 INFO DocumentAgent response took 2.034 seconds
+2025-07-02 10:52:40,305 INFO Processing complete. Extracting fields...
+2025-07-02 10:52:40,307 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:52:40,563 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:52:54,815 INFO PDF text extraction took 0.012 seconds
+2025-07-02 10:52:54,816 INFO Processing document
+2025-07-02 10:52:54,822 INFO DocumentAgent and chat initialization took 0.005 seconds
+2025-07-02 10:52:58,110 INFO System prompt send took 3.287 seconds
+2025-07-02 10:52:58,111 INFO DocumentAgent chat loading took 3.294 seconds
+2025-07-02 10:52:58,111 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:53:00,176 INFO DocumentAgent response took 2.065 seconds
+2025-07-02 10:53:11,310 INFO Processing complete. Extracting fields...
+2025-07-02 10:53:11,312 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:53:11,541 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:53:24,395 INFO PDF text extraction took 0.008 seconds
+2025-07-02 10:53:24,395 INFO Processing document
+2025-07-02 10:53:24,400 INFO DocumentAgent and chat initialization took 0.004 seconds
+2025-07-02 10:53:26,781 INFO System prompt send took 2.381 seconds
+2025-07-02 10:53:26,782 INFO DocumentAgent chat loading took 2.386 seconds
+2025-07-02 10:53:26,782 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:53:31,924 INFO DocumentAgent response took 5.141 seconds
+2025-07-02 10:53:35,155 INFO Processing complete. Extracting fields...
+2025-07-02 10:53:35,157 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:53:35,407 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 10:55:03,588 INFO PDF text extraction took 0.013 seconds
+2025-07-02 10:55:03,589 INFO Processing document
+2025-07-02 10:55:03,623 INFO DocumentAgent and chat initialization took 0.033 seconds
+2025-07-02 10:55:03,623 ERROR Unexpected error occurred: 'system_prompt'
+2025-07-02 10:55:28,816 INFO PDF text extraction took 0.013 seconds
+2025-07-02 10:55:28,817 INFO Processing document
+2025-07-02 10:55:28,859 INFO DocumentAgent and chat initialization took 0.041 seconds
+2025-07-02 10:55:28,860 ERROR Unexpected error occurred: 'system_prompt'
+2025-07-02 10:57:55,714 INFO PDF text extraction took 0.006 seconds
+2025-07-02 10:57:55,715 INFO Processing document
+2025-07-02 10:57:55,745 INFO DocumentAgent and chat initialization took 0.029 seconds
+2025-07-02 10:57:59,372 INFO System prompt send took 3.627 seconds
+2025-07-02 10:57:59,373 INFO DocumentAgent chat loading took 3.657 seconds
+2025-07-02 10:57:59,373 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 10:58:01,420 INFO DocumentAgent response took 2.046 seconds
+2025-07-02 10:58:08,234 INFO Processing complete. Extracting fields...
+2025-07-02 10:58:08,236 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 10:58:08,449 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\Trade_Confirmation_extracted.xlsx
+2025-07-02 11:31:16,298 INFO Excel extraction took 0.262 seconds
+2025-07-02 11:31:16,299 INFO Processing document
+2025-07-02 11:31:16,303 INFO DocumentAgent and chat initialization took 0.003 seconds
+2025-07-02 11:31:18,202 ERROR Unexpected error occurred: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 42
+}
+]
+2025-07-02 11:32:39,817 INFO Excel extraction took 0.144 seconds
+2025-07-02 11:32:39,818 INFO Processing document
+2025-07-02 11:32:39,820 INFO DocumentAgent and chat initialization took 0.002 seconds
+2025-07-02 11:32:44,416 INFO System prompt send took 4.595 seconds
+2025-07-02 11:32:44,417 INFO DocumentAgent chat loading took 4.599 seconds
+2025-07-02 11:32:44,418 INFO DocumentAgent Prompt construction took 0.000 seconds
+2025-07-02 11:32:48,247 INFO DocumentAgent response took 3.828 seconds
+2025-07-02 11:32:51,471 INFO Processing complete. Extracting fields...
+2025-07-02 11:32:51,473 INFO Post processing output from LLM took 0.000 seconds
+2025-07-02 11:32:51,541 INFO Excel file saved at: D:\Desktop\Projects\test\Validation_documentation\output\trade_data_report_extracted.xlsx

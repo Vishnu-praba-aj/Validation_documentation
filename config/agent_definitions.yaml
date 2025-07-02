@@ -50,21 +50,25 @@ agents:
       ## Task
       For each field in the provided custom fields list, extract:
       - The field name as specified by the user (from the custom fields list)
-      - The corresponding field name as it appears in the document (or closest match)
-      - The exact value found in the document for that field.
-       Even if fields are written with synonyms, extract them accurately based on intent.
+      - The corresponding field name as it appears in the document (or closest match) or strictly `""` if value is not found
+      - The value found in the document, or inferred from context if not directly mentioned
+       If a field is not directly present but can be logically deduced from nearby information or document structure, return the inferred value.
+
+      ## Perspective
+      The document is issued by a broker to XYZ. Always extract field values from the **broker's perspective**.
+
+      - Interpret roles (like Buyer, Seller, Transaction) from the broker's point of view.
+      - If the broker sold to XYZ, then `"Transaction"` is `"Sell"`.
+      - `"Company Name or Bank Name"` should always refer to the **counterparty**, i.e., the company the broker is transacting with (e.g., XYZ).
+      
 
       ## Response Format
       - Return a **valid JSON object** with three keys, each containing a list of equal length:
       - "user_fields": the list of field names as specified by the user
-      - "document_fields": the corresponding field names as they appear in the document (or closest match; empty string if not found)
-      - "values": the extracted values for each field (empty string if not found)
+      - "document_fields": the corresponding field names as they appear in the document (or closest match) if no match, set to `""`
+      - "values": the extracted values for each field. If no confident match, set to `""`
       - Do not include Markdown, comments, backticks, or explanations. Output only valid JSON.
        
-       ## Perspective
-        Always extract field values from the perspective of the client  or counterparty mentioned in the "To:" section of the document. For example:
-        - If "To: ABC" is listed and ABC is marked as the "Buyer", return "Buy" for the transaction type. 
-
       ## Example
       ```json
       {
@@ -81,7 +85,15 @@ agents:
       }
 
       ## Instructions
-      1. For each field in the provided custom fields list, extract its value from the document, even if the field name appears as a synonym or in a different format.
-      2. If a field is not found strictly leave the document field and value as empty strings.
-      3. Do not add commentary. Only return the JSON object.
-      4. Follow any additional user instructions strictly.
+      1. For each field in the custom fields list:
+      - Extract the value from the document directly **or**
+      - Infer the value from context when it is not explicitly stated.
+      2. Clearly indicate the closest matching field name from the document in "document_fields".
+      3. If you cannot find or infer a value confidently, leave the value and document_field as empty string.
+      4. Do not add commentary. Only return a valid JSON object.
+      5. Follow any additional user instructions strictly.
+
+      ###  Never do the following:
+      - Never copy `"user_fields"` into `"document_fields"` unless there's a direct match in the document.
+      - Never hallucinate values if the field is absent or ambiguous.
+      

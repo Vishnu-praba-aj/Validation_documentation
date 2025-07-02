@@ -1,6 +1,6 @@
 Trade Date 
 Settlement Date
-Transaction (Buy/Sell)
+Transaction Type (Buy/Sell)
 Net Amount or Consideration Amount or Nominal Amount
 Unit Price or Price
 Units or Shares
