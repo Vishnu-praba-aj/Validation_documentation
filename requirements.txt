@@ -9,3 +9,6 @@ re
 pandas
 openpyxl
 uuid
+fastapi
+uvicorn
+pydantic
