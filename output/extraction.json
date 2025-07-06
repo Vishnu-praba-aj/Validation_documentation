@@ -1,0 +1,188 @@
+{
+  "session_id": "48a8e78a-b760-47f6-ae35-70b223d19613",
+  "type": "document_extraction",
+  "response": {
+    "rows": [
+      {
+        "index": 0,
+        "fields": [
+          {
+            "custom_field": "branchNM",
+            "document_label": "",
+            "value": ""
+          },
+          {
+            "custom_field": "charges",
+            "document_label": "Total Market Charges",
+            "value": "6961.75"
+          },
+          {
+            "custom_field": "currencyCd",
+            "document_label": "Currency",
+            "value": "CNY"
+          },
+          {
+            "custom_field": "isinCd",
+            "document_label": "ISIN/IISIN",
+            "value": "CNE000001"
+          },
+          {
+            "custom_field": "netAmt",
+            "document_label": "Net Money",
+            "value": "6267843.0"
+          },
+          {
+            "custom_field": "qty",
+            "document_label": "Quantity",
+            "value": "80000"
+          },
+          {
+            "custom_field": "settlementDt",
+            "document_label": "Settlement Date",
+            "value": "3/15/2022"
+          },
+          {
+            "custom_field": "stockMkt",
+            "document_label": "",
+            "value": ""
+          },
+          {
+            "custom_field": "tradeDt",
+            "document_label": "Trade Date",
+            "value": "3/15/2022"
+          },
+          {
+            "custom_field": "transactionType",
+            "document_label": "Buy/Sell",
+            "value": "S"
+          },
+          {
+            "custom_field": "unitpx",
+            "document_label": "Price",
+            "value": "78.49"
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "fields": [
+          {
+            "custom_field": "branchNM",
+            "document_label": "",
+            "value": ""
+          },
+          {
+            "custom_field": "charges",
+            "document_label": "Total Market Charges",
+            "value": "7097.85"
+          },
+          {
+            "custom_field": "currencyCd",
+            "document_label": "Currency",
+            "value": "CNY"
+          },
+          {
+            "custom_field": "isinCd",
+            "document_label": "ISIN/IISIN",
+            "value": "CNE100002"
+          },
+          {
+            "custom_field": "netAmt",
+            "document_label": "Net Money",
+            "value": "6390374.0"
+          },
+          {
+            "custom_field": "qty",
+            "document_label": "Quantity",
+            "value": "121687"
+          },
+          {
+            "custom_field": "settlementDt",
+            "document_label": "Settlement Date",
+            "value": "3/15/2022"
+          },
+          {
+            "custom_field": "stockMkt",
+            "document_label": "",
+            "value": ""
+          },
+          {
+            "custom_field": "tradeDt",
+            "document_label": "Trade Date",
+            "value": "3/15/2022"
+          },
+          {
+            "custom_field": "transactionType",
+            "document_label": "Buy/Sell",
+            "value": "S"
+          },
+          {
+            "custom_field": "unitpx",
+            "document_label": "Price",
+            "value": "52.61"
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "fields": [
+          {
+            "custom_field": "branchNM",
+            "document_label": "",
+            "value": ""
+          },
+          {
+            "custom_field": "charges",
+            "document_label": "Total Market Charges",
+            "value": "1094.8"
+          },
+          {
+            "custom_field": "currencyCd",
+            "document_label": "Currency",
+            "value": "AUD"
+          },
+          {
+            "custom_field": "isinCd",
+            "document_label": "ISIN/IISIN",
+            "value": "AU0000001"
+          },
+          {
+            "custom_field": "netAmt",
+            "document_label": "Net Money",
+            "value": "250019.4"
+          },
+          {
+            "custom_field": "qty",
+            "document_label": "Quantity",
+            "value": "58724"
+          },
+          {
+            "custom_field": "settlementDt",
+            "document_label": "Settlement Date",
+            "value": "3/17/2022"
+          },
+          {
+            "custom_field": "stockMkt",
+            "document_label": "",
+            "value": ""
+          },
+          {
+            "custom_field": "tradeDt",
+            "document_label": "Trade Date",
+            "value": "3/15/2022"
+          },
+          {
+            "custom_field": "transactionType",
+            "document_label": "Buy/Sell",
+            "value": "S"
+          },
+          {
+            "custom_field": "unitpx",
+            "document_label": "Price",
+            "value": "4.2767"
+          }
+        ]
+      }
+    ]
+  }
+}

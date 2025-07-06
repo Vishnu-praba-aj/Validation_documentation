@@ -6,3 +6,6 @@ pandas
 json
 os
 re
+pandas
+openpyxl
+uuid

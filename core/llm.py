@@ -1,8 +1,10 @@
 import google.generativeai as genai
 import yaml
 from config.settings import GENAI_API_KEY, AGENT_DEFINITION_PATH
+from utils.file_input import read_file_as_part
 from utils.logging import log_duration, setup_logger  
 import time
+import uuid
 
 logger = setup_logger()
 
@@ -11,7 +13,7 @@ genai.configure(api_key=GENAI_API_KEY)
 def load_agent_definitions():
     with open(AGENT_DEFINITION_PATH, "r") as f:
         return yaml.safe_load(f)["agents"]
-
+    
 def init_agent_chat(agent_name, file_path=None):
     start = time.perf_counter()
     agents = load_agent_definitions()
@@ -24,13 +26,22 @@ def init_agent_chat(agent_name, file_path=None):
             top_k=1
         )
     )
+    
     chat = model.start_chat(history=[])
+    session_id = str(uuid.uuid4())
     log_duration(logger, f"{agent_name} and chat initialization", start)
+
     start = time.perf_counter()
-    if file_path:
-        uploaded_file = genai.upload_file(file_path)
-        chat.send_message([uploaded_file, agent["system_prompt"]])
-    else:
-        chat.send_message(agent["system_prompt"])
+    chat.send_message(agent["system_prompt"])
     log_duration(logger, "System prompt send", start)
-    return chat
+
+    if file_path:
+        start = time.perf_counter()
+        file_part = read_file_as_part(file_path)
+        chat.send_message([file_part])
+        log_duration(logger, "File sent", start)
+    
+    return {
+        "chat": chat,
+        "session_id": session_id
+    }

@@ -1,63 +1,68 @@
 from core.llm import init_agent_chat
-from utils.validation_utils import extract_controller_names, extract_entity_tables, find_htmls_for_controller
+from utils.utilities import parse_json
+from utils.utilities import extract_controller_names, find_htmls_for_controller
 from utils.logging import log_duration, setup_logger
 import time
 
 logger = setup_logger()
+MAX_CHUNK_SIZE = 1500
+
+def chunk_text(text):
+    for i in range(0, len(text), MAX_CHUNK_SIZE):
+        yield text[i:i + MAX_CHUNK_SIZE]
 
 def process_validation(file_objs):
     start = time.perf_counter()
-    chat = init_agent_chat("ValidationAgent")
+    session_data = init_agent_chat("ValidationAgent")
+    chat = session_data["chat"]
+    session_id = session_data["session_id"]
     log_duration(logger, "ValidationAgent chat loading", start)
     
-    start = time.perf_counter()
-    outputs = []
-    html_files = [f for f in file_objs if f["type"] == ".html"]
-    fetch_content = lambda p: next(f["content"] for f in file_objs if f["path"] == p)
-
-    all_entity_tables = {}
-    entity_usage = {}
+    html_files = {f["path"]: f["content"] for f in file_objs if f["type"] == ".html"}
+    code_blocks = []
 
     for file in file_objs:
-        content = file["content"]
         if file["type"] == ".html":
             continue
 
-        combined_html = ""
+        content = file["content"]
+        file_block = f"\nFile: {file['path']}\n{content}"
+
         if file["type"] == ".js":
             controller_names = extract_controller_names(content)
+            associated_html = []
             for controller_name in controller_names:
-                relevant_htmls = find_htmls_for_controller(
-                    controller_name,
-                    [h["path"] for h in html_files],
-                    fetch_content
-                )
-                if relevant_htmls:
-                    combined_html += "\n".join(relevant_htmls)
+                matched_html = find_htmls_for_controller(controller_name, html_files.keys(), html_files.get)
+                if matched_html:
+                    associated_html.extend(matched_html)
+            if associated_html:
+                file_block += f"\nAssociated HTML:\n" + "\n".join(associated_html)
 
-        prompt = f"Source file: {file['path']}\n{content}\n"
-        if combined_html:
-            prompt += f"\nAssociated HTML templates:\n{combined_html}\n"
+        code_blocks.append(file_block)
 
-        log_duration(logger, f"ValidationAgent prompt construction for {file['path']}", start)
+    full_code_text = "\n".join(code_blocks)
+    chunks = list(chunk_text(full_code_text))
 
+    for idx, chunk in enumerate(chunks):
+        prompt = f"Code Chunk {idx + 1} of {len(chunks)}:\n{chunk}"
         start = time.perf_counter()
-        response = chat.send_message(prompt)
-        log_duration(logger, f"ValidationAgent response for {file['path']}", start)
-        llm_output = response.text.strip()
-        outputs.append((file['path'], llm_output))
+        chat.send_message(prompt)
+        log_duration(logger, f"ValidationAgent context chunk {idx+1} sent", start)
 
-        entity_tables = extract_entity_tables(llm_output)
-        for entity, (etype, table) in entity_tables.items():
-            if entity not in all_entity_tables:
-                all_entity_tables[entity] = (etype, table)
-            entity_usage.setdefault(entity, set()).add(file["path"])
-
+    final_prompt = (
+        "You have now received all code and associated HTML files.\n"
+        "Using ALL the code and HTML files provided, extract all validation logic as per the instructions."
+    )
     start = time.perf_counter()
-    output_tables = []
-    for entity, (etype, table) in all_entity_tables.items():
-        if etype == "class":
-            output_tables.append(table)
-    log_duration(logger, "Post-processing validation output", start)
+    response = chat.send_message(final_prompt)
+    log_duration(logger, "ValidationAgent Response", start)
 
-    return output_tables
+    llm_output = response.text.strip()
+    output = parse_json(llm_output)
+
+    print("Validation output:\n", output)
+    return {
+        "session_id": session_id,
+        "type": "validation_result",
+        "response": output
+    }
