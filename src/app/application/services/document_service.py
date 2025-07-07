@@ -1,3 +1,4 @@
+from http.client import HTTPException
 import time
 from src.app.infrastructure.llm_client import LLMClient
 from src.app.domain.exception import DocumentProcessingException
@@ -27,7 +28,9 @@ class DocumentService:
             end = time.perf_counter()
             logger.info(f"DocumentAgent response received in {end - start:.2f} seconds")
             parsed = parse_json(response.text)
-            return ExtractionLLMResponse(session_id=session_id, type="document_extraction", response=parsed["response"])
+            if parsed is None:
+                raise HTTPException(status_code=500, detail="LLM response is not valid JSON.")
+            return ExtractionLLMResponse(session_id=session_id, type="document_extraction", response=parsed)
         except Exception as e:
             raise DocumentProcessingException(str(e))
 
@@ -39,6 +42,8 @@ class DocumentService:
             end = time.perf_counter()
             logger.info(f"DocumentAgent continued chat response received in {end - start:.2f} seconds")
             parsed = parse_json(response.text)
-            return ExtractionLLMResponse(session_id=session_id, type="document_extraction", response=parsed["response"])
+            if parsed is None:
+                raise HTTPException(status_code=500, detail="LLM response is not valid JSON.")
+            return ExtractionLLMResponse(session_id=session_id, type="document_extraction", response=parsed)
         except Exception as e:
             raise DocumentProcessingException(str(e))

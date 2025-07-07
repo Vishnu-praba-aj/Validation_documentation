@@ -73,6 +73,8 @@ class ValidationService:
             end = time.perf_counter()
             logger.info(f"ValidationAgent response received in {end-start:.2f} seconds")
             parsed = parse_json(response.text)
+            if parsed is None:
+                raise HTTPException(status_code=500, detail="LLM response is not valid JSON.")
             return ValidationLLMResponse(session_id=session_id, type="validation", response=parsed)
         except RepoProcessingException as e:
             raise HTTPException(status_code=400, detail=str(e))

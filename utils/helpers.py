@@ -1,6 +1,10 @@
 import json
 import re
 
+from utils.logging import setup_logger
+
+logger = setup_logger()
+
 def clean_json(raw_response):
     cleaned = re.sub(r"^```json\s*|```$", "", raw_response.strip(), flags=re.MULTILINE)
     return cleaned
@@ -10,8 +14,8 @@ def parse_json(response):
     try:
         return json.loads(cleaned_json)
     except json.JSONDecodeError:
-        print("Gemini response is not valid JSON.")
-        return {"user_fields": [], "document_fields": [], "values": []}
+        logger.error("Gemini response is not valid JSON")
+        return None
 
 def extract_controller_names(js_content):
     return re.findall(r"\.controller\(['\"](\w+)['\"]", js_content)

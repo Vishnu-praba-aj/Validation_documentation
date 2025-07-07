@@ -4,7 +4,7 @@ import uuid
 import time
 from config.settings import GENAI_API_KEY, AGENT_DEFINITION_PATH
 from src.app.infrastructure.file_handler import read_file_as_part
-from utils.logging import log_duration, setup_logger
+from utils.logging import setup_logger
 from .session_manager import session_manager
 
 logger = setup_logger()

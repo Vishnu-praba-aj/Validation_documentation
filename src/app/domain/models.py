@@ -23,7 +23,7 @@ class ValidationEntityWithNote(BaseModel):
 ValidationEntity = Union[ValidationEntityWithFields, ValidationEntityWithNote]
 
 class ValidationResponseData(BaseModel):
-    entities: List[Dict[str, Any]]  # Accepts both with fields and with note
+    entities: List[ValidationEntity]
 
 class ValidationLLMResponse(BaseModel):
     session_id: str
