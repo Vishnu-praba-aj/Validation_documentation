@@ -1,7 +1,6 @@
 from http.client import HTTPException
 import time
 from src.app.infrastructure.llm_client import LLMClient
-from src.app.domain.exception import DocumentProcessingException
 from src.app.domain.models import ExtractionLLMResponse
 from utils.helpers import parse_json
 from utils.logging import setup_logger
@@ -32,7 +31,7 @@ class DocumentService:
                 raise HTTPException(status_code=500, detail="LLM response is not valid JSON.")
             return ExtractionLLMResponse(session_id=session_id, type="document_extraction", response=parsed)
         except Exception as e:
-            raise DocumentProcessingException(str(e))
+            raise e
 
     def continue_chat(self, session_id, prompt):
         try:
@@ -46,4 +45,4 @@ class DocumentService:
                 raise HTTPException(status_code=500, detail="LLM response is not valid JSON.")
             return ExtractionLLMResponse(session_id=session_id, type="document_extraction", response=parsed)
         except Exception as e:
-            raise DocumentProcessingException(str(e))
+            raise e

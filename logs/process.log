@@ -13,3 +13,563 @@
 2025-07-07 10:06:54,998 INFO Field extraction completed in 27.72 seconds
 2025-07-07 10:07:47,821 INFO DocumentAgent continued chat response received in 1.02 seconds
 2025-07-07 10:07:47,842 INFO Chat continuation completed in 1.04 seconds
+2025-07-07 11:23:00,520 INFO Prompt send took 0.00 seconds
+2025-07-07 11:23:00,523 INFO ValidationAgent response received in 0.00 seconds
+2025-07-07 11:23:00,524 INFO Repo analysis completed in 0.00 seconds
+2025-07-07 11:23:00,549 ERROR Validation endpoint unexpected error: 500: Unexpected error: Invalid repo url
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "C:\Python313\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Invalid repo url
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Invalid repo url
+2025-07-07 11:23:00,580 INFO Prompt send took 0.00 seconds
+2025-07-07 11:23:00,580 INFO ValidationAgent response received in 0.00 seconds
+2025-07-07 11:23:00,582 ERROR Validation endpoint unexpected error: 500: Unexpected error: 1 validation error for ValidationLLMResponse
+response.entities
+  Field required [type=missing, input_value={'message': 'not a json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 78, in analyze_repo
+    return ValidationLLMResponse(session_id=session_id, type="validation", response=parsed)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\pydantic\main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for ValidationLLMResponse
+response.entities
+  Field required [type=missing, input_value={'message': 'not a json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: 1 validation error for ValidationLLMResponse
+response.entities
+  Field required [type=missing, input_value={'message': 'not a json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-07-07 11:23:00,618 INFO Received request for extracting fields
+2025-07-07 11:23:00,626 INFO DocumentAgent response received in 0.00 seconds
+2025-07-07 11:23:00,627 ERROR Extraction endpoint client error (DocumentProcessingException): 400: 2 validation errors for ExtractionLLMResponse
+response.ExtractionResponseDatawithJSON.rows
+  Field required [type=missing, input_value={'response': {'rows': [{'...ex': 0, 'fields': []}]}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+response.ExtractionResponseDatawithMessage.message
+  Field required [type=missing, input_value={'response': {'rows': [{'...ex': 0, 'fields': []}]}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-07-07 11:23:01,694 INFO Received request for extracting fields
+2025-07-07 11:23:01,696 ERROR Extraction endpoint client error (DocumentProcessingException): 400: not enough values to unpack (expected 2, got 0)
+2025-07-07 11:23:01,742 INFO Received request for extracting fields
+2025-07-07 11:23:01,743 ERROR Extraction endpoint client error (DocumentProcessingException): 400: Invalid Excel format
+2025-07-07 11:23:01,821 INFO Received request for extracting fields
+2025-07-07 11:23:01,831 ERROR Extraction endpoint client error (DocumentProcessingException): 400: File is too large.
+2025-07-07 11:23:01,875 INFO DocumentAgent continued chat response received in 0.00 seconds
+2025-07-07 11:23:01,876 INFO Chat continuation completed in 0.00 seconds
+2025-07-07 11:23:01,900 ERROR Chat continuation unexpected error: 400: Session not found
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 39, in continue_chat
+    chat = self.llm_client.get_chat(session_id)
+  File "C:\Python313\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Session not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\document.py", line 58, in continue_chat
+    result = service.continue_chat(session_id, prompt)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 49, in continue_chat
+    raise DocumentProcessingException(str(e))
+src.app.domain.exception.DocumentProcessingException: 400: Session not found
+2025-07-07 11:54:08,204 INFO Prompt send took 0.00 seconds
+2025-07-07 11:54:08,206 INFO ValidationAgent response received in 0.00 seconds
+2025-07-07 11:54:08,207 INFO Repo analysis completed in 0.00 seconds
+2025-07-07 11:54:08,230 ERROR Validation endpoint unexpected error: 500: Unexpected error: Invalid repo url
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "C:\Python313\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Invalid repo url
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Invalid repo url
+2025-07-07 11:54:08,258 INFO Prompt send took 0.00 seconds
+2025-07-07 11:54:08,259 INFO ValidationAgent response received in 0.00 seconds
+2025-07-07 11:54:08,261 ERROR Validation endpoint unexpected error: 500: Unexpected error: 1 validation error for ValidationLLMResponse
+response.entities
+  Field required [type=missing, input_value={'message': 'not a json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 78, in analyze_repo
+    return ValidationLLMResponse(session_id=session_id, type="validation", response=parsed)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\pydantic\main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for ValidationLLMResponse
+response.entities
+  Field required [type=missing, input_value={'message': 'not a json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: 1 validation error for ValidationLLMResponse
+response.entities
+  Field required [type=missing, input_value={'message': 'not a json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-07-07 11:54:08,318 INFO Received request for extracting fields
+2025-07-07 11:54:08,319 INFO DocumentAgent response received in 0.00 seconds
+2025-07-07 11:54:08,320 ERROR Extraction endpoint client error (DocumentProcessingException): 400: 2 validation errors for ExtractionLLMResponse
+response.ExtractionResponseDatawithJSON.rows
+  Field required [type=missing, input_value={'session_id': 'sid', 'ty...ex': 0, 'fields': []}]}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+response.ExtractionResponseDatawithMessage.message
+  Field required [type=missing, input_value={'session_id': 'sid', 'ty...ex': 0, 'fields': []}]}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-07-07 11:54:09,340 INFO Received request for extracting fields
+2025-07-07 11:54:09,341 ERROR Extraction endpoint client error (DocumentProcessingException): 400: 415: Unsupported file type
+2025-07-07 11:54:09,378 INFO Received request for extracting fields
+2025-07-07 11:54:09,379 ERROR Extraction endpoint client error (DocumentProcessingException): 400: Invalid Excel format
+2025-07-07 11:54:09,438 INFO Received request for extracting fields
+2025-07-07 11:54:09,447 ERROR Extraction endpoint client error (DocumentProcessingException): 400: 413: File is too large.
+2025-07-07 11:54:09,496 INFO DocumentAgent continued chat response received in 0.00 seconds
+2025-07-07 11:54:09,496 INFO Chat continuation completed in 0.00 seconds
+2025-07-07 11:54:09,517 ERROR Chat continuation unexpected error: 400: Session not found
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 39, in continue_chat
+    chat = self.llm_client.get_chat(session_id)
+  File "C:\Python313\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Session not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\document.py", line 58, in continue_chat
+    result = service.continue_chat(session_id, prompt)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 49, in continue_chat
+    raise DocumentProcessingException(str(e))
+src.app.domain.exception.DocumentProcessingException: 400: Session not found
+2025-07-07 12:16:00,506 INFO Received request for extracting fields
+2025-07-07 12:16:00,509 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-07 12:16:05,743 INFO System prompt send took 5.23 seconds
+2025-07-07 12:16:08,331 INFO File send took 2.59 seconds
+2025-07-07 12:16:12,732 INFO DocumentAgent response received in 4.40 seconds
+2025-07-07 12:16:12,756 INFO Successfully extracted fields
+2025-07-07 12:16:12,758 INFO Field extraction completed in 12.25 seconds
+2025-07-07 12:19:52,818 INFO Received request for extracting fields
+2025-07-07 12:19:52,820 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-07 12:19:56,825 INFO System prompt send took 4.00 seconds
+2025-07-07 12:19:58,845 INFO File send took 2.01 seconds
+2025-07-07 12:20:00,711 INFO DocumentAgent response received in 1.87 seconds
+2025-07-07 12:20:00,713 INFO Successfully extracted fields
+2025-07-07 12:20:00,714 INFO Field extraction completed in 7.89 seconds
+2025-07-07 12:22:40,644 INFO Received request for extracting fields
+2025-07-07 12:22:40,648 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-07 12:22:45,427 INFO System prompt send took 4.78 seconds
+2025-07-07 12:22:47,411 INFO File send took 1.98 seconds
+2025-07-07 12:22:49,191 INFO DocumentAgent response received in 1.78 seconds
+2025-07-07 12:22:49,196 INFO Successfully extracted fields
+2025-07-07 12:22:49,197 INFO Field extraction completed in 8.55 seconds
+2025-07-07 12:33:56,925 INFO Received request for extracting fields
+2025-07-07 12:33:56,928 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-07 12:34:01,668 INFO System prompt send took 4.74 seconds
+2025-07-07 12:34:06,759 INFO File send took 5.09 seconds
+2025-07-07 12:34:11,418 INFO DocumentAgent response received in 4.66 seconds
+2025-07-07 12:34:11,421 INFO Successfully extracted fields
+2025-07-07 12:34:11,422 INFO Field extraction completed in 14.50 seconds
+2025-07-07 13:02:14,954 INFO Prompt send took 0.00 seconds
+2025-07-07 13:02:14,956 INFO ValidationAgent response received in 0.00 seconds
+2025-07-07 13:02:14,958 INFO Repo analysis completed in 0.01 seconds
+2025-07-07 13:02:14,979 ERROR Validation endpoint unexpected error: 500: Unexpected error: Invalid repo url
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "C:\Python313\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Invalid repo url
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Invalid repo url
+2025-07-07 13:02:15,004 INFO Prompt send took 0.00 seconds
+2025-07-07 13:02:15,004 INFO ValidationAgent response received in 0.00 seconds
+2025-07-07 13:02:15,008 ERROR Validation endpoint unexpected error: 500: Unexpected error: 1 validation error for ValidationLLMResponse
+response.entities
+  Field required [type=missing, input_value={'message': 'not a json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 78, in analyze_repo
+    return ValidationLLMResponse(session_id=session_id, type="validation", response=parsed)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\pydantic\main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for ValidationLLMResponse
+response.entities
+  Field required [type=missing, input_value={'message': 'not a json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: 1 validation error for ValidationLLMResponse
+response.entities
+  Field required [type=missing, input_value={'message': 'not a json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-07-07 13:02:15,033 INFO Received request for extracting fields
+2025-07-07 13:02:15,033 INFO DocumentAgent response received in 0.00 seconds
+2025-07-07 13:02:15,035 ERROR Extraction endpoint client error (DocumentProcessingException): 400: 2 validation errors for ExtractionLLMResponse
+response.ExtractionResponseDatawithJSON.rows
+  Field required [type=missing, input_value={'session_id': 'sid', 'ty...ex': 0, 'fields': []}]}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+response.ExtractionResponseDatawithMessage.message
+  Field required [type=missing, input_value={'session_id': 'sid', 'ty...ex': 0, 'fields': []}]}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-07-07 13:02:15,755 INFO Received request for extracting fields
+2025-07-07 13:02:15,756 ERROR Extraction endpoint client error (DocumentProcessingException): 400: 415: Unsupported file type
+2025-07-07 13:02:15,786 INFO Received request for extracting fields
+2025-07-07 13:02:15,787 ERROR Extraction endpoint client error (DocumentProcessingException): 400: Invalid Excel format
+2025-07-07 13:02:15,830 INFO Received request for extracting fields
+2025-07-07 13:02:15,840 ERROR Extraction endpoint client error (DocumentProcessingException): 400: 413: File is too large.
+2025-07-07 13:02:15,873 INFO Chat continuation initiated
+2025-07-07 13:02:15,874 INFO DocumentAgent continued chat response received in 0.00 seconds
+2025-07-07 13:02:15,874 INFO Chat continuation completed in 0.00 seconds
+2025-07-07 13:02:15,890 INFO Chat continuation initiated
+2025-07-07 13:02:15,891 ERROR Chat continuation unexpected error: 400: Session not found
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 39, in continue_chat
+    chat = self.llm_client.get_chat(session_id)
+  File "C:\Python313\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Session not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\document.py", line 59, in continue_chat
+    result = service.continue_chat(session_id, prompt)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 49, in continue_chat
+    raise DocumentProcessingException(str(e))
+src.app.domain.exception.DocumentProcessingException: 400: Session not found
+2025-07-07 13:05:09,708 INFO Prompt send took 0.00 seconds
+2025-07-07 13:05:09,709 INFO ValidationAgent response received in 0.00 seconds
+2025-07-07 13:05:09,712 INFO Repo analysis completed in 0.00 seconds
+2025-07-07 13:05:09,734 ERROR Validation endpoint unexpected error: 500: Unexpected error: Invalid repo url
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "C:\Python313\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Invalid repo url
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Invalid repo url
+2025-07-07 13:05:09,757 INFO Prompt send took 0.00 seconds
+2025-07-07 13:05:09,758 INFO ValidationAgent response received in 0.00 seconds
+2025-07-07 13:05:09,762 ERROR Validation endpoint unexpected error: 500: Unexpected error: 1 validation error for ValidationLLMResponse
+response.entities
+  Field required [type=missing, input_value={'message': 'not a json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 78, in analyze_repo
+    return ValidationLLMResponse(session_id=session_id, type="validation", response=parsed)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\pydantic\main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for ValidationLLMResponse
+response.entities
+  Field required [type=missing, input_value={'message': 'not a json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: 1 validation error for ValidationLLMResponse
+response.entities
+  Field required [type=missing, input_value={'message': 'not a json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-07-07 13:05:09,790 INFO Received request for extracting fields
+2025-07-07 13:05:09,791 INFO DocumentAgent response received in 0.00 seconds
+2025-07-07 13:05:09,792 ERROR Extraction endpoint unexpected error: 2 validation errors for ExtractionLLMResponse
+response.ExtractionResponseDatawithJSON.rows
+  Field required [type=missing, input_value={'session_id': 'sid', 'ty...ex': 0, 'fields': []}]}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+response.ExtractionResponseDatawithMessage.message
+  Field required [type=missing, input_value={'session_id': 'sid', 'ty...ex': 0, 'fields': []}]}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\document.py", line 28, in extract_fields
+    result = service.extract_fields(doc_bytes, doc.filename, fields, user_prompt)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 34, in extract_fields
+    raise e
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 32, in extract_fields
+    return ExtractionLLMResponse(session_id=session_id, type="document_extraction", response=parsed)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\pydantic\main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 2 validation errors for ExtractionLLMResponse
+response.ExtractionResponseDatawithJSON.rows
+  Field required [type=missing, input_value={'session_id': 'sid', 'ty...ex': 0, 'fields': []}]}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+response.ExtractionResponseDatawithMessage.message
+  Field required [type=missing, input_value={'session_id': 'sid', 'ty...ex': 0, 'fields': []}]}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-07-07 13:05:10,516 INFO Received request for extracting fields
+2025-07-07 13:05:10,517 ERROR Extraction endpoint client error (InvalidFileTypeError): 415: Unsupported file type
+2025-07-07 13:05:10,534 INFO Received request for extracting fields
+2025-07-07 13:05:10,535 ERROR Extraction endpoint unexpected error: Invalid Excel format
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\document.py", line 28, in extract_fields
+    result = service.extract_fields(doc_bytes, doc.filename, fields, user_prompt)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 34, in extract_fields
+    raise e
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 16, in extract_fields
+    session_id, chat = self.llm_client.start_session(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "DocumentAgent",
+        ^^^^^^^^^^^^^^^^
+        file_bytes=doc_bytes,
+        ^^^^^^^^^^^^^^^^^^^^^
+        filename=doc_filename
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Invalid Excel format
+2025-07-07 13:05:10,583 INFO Received request for extracting fields
+2025-07-07 13:05:10,592 ERROR Extraction endpoint client error (FileTooLargeError): 413: File is too large.
+2025-07-07 13:05:10,612 INFO Chat continuation initiated
+2025-07-07 13:05:10,613 INFO DocumentAgent continued chat response received in 0.00 seconds
+2025-07-07 13:05:10,614 INFO Chat continuation completed in 0.00 seconds
+2025-07-07 13:05:10,636 INFO Chat continuation initiated
+2025-07-07 13:05:10,637 ERROR Chat continuation unexpected error: Session not found
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\document.py", line 56, in continue_chat
+    result = service.continue_chat(session_id, prompt)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 48, in continue_chat
+    raise e
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 38, in continue_chat
+    chat = self.llm_client.get_chat(session_id)
+  File "C:\Python313\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Session not found
+2025-07-07 13:17:09,266 INFO Prompt send took 0.00 seconds
+2025-07-07 13:17:09,268 INFO ValidationAgent response received in 0.00 seconds
+2025-07-07 13:17:09,270 INFO Repo analysis completed in 0.00 seconds
+2025-07-07 13:17:09,296 ERROR Validation endpoint unexpected error: 500: Unexpected error: Invalid repo url
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "C:\Python313\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Invalid repo url
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Invalid repo url
+2025-07-07 13:17:09,321 INFO Prompt send took 0.00 seconds
+2025-07-07 13:17:09,322 INFO ValidationAgent response received in 0.00 seconds
+2025-07-07 13:17:09,327 ERROR Validation endpoint unexpected error: 500: Unexpected error: 1 validation error for ValidationLLMResponse
+response.entities
+  Field required [type=missing, input_value={'message': 'not a json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 78, in analyze_repo
+    return ValidationLLMResponse(session_id=session_id, type="validation", response=parsed)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\pydantic\main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for ValidationLLMResponse
+response.entities
+  Field required [type=missing, input_value={'message': 'not a json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: 1 validation error for ValidationLLMResponse
+response.entities
+  Field required [type=missing, input_value={'message': 'not a json'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-07-07 13:17:09,368 INFO Received request for extracting fields
+2025-07-07 13:17:09,368 INFO DocumentAgent response received in 0.00 seconds
+2025-07-07 13:17:09,368 INFO Successfully extracted fields
+2025-07-07 13:17:09,369 INFO Field extraction completed in 0.00 seconds
+2025-07-07 13:17:09,388 INFO Received request for extracting fields
+2025-07-07 13:17:09,389 ERROR Extraction endpoint client error (InvalidFileTypeError): 415: Unsupported file type
+2025-07-07 13:17:09,406 INFO Received request for extracting fields
+2025-07-07 13:17:09,406 ERROR Extraction endpoint unexpected error: Invalid Excel format
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\document.py", line 28, in extract_fields
+    result = service.extract_fields(doc_bytes, doc.filename, fields, user_prompt)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 34, in extract_fields
+    raise e
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 16, in extract_fields
+    session_id, chat = self.llm_client.start_session(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "DocumentAgent",
+        ^^^^^^^^^^^^^^^^
+        file_bytes=doc_bytes,
+        ^^^^^^^^^^^^^^^^^^^^^
+        filename=doc_filename
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Python313\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Invalid Excel format
+2025-07-07 13:17:09,459 INFO Received request for extracting fields
+2025-07-07 13:17:09,468 ERROR Extraction endpoint client error (FileTooLargeError): 413: File is too large.
+2025-07-07 13:17:09,487 INFO Chat continuation initiated
+2025-07-07 13:17:09,488 INFO DocumentAgent continued chat response received in 0.00 seconds
+2025-07-07 13:17:09,488 INFO Chat continuation completed in 0.00 seconds
+2025-07-07 13:17:09,505 INFO Chat continuation initiated
+2025-07-07 13:17:09,506 ERROR Chat continuation unexpected error: Session not found
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\document.py", line 56, in continue_chat
+    result = service.continue_chat(session_id, prompt)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 48, in continue_chat
+    raise e
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 38, in continue_chat
+    chat = self.llm_client.get_chat(session_id)
+  File "C:\Python313\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Session not found
+2025-07-07 13:17:26,431 INFO DocumentAgent response received in 0.00 seconds
+2025-07-07 13:17:26,442 INFO Prompt send took 0.00 seconds
+2025-07-07 13:17:26,444 INFO ValidationAgent response received in 0.00 seconds
+2025-07-07 13:17:28,388 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-07 13:17:28,390 INFO System prompt send took 0.00 seconds
+2025-07-07 13:17:28,404 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-07 13:17:28,405 INFO System prompt send took 0.00 seconds
+2025-07-07 13:17:28,406 INFO File send took 0.00 seconds
+2025-07-07 13:17:28,420 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-07 13:17:28,421 INFO System prompt send took 0.00 seconds
+2025-07-07 13:22:24,931 INFO DocumentAgent response received in 0.00 seconds
+2025-07-07 13:22:24,940 INFO Prompt send took 0.00 seconds
+2025-07-07 13:22:24,941 INFO ValidationAgent response received in 0.00 seconds
+2025-07-07 13:22:25,814 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-07 13:22:25,815 INFO System prompt send took 0.00 seconds
+2025-07-07 13:22:25,828 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-07 13:22:25,829 INFO System prompt send took 0.00 seconds
+2025-07-07 13:22:25,829 INFO File send took 0.00 seconds
+2025-07-07 13:22:25,843 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-07 13:22:25,844 INFO System prompt send took 0.00 seconds

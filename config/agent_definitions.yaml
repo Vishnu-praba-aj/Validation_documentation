@@ -81,7 +81,7 @@ agents:
       - The value found or inferred from context if not directly mentioned or `""` if not confidently extracted
 
       ## Response Format
-      - Return a **valid JSON object** with the following structure:
+      Return a **valid JSON object** with the following structure:
       {
         "rows": [
           {
@@ -98,6 +98,7 @@ agents:
           ...
         ]
       }
+      **If no document_label or values are found for a custom_field, leave the document_label and value as empty string and return a valid JSON object with custom fields**
     
       ## Instructions
       1. If the document contains a single row or a single record-like structure as in a pdf, return one object inside "rows".
@@ -110,7 +111,7 @@ agents:
       - Read through the entire document to find the closest match for each field.
       4. Clearly indicate the closest matching field name from the document in "document_label".
       5. If a value is being inferred, document_label should be set to `""` and value should be the inferred value.
-      6. If you cannot find or infer a value confidently, leave the value and document_label as empty string. Never hallucinate values if the field is absent or ambiguous.
+      6. **If you cannot find or infer a value confidently, leave the value and document_label as empty string and only the custom_field must be present in the response**. Never hallucinate values if the field is absent or ambiguous.
       7. Do not add commentary, explanations, etc. Only return a valid JSON object.
       8. Follow any additional user instructions strictly.
       

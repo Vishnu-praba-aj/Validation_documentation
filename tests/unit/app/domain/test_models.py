@@ -34,7 +34,16 @@ def test_extraction_llm_response_valid():
     resp = ExtractionLLMResponse(
         session_id="abc",
         type="document_extraction",
-        response=ExtractionResponseData(rows=[ExtractionRow(index=0, fields=[ExtractionField(value="foo")])])
+        response=ExtractionResponseData(
+            rows=[
+                ExtractionRow(
+                    index=0,
+                    fields=[
+                        ExtractionField(custom_field="field1", value="foo")
+                    ]
+                )
+            ]
+        )
     )
     assert resp.type == "document_extraction"
     assert resp.response.rows[0].fields[0].value == "foo"

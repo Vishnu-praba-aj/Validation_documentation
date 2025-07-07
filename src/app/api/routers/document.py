@@ -1,6 +1,6 @@
 import time
 from fastapi import APIRouter, UploadFile, File, Form, Depends, HTTPException
-from src.app.domain.exception import DocumentProcessingException, FileTooLargeError, InvalidFileTypeError, SessionNotFoundError
+from src.app.domain.exception import FileTooLargeError, InvalidFileTypeError, SessionNotFoundError
 from src.app.api.deps import get_document_service
 from src.app.domain.models import ExtractionLLMResponse
 from utils.logging import setup_logger
@@ -32,13 +32,10 @@ async def extract_fields(
         return result
     except FileTooLargeError as e:
         logger.error(f"Extraction endpoint client error (FileTooLargeError): {str(e)}")
-        raise HTTPException(status_code=413, detail=str(e)) 
+        raise e
     except InvalidFileTypeError as e:
         logger.error(f"Extraction endpoint client error (InvalidFileTypeError): {str(e)}")
-        raise HTTPException(status_code=415, detail=str(e))
-    except DocumentProcessingException as e:
-        logger.error(f"Extraction endpoint client error (DocumentProcessingException): {str(e)}")
-        raise HTTPException(status_code=422, detail=str(e))
+        raise e
     except Exception as e:
         logger.error(f"Extraction endpoint unexpected error: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail="An unexpected error occurred during extraction.")
@@ -55,6 +52,7 @@ async def continue_chat(
 ):
     try:
         start = time.perf_counter()
+        logger.info(f"Chat continuation initiated")
         result = service.continue_chat(session_id, prompt)
         end = time.perf_counter()
         logger.info(f"Chat continuation completed in {end - start:.2f} seconds")

@@ -39,13 +39,9 @@ class ExtractionRow(BaseModel):
     index: int
     fields: List[ExtractionField]
 
-class ExtractionResponseDatawithJSON(BaseModel):
-    rows: List[ExtractionRow]
-
-class ExtractionResponseDatawithMessage(BaseModel):
-    message: str
-
-ExtractionResponseData = Union[ExtractionResponseDatawithJSON, ExtractionResponseDatawithMessage]
+class ExtractionResponseData(BaseModel):
+    rows: Optional[List[ExtractionRow]] = None
+    message: Optional[str] = None
 
 class ExtractionLLMResponse(BaseModel):
     session_id: str
