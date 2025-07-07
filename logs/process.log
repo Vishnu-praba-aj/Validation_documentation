@@ -573,3 +573,963 @@ Exception: Session not found
 2025-07-07 13:22:25,829 INFO File send took 0.00 seconds
 2025-07-07 13:22:25,843 INFO ValidationAgent and chat initialization took 0.00 seconds
 2025-07-07 13:22:25,844 INFO System prompt send took 0.00 seconds
+2025-07-07 13:33:17,740 INFO Received request for extracting fields
+2025-07-07 13:33:17,741 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-07 13:33:21,574 INFO System prompt send took 3.83 seconds
+2025-07-07 13:33:27,171 INFO File send took 5.60 seconds
+2025-07-07 13:33:32,055 INFO DocumentAgent response received in 4.88 seconds
+2025-07-07 13:33:32,057 INFO Successfully extracted fields
+2025-07-07 13:33:32,058 INFO Field extraction completed in 14.32 seconds
+2025-07-07 13:33:57,752 INFO Chat continuation initiated
+2025-07-07 13:34:03,099 INFO DocumentAgent continued chat response received in 5.35 seconds
+2025-07-07 13:34:03,101 INFO Chat continuation completed in 5.35 seconds
+2025-07-07 13:35:28,554 ERROR Validation endpoint unexpected error: 500: Unexpected error: list index out of range
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 121, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 41, in parse_repo_url
+    owner = parts[-2]
+            ~~~~~^^^^
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: list index out of range
+2025-07-07 13:40:38,070 ERROR Validation endpoint unexpected error: 500: Unexpected error: list index out of range
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 121, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 41, in parse_repo_url
+    owner = parts[-2]
+            ~~~~~^^^^
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: list index out of range
+2025-07-07 13:47:22,778 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 13:52:30,168 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 13:52:35,323 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 13:56:32,178 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 13:58:16,071 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 13:58:51,323 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:02:19,351 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:03:16,239 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:10:21,309 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:10:26,223 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:10:36,458 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:11:02,357 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:11:30,896 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:11:47,449 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:16:04,810 INFO Fetched contents from repo in 7.30 seconds
+2025-07-07 14:16:04,811 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-07 14:16:06,084 INFO System prompt send took 1.27 seconds
+2025-07-07 14:16:58,577 INFO Prompt send took 53.77 seconds
+2025-07-07 14:17:16,850 INFO ValidationAgent response received in 18.27 seconds
+2025-07-07 14:17:16,852 INFO Repo analysis completed in 79.35 seconds
+2025-07-07 14:23:18,482 INFO Received request for extracting fields
+2025-07-07 14:23:18,483 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-07 14:23:23,364 INFO System prompt send took 4.88 seconds
+2025-07-07 14:23:29,607 INFO File send took 6.24 seconds
+2025-07-07 14:23:34,726 INFO DocumentAgent response received in 5.12 seconds
+2025-07-07 14:23:34,727 INFO Successfully extracted fields
+2025-07-07 14:23:34,728 INFO Field extraction completed in 16.25 seconds
+2025-07-07 14:24:05,303 INFO Received request for extracting fields
+2025-07-07 14:24:05,304 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-07 14:24:08,965 INFO System prompt send took 3.66 seconds
+2025-07-07 14:24:14,091 INFO File send took 5.13 seconds
+2025-07-07 14:24:19,230 INFO DocumentAgent response received in 5.14 seconds
+2025-07-07 14:24:19,233 INFO Successfully extracted fields
+2025-07-07 14:24:19,234 INFO Field extraction completed in 13.93 seconds
+2025-07-07 14:24:48,433 INFO Received request for extracting fields
+2025-07-07 14:24:48,434 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-07 14:24:51,492 INFO System prompt send took 3.06 seconds
+2025-07-07 14:24:56,350 INFO File send took 4.86 seconds
+2025-07-07 14:25:01,443 INFO DocumentAgent response received in 5.09 seconds
+2025-07-07 14:25:01,445 INFO Successfully extracted fields
+2025-07-07 14:25:01,446 INFO Field extraction completed in 13.01 seconds
+2025-07-07 14:25:08,941 INFO Received request for extracting fields
+2025-07-07 14:25:08,942 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-07 14:25:12,330 INFO System prompt send took 3.39 seconds
+2025-07-07 14:25:17,132 INFO File send took 4.80 seconds
+2025-07-07 14:25:22,199 INFO DocumentAgent response received in 5.07 seconds
+2025-07-07 14:25:22,200 INFO Successfully extracted fields
+2025-07-07 14:25:22,201 INFO Field extraction completed in 13.26 seconds
+2025-07-07 14:25:41,443 INFO Fetched contents from repo in 7.55 seconds
+2025-07-07 14:25:41,444 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-07 14:25:42,401 INFO System prompt send took 0.96 seconds
+2025-07-07 14:26:29,171 INFO Prompt send took 47.73 seconds
+2025-07-07 14:26:48,684 INFO ValidationAgent response received in 19.51 seconds
+2025-07-07 14:26:48,685 INFO Repo analysis completed in 74.79 seconds
+2025-07-07 14:26:48,693 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:26:48,697 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:27:03,202 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:29:35,131 INFO Fetched contents from repo in 5.71 seconds
+2025-07-07 14:29:35,132 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-07 14:29:37,932 INFO System prompt send took 2.80 seconds
+2025-07-07 14:30:23,651 INFO Prompt send took 48.52 seconds
+2025-07-07 14:30:43,249 INFO ValidationAgent response received in 19.60 seconds
+2025-07-07 14:30:43,252 INFO Repo analysis completed in 73.83 seconds
+2025-07-07 14:30:50,563 INFO Fetched contents from repo in 7.30 seconds
+2025-07-07 14:30:50,564 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-07 14:30:51,285 INFO System prompt send took 0.72 seconds
+2025-07-07 14:31:37,102 INFO Prompt send took 46.54 seconds
+2025-07-07 14:31:55,958 INFO ValidationAgent response received in 18.85 seconds
+2025-07-07 14:31:55,960 INFO Repo analysis completed in 72.70 seconds
+2025-07-07 14:32:46,903 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:32:53,173 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:34:01,223 INFO Fetched contents from repo in 3.69 seconds
+2025-07-07 14:34:01,226 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-07 14:34:01,929 INFO System prompt send took 0.70 seconds
+2025-07-07 14:34:31,369 ERROR Validation endpoint unexpected error: 500: Unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 28
+}
+]
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 61, in analyze_repo
+    chat.send_message(prompt)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 28
+}
+]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 28
+}
+]
+2025-07-07 14:34:52,135 INFO Fetched contents from repo in 2.91 seconds
+2025-07-07 14:34:52,136 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-07 14:34:52,804 INFO System prompt send took 0.67 seconds
+2025-07-07 14:34:53,772 ERROR Validation endpoint unexpected error: 500: Unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 6
+}
+]
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 61, in analyze_repo
+    chat.send_message(prompt)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 6
+}
+]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 6
+}
+]
+2025-07-07 14:36:22,841 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: htttp. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: htttp. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: htttp. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:36:39,360 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: htttp. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: htttp. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: htttp. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:43:35,366 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:47:01,978 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: http. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-07 14:48:36,700 ERROR Validation endpoint unexpected error: 500: Unexpected error: Failed to parse repository URL: ht. Error: Invalid URL format. Expected at least owner and repo.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 43, in parse_repo_url
+    raise ValueError("Invalid URL format. Expected at least owner and repo.")
+ValueError: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 24, in analyze_repo
+    files = self.repo_client.get_files_from_repo(repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 134, in get_files_from_repo
+    owner, repo = self.parse_repo_url(url)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\repo_api_client.py", line 57, in parse_repo_url
+    raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+ValueError: Failed to parse repository URL: ht. Error: Invalid URL format. Expected at least owner and repo.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
+    raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: ht. Error: Invalid URL format. Expected at least owner and repo.

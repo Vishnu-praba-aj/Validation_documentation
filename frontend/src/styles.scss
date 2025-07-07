@@ -1,0 +1,29 @@
+/* === Citi-Inspired Global Dark Theme === */
+body {
+  --text-color: #f3eaea;
+  background-color: #121212;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  margin: 0;
+}
+
+/* Material Toolbar Overrides */
+
+/* Material Card */
+.mat-card {
+  background-color: var(--card-bg) ;
+  color: var(--text-color) ;
+  border: 1px solid #2b2b2b;
+}
+
+/* Buttons */
+button.mat-flat-button {
+  background-color: var(--accent-color);
+  color: #000;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+}
+
+
+
+

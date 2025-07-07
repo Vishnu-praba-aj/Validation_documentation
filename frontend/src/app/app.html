@@ -1,0 +1,23 @@
+<mat-toolbar class="toolbar-custom ">
+  <div class="toolbar-center">
+    <span class="toolbar-title">Validation Report & Broker Document Analyzer</span>
+  </div>
+</mat-toolbar>
+
+<div class="main-container">
+  <mat-card class="content-card mat-elevation-z3">
+ <mat-tab-group class="fancy-tabs" [(selectedIndex)]="activeTabIndex">
+  <mat-tab label="📁 Validation Report Generator">
+    <div class="tab-content">
+      <app-repository-analysis></app-repository-analysis>
+    </div>
+  </mat-tab>
+  <mat-tab label="📄 Broker Document Analyzer">
+    <div class="tab-content">
+      <app-document-processing></app-document-processing>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+  </mat-card>
+</div>

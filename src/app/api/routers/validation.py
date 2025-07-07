@@ -32,4 +32,4 @@ async def analyze_repo(
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         logger.error(f"Validation endpoint unexpected error: {str(e)}", exc_info=True)
-        raise HTTPException(status_code=500, detail="An unexpected error occurred during repository analysis.")
+        raise HTTPException(status_code=500,detail=str(e))

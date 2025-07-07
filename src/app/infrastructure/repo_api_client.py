@@ -37,12 +37,25 @@ class RepoApiClient:
         return "github.com" in url
 
     def parse_repo_url(self, url):
-        parts = url.rstrip('/').split('/')
-        owner = parts[-2]
-        repo = parts[-1]
-        if repo.endswith('.git'):
-            repo = repo[:-4]
-        return owner, repo
+        try:
+            parts = url.rstrip('/').split('/')
+            if len(parts) < 2:
+                raise ValueError("Invalid URL format. Expected at least owner and repo.")
+
+            owner = parts[-2]
+            repo = parts[-1]
+
+            if not owner or not repo:
+                raise ValueError("Invalid URL: Missing owner or repository name.")
+
+            if repo.endswith('.git'):
+                repo = repo[:-4]
+
+            return owner, repo
+
+        except Exception as e:
+            raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
+
 
     def is_excluded(self, path):
         norm_path = path.replace("\\", "/")
