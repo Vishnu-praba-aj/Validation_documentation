@@ -1,0 +1,15 @@
+2025-07-07 10:04:13,753 INFO Fetched contents from repo in 3.63 seconds
+2025-07-07 10:04:13,756 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-07 10:04:15,867 INFO System prompt send took 2.11 seconds
+2025-07-07 10:04:59,137 INFO Prompt send took 45.38 seconds
+2025-07-07 10:05:16,607 INFO ValidationAgent response received in 17.47 seconds
+2025-07-07 10:05:16,783 INFO Repo analysis completed in 66.66 seconds
+2025-07-07 10:06:27,277 INFO Received request for extracting fields
+2025-07-07 10:06:27,280 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-07 10:06:30,618 INFO System prompt send took 3.34 seconds
+2025-07-07 10:06:45,231 INFO File send took 14.61 seconds
+2025-07-07 10:06:54,994 INFO DocumentAgent response received in 9.76 seconds
+2025-07-07 10:06:54,998 INFO Successfully extracted fields
+2025-07-07 10:06:54,998 INFO Field extraction completed in 27.72 seconds
+2025-07-07 10:07:47,821 INFO DocumentAgent continued chat response received in 1.02 seconds
+2025-07-07 10:07:47,842 INFO Chat continuation completed in 1.04 seconds

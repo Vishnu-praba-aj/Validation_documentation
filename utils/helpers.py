@@ -14,8 +14,7 @@ def parse_json(response):
     try:
         return json.loads(cleaned_json)
     except json.JSONDecodeError:
-        logger.error("Gemini response is not valid JSON")
-        return None
+        return {"message": response.strip()}
 
 def extract_controller_names(js_content):
     return re.findall(r"\.controller\(['\"](\w+)['\"]", js_content)
