@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { dummyDocumentExtractionResponse  } from './document-response.mock'; // adjust path if needed
 import { DocumentService } from './document.service';
 import { MatIconModule } from '@angular/material/icon';
+import * as ExcelJS from 'exceljs';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-document-processing',
@@ -22,6 +24,7 @@ export class DocumentProcessing {
   sessionId: string = ''; // Add this to your class
   isLoading = false;
   errorMessage: string | null = null;
+  uploadErrorMessage: string | null = null;
 
   // Input fields
   prompt = '';
@@ -58,8 +61,11 @@ export class DocumentProcessing {
   constructor(private documentService: DocumentService) {}
   // Simulate document processing
 processDocument() {
+
+  this.uploadErrorMessage = null;
+
   if (!this.docFile || !this.fieldsFile) {
-    alert('⚠️ Please upload both the document file and fields file before processing.');
+    this.uploadErrorMessage = 'Please upload both the Document file and Fields Configuration file.';
     return;
   }
 
@@ -180,20 +186,54 @@ processDocument() {
   });
 }
 
-   downloadExcel() {
-  const header = ['User Field', 'Document Field', 'Value'];
-  const rows = this.processedFields.map(f => [f.user_field, f.document_field, f.value]);
+  downloadExcel() {
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet('Extracted Fields');
 
-  const csvContent = [header, ...rows].map(e => e.join(',')).join('\n');
-  const blob = new Blob([csvContent], { type: 'text/csv' });
-  const url = URL.createObjectURL(blob);
+  // Add header
+  const headerRow = worksheet.addRow(['User Field', 'Document Field', 'Value']);
+  headerRow.font = { bold: true };
+  headerRow.alignment = { horizontal: 'center' };
+  headerRow.eachCell(cell => {
+    cell.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+  });
 
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'updated_fields.csv';
-  a.click();
+  // Add rows safely
+  this.processedFields.forEach(field => {
+    const userField = field.user_field || field.custom_field || field.field || '';
+    const docField = field.document_field || field.document_label || '';
+    const value = field.value ?? '';
 
-  URL.revokeObjectURL(url);
+    const row = worksheet.addRow([userField, docField, value]);
+    row.eachCell(cell => {
+      cell.border = {
+        top: { style: 'thin' },
+        left: { style: 'thin' },
+        bottom: { style: 'thin' },
+        right: { style: 'thin' },
+      };
+      cell.alignment = { horizontal: 'left' };
+    });
+  });
+
+  // Column sizing
+  worksheet.columns.forEach(col => {
+    col.width = 25;
+  });
+
+  // Download
+  workbook.xlsx.writeBuffer().then(buffer => {
+    const blob = new Blob([buffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    });
+    FileSaver.saveAs(blob, 'updated_fields.xlsx');
+  });
 }
+
   
 }

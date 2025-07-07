@@ -124,7 +124,7 @@ body {
 }
 
 .prompt-block textarea {
-  width: 100%;
+  width: 98%;
   min-height: 100px;
   resize: vertical;
   margin-bottom: 1rem;
@@ -361,3 +361,15 @@ small.text-muted {
   align-items: center;
   gap: 0.5rem;
 }
+.alert-banner {
+  background-color: #3b0d0c;
+  border-left: 4px solid #dc2626;
+  color: #fca5a5;
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+

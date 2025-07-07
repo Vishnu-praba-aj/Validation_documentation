@@ -41,6 +41,12 @@
     </div>
   </div>
 
+  <div *ngIf="uploadErrorMessage" class="alert-banner">
+  <mat-icon color="warn">warning</mat-icon>
+  <span>{{ uploadErrorMessage }}</span>
+</div>
+
+
   <!-- Prompt Area -->
   <div class="prompt-block">
     <label class="form-label">Prompt</label>
