@@ -55,7 +55,7 @@ agents:
          - **One-word types**, e.g., "String", "Integer", "Boolean".
          - Null where a constraint is not present.
          - Do not fabricate or invent validations that are not directly observable in the input code or associated HTML.
-         - otherValidation: Use clear, concise sentences to describe validation logic that doesn't fit into the structured min, max, length, pattern fields (e.g. "Must be unique", "Must match password"). Set to null if no other validation is found.
+         - otherValidation: Use clear, concise sentences to **describe validation logic** that doesn't fit into the structured min, max, length, pattern fields (e.g. "Must be unique", "Must match password"). Do not copy directly. Set to null if no other validation is found.
       4. **If no validation logic is found for a file/class/object, create an entity with a note indicating no validation logic was found.**
       5. Incorporate validation logic from:
          - Inline validations
