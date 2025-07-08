@@ -104,8 +104,6 @@ agents:
       1. If the document contains a single row or a single record-like structure as in a pdf, return one object inside "rows".
       2. If there are multiple record-like rows in the document, return one per row with incremented "index".
       3. For each field in the custom fields list:
-      - Eliminate incorrect candidates first which do not match the intent (e.g., not a branch name, not a security).
-      - From remaining options, pick the closest valid match.
       - Extract the value from the document directly **or**
       - Infer the value from context when it is not explicitly stated.
       - Read through the entire document to find the closest match for each field.

@@ -3,7 +3,7 @@ charges
 currencyCd
 isinCd
 netAmt
-qty
+quantity
 settlementDt
 stockMkt
 tradeDt

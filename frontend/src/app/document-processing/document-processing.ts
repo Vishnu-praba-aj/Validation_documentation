@@ -91,7 +91,7 @@ processDocument() {
     this.isLoading = false;
 
     if (result.status === 'fallback') {
-      this.errorMessage = '⚠️ Document processing failed. Showing fallback data.';
+      this.errorMessage = 'Document processing failed. Showing fallback data.';
       setTimeout(() => (this.errorMessage = null), 6000);
     }
 
@@ -107,11 +107,15 @@ processDocument() {
     this.processedFields = index0?.fields || [];
     this.processedFieldPairs = this.chunkFields(this.processedFields, 2);
     this.outputTable = this.generateDummyTable(11, 11);
-  }, (err) => {
-    this.isLoading = false;
-    this.errorMessage = '❌ An error occurred while processing the document.';
-    console.error('Error:', err);
-  });
+  },(err) => {
+  this.isLoading = false;
+
+  // Get backend error message
+  const detail = err?.error?.detail || err?.message || 'Unknown error occurred.';
+  this.errorMessage = `${detail}`;
+  
+  console.error('Document API Error:', err);
+});
 }
 
 
@@ -140,7 +144,11 @@ processDocument() {
   saveMessage = '';
 
   saveUpdatedFields() {
-  const jsonData = JSON.stringify(this.processedFields, null, 2);
+  const data = {
+    fields: this.processedFields
+  };
+
+  const jsonData = JSON.stringify(data, null, 2);
   const blob = new Blob([jsonData], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
 
@@ -152,37 +160,39 @@ processDocument() {
   URL.revokeObjectURL(url);
 }
 
+
  sendMessage() {
   if (!this.chatInput.trim() || !this.sessionId) return;
 
+  // Add user message
   this.chatMessages.push({ from: 'user', text: this.chatInput });
 
-  this.documentService.continueChat(this.sessionId, this.chatInput).subscribe((res) => {
+  // Clear input immediately
+  const currentPrompt = this.chatInput;
+  this.chatInput = '';
+
+  // Now send to backend
+  this.documentService.continueChat(this.sessionId, currentPrompt).subscribe((res) => {
     const response = res?.response;
 
-    // Case 1: If bot returned a message
+    // Case 1: Bot message
     if (response?.response?.rows === null && response?.response?.message) {
-  this.chatMessages.push({ from: 'bot', text: response.response.message });
-}
+      this.chatMessages.push({ from: 'bot', text: response.response.message });
+    }
 
-
-    // Case 2: If bot returned updated field rows
+    // Case 2: Bot updates fields
     if (response?.rows?.length) {
-      // You can update based on specific index (e.g., index 0) or merge all
       const index0 = response.rows.find((r: any) => r.index === 0);
       if (index0?.fields) {
         this.processedFields = index0.fields;
         this.processedFieldPairs = this.chunkFields(this.processedFields, 2);
 
-        // Add an info message to chat
         this.chatMessages.push({
           from: 'bot',
-          text: '✅ Fields updated based on the latest LLM reply.'
+          text: ' Fields updated based on the latest LLM reply.'
         });
       }
     }
-
-    this.chatInput = '';
   });
 }
 

@@ -73,17 +73,26 @@ export class RepositoryAnalysis {
 
 
   downloadJSON() {
-    const json = JSON.stringify(this.repoService.lastResponse, null, 2);
-    const blob = new Blob([json], { type: 'application/json' });
-    const url = window.URL.createObjectURL(blob);
+  const responseOnly = this.repoService.lastResponse?.response;
 
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'validation-result.json';
-    a.click();
-
-    window.URL.revokeObjectURL(url);
+  if (!responseOnly) {
+    console.warn('No response data available to export.');
+    return;
   }
+
+  const json = JSON.stringify(responseOnly, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = window.URL.createObjectURL(blob);
+
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'validation-result.json';
+  a.click();
+
+  window.URL.revokeObjectURL(url);
+}
+
+
 
 
 
