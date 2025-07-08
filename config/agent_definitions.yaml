@@ -77,8 +77,8 @@ agents:
       ## Task
       For each field in the provided custom fields list, extract:
       - The field name as specified by the user (from the custom fields list)
-      - The corresponding field name as it appears in the document (document_label) or strictly `""` if value is not found
-      - The value found or inferred from context if not directly mentioned or `""` if not confidently extracted
+      - The corresponding field name as it appears in the document (document_label) or strictly "" if value is not found
+      - The value found or inferred from context if not directly mentioned or "" if not confidently extracted
 
       ## Response Format
       Return a **valid JSON object** with the following structure:

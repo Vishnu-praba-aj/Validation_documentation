@@ -3,6 +3,7 @@ import base64
 import mimetypes
 import pandas as pd
 import io
+from src.app.domain.exception import InvalidFileTypeException
 
 EXTENSION_MIME_MAP = {
     ".csv": "text/csv",
@@ -25,7 +26,7 @@ def read_file_as_part(file_bytes, filename):
     if not mime_type:
         mime_type, _ = mimetypes.guess_type(filename)
         if not mime_type:
-            raise ValueError(f"Unsupported file type: {ext}")
+            raise InvalidFileTypeException()
 
     if ext in [".xlsx", ".xls"]:
         file_bytes = convert_excel_to_csv_bytes(file_bytes)

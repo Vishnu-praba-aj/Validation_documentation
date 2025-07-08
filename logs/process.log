@@ -1533,3 +1533,27 @@ Traceback (most recent call last):
   File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 82, in analyze_repo
     raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
 fastapi.exceptions.HTTPException: 500: Unexpected error: Failed to parse repository URL: ht. Error: Invalid URL format. Expected at least owner and repo.
+2025-07-08 11:04:08,659 INFO Fetched contents from repo in 8.64 seconds
+2025-07-08 11:04:08,680 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-08 11:04:11,713 INFO System prompt send took 3.03 seconds
+2025-07-08 11:05:01,157 INFO Prompt send took 52.48 seconds
+2025-07-08 11:05:20,380 INFO ValidationAgent response received in 19.22 seconds
+2025-07-08 11:05:20,385 INFO Repo analysis completed in 80.37 seconds
+2025-07-08 11:06:51,334 ERROR Validation endpoint client exception (RepoAnalysis): 
+2025-07-08 11:14:51,991 ERROR Validation endpoint client exception (RepoAnalysis): 
+2025-07-08 11:15:05,957 ERROR Validation endpoint client exception (RepoAnalysis): 
+2025-07-08 11:20:33,706 ERROR Validation endpoint client exception (InvalidRepoURL): 
+2025-07-08 11:26:00,782 ERROR Validation endpoint client exception (InvalidRepoURL): 
+2025-07-08 11:26:13,651 ERROR Validation endpoint client exception (InvalidRepoURL): 
+2025-07-08 11:26:17,626 ERROR Validation endpoint client exception (InvalidRepoURL): 
+2025-07-08 11:26:50,748 ERROR Validation endpoint client exception (UnsupportedRepoURL): 
+2025-07-08 11:27:28,208 ERROR Validation endpoint client exception (InvalidRepoURL): 
+2025-07-08 11:30:02,866 ERROR Validation endpoint client exception (UnsupportedRepoURL): 
+2025-07-08 11:35:09,063 ERROR Validation endpoint client exception (UnsupportedRepoURL): Not a URL
+2025-07-08 11:35:21,467 ERROR Validation endpoint client exception (UnsupportedRepoURL): 
+2025-07-08 11:39:38,743 ERROR Validation endpoint client exception (UnsupportedURL): 
+2025-07-08 11:39:50,218 ERROR Validation endpoint client exception (UnsupportedURL): Not a URL
+2025-07-08 11:40:08,411 INFO Chat continuation initiated
+2025-07-08 11:40:08,412 ERROR Chat continuation endpoint client exception (SessionNotFound): 
+2025-07-08 11:41:32,480 INFO Received request for extracting fields
+2025-07-08 11:41:32,483 ERROR Extraction endpoint client exception (InvalidFileType): 

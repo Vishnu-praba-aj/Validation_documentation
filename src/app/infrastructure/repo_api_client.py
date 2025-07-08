@@ -2,7 +2,7 @@ import os
 import time
 import requests
 import fnmatch
-
+from src.app.domain.exception import InvalidRepoURLException, NoDefaultBranchException, RepoProcessingException, UnsupportedURLException
 from utils.logging import setup_logger
 
 EXCLUDED_DIRS = [
@@ -37,25 +37,20 @@ class RepoApiClient:
         return "github.com" in url
 
     def parse_repo_url(self, url):
-        try:
-            parts = url.rstrip('/').split('/')
-            if len(parts) < 2:
-                raise ValueError("Invalid URL format. Expected at least owner and repo.")
+        parts = url.rstrip('/').split('/')
+        if len(parts) < 2:
+            raise InvalidRepoURLException()
 
-            owner = parts[-2]
-            repo = parts[-1]
+        owner = parts[-2]
+        repo = parts[-1]
 
-            if not owner or not repo:
-                raise ValueError("Invalid URL: Missing owner or repository name.")
+        if not owner or not repo:
+            raise InvalidRepoURLException()
 
-            if repo.endswith('.git'):
-                repo = repo[:-4]
+        if repo.endswith('.git'):
+            repo = repo[:-4]
 
-            return owner, repo
-
-        except Exception as e:
-            raise ValueError(f"Failed to parse repository URL: {url}. Error: {str(e)}")
-
+        return owner, repo
 
     def is_excluded(self, path):
         norm_path = path.replace("\\", "/")
@@ -72,14 +67,14 @@ class RepoApiClient:
         url = f"https://api.github.com/repos/{owner}/{repo}"
         resp = requests.get(url)
         if resp.status_code != 200:
-            raise Exception("Could not determine default branch.")
+            raise NoDefaultBranchException()
         return resp.json().get('default_branch', 'main')
 
     def get_github_code_files(self, owner, repo, branch):
         url = f"https://api.github.com/repos/{owner}/{repo}/git/trees/{branch}?recursive=1"
         resp = requests.get(url)
         if resp.status_code != 200:
-            raise Exception("Could not list files.")
+            raise RepoProcessingException("Could not list GitHub files.")
         data = resp.json()
         files = []
         for item in data.get('tree', []):
@@ -92,14 +87,14 @@ class RepoApiClient:
         url = f"https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{file_path}"
         resp = requests.get(url)
         if resp.status_code != 200:
-            raise Exception(f"Could not fetch file: {file_path}")
+            raise RepoProcessingException(f"Could not fetch file: {file_path}")
         return resp.text
 
     def get_bitbucket_default_branch(self, owner, repo):
         url = f"https://api.bitbucket.org/2.0/repositories/{owner}/{repo}"
         resp = requests.get(url)
         if resp.status_code != 200:
-            raise Exception("Could not determine Bitbucket default branch.")
+            raise NoDefaultBranchException()
         return resp.json()['mainbranch']['name']
 
     def get_bitbucket_code_files(self, owner, repo, branch):
@@ -107,7 +102,7 @@ class RepoApiClient:
         url = f"https://api.bitbucket.org/2.0/repositories/{owner}/{repo}/src/{branch}/"
         resp = requests.get(url)
         if resp.status_code != 200:
-            raise Exception("Could not list Bitbucket files.")
+            raise RepoProcessingException("Could not list Bitbucket files.")
         data = resp.json()
         for item in data.get('values', []):
             path = item['path']
@@ -126,22 +121,25 @@ class RepoApiClient:
         url = f"https://bitbucket.org/{owner}/{repo}/raw/{branch}/{file_path}"
         resp = requests.get(url)
         if resp.status_code != 200:
-            raise Exception(f"Could not fetch file: {file_path}")
+            raise RepoProcessingException(f"Could not fetch file: {file_path}")
         return resp.text
 
     def get_files_from_repo(self, url):
         start = time.perf_counter()
-        owner, repo = self.parse_repo_url(url)
         if self.is_bitbucket_url(url):
+            owner, repo = self.parse_repo_url(url)
             branch = self.get_bitbucket_default_branch(owner, repo)
             code_files = self.get_bitbucket_code_files(owner, repo, branch)
             fetch_content = lambda f: self.fetch_bitbucket_file_content(owner, repo, f, branch)
         elif self.is_github_url(url):
+            owner, repo = self.parse_repo_url(url)
             branch = self.get_github_default_branch(owner, repo)
             code_files = self.get_github_code_files(owner, repo, branch)
             fetch_content = lambda f: self.fetch_github_file_content(owner, repo, f, branch)
+        elif not (url.startswith("http")):
+            raise UnsupportedURLException("Not a URL")
         else:
-            raise Exception("Unsupported repo URL")
+            raise UnsupportedURLException()
         file_objs = []
         for f in code_files:
             file_objs.append({

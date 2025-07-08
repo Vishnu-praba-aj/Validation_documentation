@@ -1,6 +1,6 @@
 import json
 import re
-
+from src.app.domain.exception import JSONParsingException
 from utils.logging import setup_logger
 
 logger = setup_logger()
@@ -14,7 +14,7 @@ def parse_json(response):
     try:
         return json.loads(cleaned_json)
     except json.JSONDecodeError:
-        return {"message": response.strip()}
+        raise JSONParsingException()
 
 def extract_controller_names(js_content):
     return re.findall(r"\.controller\(['\"](\w+)['\"]", js_content)

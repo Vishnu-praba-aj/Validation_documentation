@@ -2,6 +2,7 @@ import google.generativeai as genai
 import yaml
 import uuid
 import time
+from src.app.domain.exception import SessionNotFoundException
 from config.settings import GENAI_API_KEY, AGENT_DEFINITION_PATH
 from src.app.infrastructure.file_handler import read_file_as_part
 from utils.logging import setup_logger
@@ -50,5 +51,5 @@ class LLMClient:
     def get_chat(self, session_id):
         chat = session_manager.get(session_id)
         if not chat:
-            raise Exception("Session not found or expired.")
+            raise SessionNotFoundException()
         return chat

@@ -1,6 +1,6 @@
 import time
 from fastapi import APIRouter, UploadFile, File, Form, Depends, HTTPException
-from src.app.domain.exception import FileTooLargeError, InvalidFileTypeError, SessionNotFoundError
+from src.app.domain.exception import FileTooLargeException, InvalidFileTypeException, InvalidJSONResponseException, JSONParsingException, SessionNotFoundException
 from src.app.api.deps import get_document_service
 from src.app.domain.models import ExtractionLLMResponse
 from utils.logging import setup_logger
@@ -30,15 +30,21 @@ async def extract_fields(
         end = time.perf_counter()
         logger.info(f"Field extraction completed in {end - start:.2f} seconds")
         return result
-    except FileTooLargeError as e:
-        logger.error(f"Extraction endpoint client error (FileTooLargeError): {str(e)}")
-        raise e
-    except InvalidFileTypeError as e:
-        logger.error(f"Extraction endpoint client error (InvalidFileTypeError): {str(e)}")
-        raise e
+    except FileTooLargeException as e:
+        logger.error(f"Extraction endpoint client exception (FileTooLarge): {str(e)}")
+        raise HTTPException(status_code=413, detail=e.detail)
+    except InvalidFileTypeException as e:
+        logger.error(f"Extraction endpoint client exception (InvalidFileType): {str(e)}")
+        raise HTTPException(status_code=415, detail=e.detail)
+    except InvalidJSONResponseException as e:
+        logger.error(f"Extraction endpoint client exception (InvalidJSONResponse): {str(e)}")
+        raise HTTPException(status_code=502, detail=e.detail)
+    except JSONParsingException as e:
+        logger.error(f"Extraction endpoint client exception (JSONParsing): {str(e)}")
+        raise HTTPException(status_code=400, detail=e.detail)
     except Exception as e:
         logger.error(f"Extraction endpoint unexpected error: {str(e)}", exc_info=True)
-        raise HTTPException(status_code=500, detail="An unexpected error occurred during extraction.")
+        raise HTTPException(status_code=500, detail="An unexpected error occurred")
 
 @router.post(
     "/continue_chat/",
@@ -57,8 +63,15 @@ async def continue_chat(
         end = time.perf_counter()
         logger.info(f"Chat continuation completed in {end - start:.2f} seconds")
         return result
-    except SessionNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+    except SessionNotFoundException as e:
+        logger.error(f"Chat continuation endpoint client exception (SessionNotFound): {str(e)}")
+        raise HTTPException(status_code=404, detail=e.detail)
+    except InvalidJSONResponseException as e:
+        logger.error(f"Chat continuation endpoint client exception (InvalidJSONResponse): {str(e)}")
+        raise HTTPException(status_code=502, detail=e.detail)
+    except JSONParsingException as e:
+        logger.error(f"Chat continuation endpoint client exception (JSONParsing): {str(e)}")
+        raise HTTPException(status_code=400, detail=e.detail)
     except Exception as e:
         logger.error(f"Chat continuation unexpected error: {str(e)}", exc_info=True)
-        raise HTTPException(status_code=500, detail="An unexpected error occurred during chat continuation.")
+        raise HTTPException(status_code=500, detail="An unexpected error occurred.")

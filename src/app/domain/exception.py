@@ -1,18 +1,35 @@
-from fastapi import HTTPException, status
-
-class FileTooLargeError(HTTPException):
+class FileTooLargeException(Exception):
     def __init__(self, detail="File is too large."):
-        super().__init__(status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE, detail=detail)
+        self.detail = detail
 
-class SessionNotFoundError(HTTPException):
+class SessionNotFoundException(Exception):
     def __init__(self, detail="Session not found."):
-        super().__init__(status_code=status.HTTP_404_NOT_FOUND, detail=detail)
+        self.detail = detail
 
-class InvalidFileTypeError(HTTPException):
+class InvalidFileTypeException(Exception):
     def __init__(self, detail="Invalid or unsupported file type."):
-        super().__init__(status_code=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE, detail=detail)
+        self.detail = detail
 
-class RepoProcessingException(HTTPException):
+class RepoProcessingException(Exception):
     def __init__(self, detail="Failed to process repository."):
-        super().__init__(status_code=status.HTTP_400_BAD_REQUEST, detail=detail)
+        self.detail = detail
 
+class InvalidRepoURLException(Exception):
+    def __init__(self, detail="Invalid Repo URL (no user or repo name)"):
+        self.detail = detail
+
+class InvalidJSONResponseException(Exception):
+    def __init__(self, detail="Invalid JSON Response from LLM."):
+        self.detail = detail
+
+class JSONParsingException(Exception):
+    def __init__(self, detail="Could not parse JSON Response."):
+        self.detail = detail
+
+class NoDefaultBranchException(Exception):
+    def __init__(self, detail="Could not determine default branch."):
+        self.detail = detail
+
+class UnsupportedURLException(Exception):
+    def __init__(self, detail="Not a github or bitbucket URL."):
+        self.detail = detail
