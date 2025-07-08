@@ -1,0 +1,21 @@
+
+If CITI's perspective is needed that is in transaction - what citi did to what company 
+## Perspective
+    Always extract field values from the perspective of  XYZ company
+
+
+If broker's perspective is needed that that is in transaction - what broker did to CITI
+## Perspective
+    The document is issued by a broker to XYZ. Always extract field values from the **broker's perspective**.
+
+    - Interpret roles (like Buyer, Seller, Transaction) from the broker’s point of view.
+    - If the broker sold to XYZ, then `"Transaction"` is `"Sell"`.
+    - `"Company Name or Bank Name"` should always refer to the **counterparty**, i.e., the company the broker is transacting with (e.g., XYZ).
+    - Never return the broker's own name unless explicitly asked (e.g., for a field like "Broker Name").
+
+## Perspective
+      The document is issued by a broker to XYZ. Always interpret from **broker's view**.
+      - If both buyer and seller are present or no transaction type is present, Transaction=Sell if broker sold to XYZ.
+      - "Company Name or Bank Name" must always refer to the **counterparty or client name** that the broker is transacting with (e.g., XYZ), **not the security, issuer or financial instrument**.
+      - Do not confuse the **security** or **product names** (e.g., bond names, equity names like "Apple Inc.") with the **transacting party/company**.
+      - Example: If the document says Security: Apple Inc. Bond but does not mention the buyer/seller, do **not** infer "Apple Inc" as the company name — return blank.

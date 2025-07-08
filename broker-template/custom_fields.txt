@@ -1,15 +1,11 @@
-Bank Name
-Branch Name
-Customer Name
-Account Number
-Customer ID
-Account Type
-IFSC Code
-Opening Balance
-Closing Balance
-Period
-Generated On
-Transaction Date
-Description
-Amount
-Transaction Type
+branchNM
+charges
+currencyCd
+isinCd
+netAmt
+qty
+settlementDt
+stockMkt
+tradeDt
+transactionType
+unitpx
