@@ -6,6 +6,9 @@ import { DocumentService } from './document.service';
 import { MatIconModule } from '@angular/material/icon';
 import * as ExcelJS from 'exceljs';
 import * as FileSaver from 'file-saver';
+import { Subscription } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Component({
   selector: 'app-document-processing',
@@ -21,24 +24,59 @@ export class DocumentProcessing {
   fieldsFile: File | null = null;
   selectedFileName = '';
   selectedFieldsFileName = '';
-  sessionId: string = ''; // Add this to your class
+  sessionId: string = ''; 
+  clientId: String = '';
   isLoading = false;
   errorMessage: string | null = null;
   uploadErrorMessage: string | null = null;
-
+  isCancelling = false;  // new flag
+  toastMessage: string | null = null;
   // Input fields
   prompt = '';
-  chatInput = '';
+  chatInput= '';
+  initialPrompt: string = '';
 
   // States
   showDescription = false;
-  viewMode: 'value' | 'document_field' = 'value';
-
+  viewMode: 'value' | 'document_field' | 'both' = 'value';
   // Data structures
   outputTable: string[][] = [];
   processedFields: any[] = [];
   processedFieldPairs: any[][] = [];
   chatMessages: { from: 'user' | 'bot'; text: string }[] = [];
+  processSub: Subscription | null = null;
+  showDownloadPopup = false;
+  initialPromptSent = false;
+  downloadPopupMessage = '';
+  editingValueField: string | null = null;
+  editingDocField: string | null = null;
+  isBulkEditing = false; // controls edit mode
+  backupFields: any[] = []; // stores original values for reset
+
+
+  startBulkEdit() {
+    this.isBulkEditing = true;
+    // Deep clone for reset
+    this.backupFields = JSON.parse(JSON.stringify(this.processedFields));
+  }
+
+  saveBulkEdit() {
+    this.isBulkEditing = false;
+    this.backupFields = [];
+  }
+
+  resetBulkEdit() {
+    this.processedFields = JSON.parse(JSON.stringify(this.backupFields));
+    this.isBulkEditing = false;
+    this.backupFields = [];
+  }
+
+
+
+  closeDownloadPopup() {
+    this.showDownloadPopup = false;
+  }
+
 
   // Toggle description panel
   toggleDescription() {
@@ -58,65 +96,105 @@ export class DocumentProcessing {
     this.selectedFieldsFileName = file ? file.name : '';
   }
 
-  constructor(private documentService: DocumentService) {}
-  // Simulate document processing
-processDocument() {
+  
 
-  this.uploadErrorMessage = null;
+  constructor(private documentService: DocumentService) {
+  // Initial AI greeting message
+  this.chatMessages.push({
+    from: 'bot',
+    text: '💡 Ask initial prompt...'
+  });
+}
 
-  if (!this.docFile || !this.fieldsFile) {
-    this.uploadErrorMessage = 'Please upload both the Document file and Fields Configuration file.';
+  processDocument() {
+    this.uploadErrorMessage = null;
+
+    if (!this.docFile || !this.fieldsFile) {
+      this.uploadErrorMessage = 'Please upload both the Broker Document file and Fields Configuration file.';
+      return;
+    }
+
+    this.isLoading = true;
+    this.errorMessage = null;
+
+    // Clear UI state
+    this.processedFields = [];
+    this.processedFieldPairs = [];
+    this.outputTable = [];
+    this.chatMessages = [];
+    this.chatInput = '';
+
+    // Generate session ID before request
+    this.sessionId = uuidv4();
+
+    const formData = new FormData();
+    formData.append('doc', this.docFile);
+    formData.append('custom_fields', this.fieldsFile);
+    formData.append('client_session_id', this.sessionId); 
+    
+    if (this.initialPrompt) {
+      formData.append('user_prompt', this.initialPrompt);
+      console.log("initial prompt",this.initialPrompt);
+      this.chatMessages.push({ from: 'user', text: this.initialPrompt });
+    }
+
+
+  
+    this.processSub = this.documentService.processDocument(formData).subscribe(
+      (result) => {
+        this.isLoading = false;
+        this.processSub = null;
+
+        if (result.status === 'fallback') {
+    this.errorMessage = 'Document processing failed. Showing fallback data.';
+    setTimeout(() => (this.errorMessage = null), 6000);
+
+    // 💡 Use fallback data from dummy
+    const fallback = dummyDocumentExtractionResponse.response.rows.find((r: any) => r.index === 0);
+    this.processedFields = (fallback?.fields || []).map((field: any) => ({
+    ...field,
+    document_field: field.document_field || field.document_label || ''
+  }));
+
+    this.processedFieldPairs = this.chunkFields(this.processedFields, 2);
+    this.outputTable = this.generateDummyTable(11, 11); // optional if needed
     return;
   }
 
-  this.isLoading = true;
-  this.errorMessage = null;
 
-  // 🔄 Clear UI state
-  this.processedFields = [];
-  this.processedFieldPairs = [];
-  this.outputTable = [];
-  this.chatMessages = [];
-  this.chatInput = '';
-  this.sessionId = '';
+      const response = result.response;
 
-  const formData = new FormData();
-  formData.append('doc', this.docFile);
-  formData.append('custom_fields', this.fieldsFile);
-  if (this.prompt) {
-    formData.append('user_prompt', this.prompt);
-  }
-
-  this.documentService.processDocument(formData).subscribe((result) => {
-    this.isLoading = false;
-
-    if (result.status === 'fallback') {
-      this.errorMessage = 'Document processing failed. Showing fallback data.';
-      setTimeout(() => (this.errorMessage = null), 6000);
+      if (response?.session_id) {
+  this.sessionId = response.session_id;
     }
+      const index0 = response?.response?.rows?.find((r: any) => r.index === 0) ||
+                     response?.rows?.find((r: any) => r.index === 0);
 
-    const response = result.response;
+      this.processedFields = (index0?.fields || []).map((field: any) => ({
+  ...field,
+  document_field: field.document_field || field.document_label || ''
+}));
 
-    if (response?.session_id) {
-      this.sessionId = response.session_id;
+      this.processedFieldPairs = this.chunkFields(this.processedFields, 2);
+      this.outputTable = this.generateDummyTable(11, 11);
+    },
+    (err) => {
+      this.isLoading = false;
+      this.processSub = null;
+      const detail = err?.error?.detail || err?.message || 'Unknown error occurred.';
+      this.errorMessage = `${detail}`;
+      console.error('Document API Error:', err);
     }
-
-    const index0 = response?.response?.rows?.find((r: any) => r.index === 0) ||
-                   response?.rows?.find((r: any) => r.index === 0);
-
-    this.processedFields = index0?.fields || [];
-    this.processedFieldPairs = this.chunkFields(this.processedFields, 2);
-    this.outputTable = this.generateDummyTable(11, 11);
-  },(err) => {
-  this.isLoading = false;
-
-  // Get backend error message
-  const detail = err?.error?.detail || err?.message || 'Unknown error occurred.';
-  this.errorMessage = `${detail}`;
-  
-  console.error('Document API Error:', err);
-});
+  );
 }
+  
+
+
+get currentTime(): string {
+  const now = new Date();
+  return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
 
 
   // Utility: Group items in chunks of N
@@ -142,8 +220,64 @@ processDocument() {
 
   // Save logic
   saveMessage = '';
+  sendPrompt() {
+    const userMessage = this.prompt.trim();
+    if (!userMessage) return;
 
-  saveUpdatedFields() {
+    // Add user message to chat
+    this.chatMessages.push({ from: 'user', text: userMessage });
+
+    if (!this.outputTable.length && !this.initialPrompt) {
+      // Initial prompt before processing
+      this.initialPrompt = userMessage;
+
+      // Replace "Ask initial prompt..." bot message with confirmation
+      this.chatMessages.push({
+        from: 'bot',
+        text: '📄 Got it! Now click "Process" to extract from document.'
+      });
+    } else {
+      // Treat as chat continuation
+      this.chatInput = userMessage;
+      this.sendMessage();
+    }
+
+    // Clear the prompt textbox
+    this.prompt = '';
+  }
+
+
+saveUpdatedFields() {
+  const filteredFields = this.processedFields.map(field => {
+    return {
+      custom_field: field.custom_field,
+      document_field: field.document_field,
+      value: field.value
+    };
+  });
+
+  const data = {
+    fields: filteredFields
+  };
+
+  const jsonData = JSON.stringify(data, null, 2);
+  const blob = new Blob([jsonData], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'updated_fields.json';
+  a.click();
+
+  URL.revokeObjectURL(url);
+
+  // Show popup
+  this.downloadPopupMessage = 'JSON downloaded successfully!';
+  this.showDownloadPopup = true;
+}
+
+
+  saveUpdatedFields1() {
   const data = {
     fields: this.processedFields
   };
@@ -158,43 +292,111 @@ processDocument() {
   a.click();
 
   URL.revokeObjectURL(url);
+
+  // Show popup
+  this.downloadPopupMessage = 'JSON downloaded successfully!';
+  this.showDownloadPopup = true;
 }
 
 
  sendMessage() {
   if (!this.chatInput.trim() || !this.sessionId) return;
 
-  // Add user message
-  this.chatMessages.push({ from: 'user', text: this.chatInput });
-
-  // Clear input immediately
   const currentPrompt = this.chatInput;
-  this.chatInput = '';
+  this.chatInput = ''; // Clear before API
 
-  // Now send to backend
-  this.documentService.continueChat(this.sessionId, currentPrompt).subscribe((res) => {
-    const response = res?.response;
+  this.documentService.continueChat(this.sessionId, currentPrompt).subscribe({
+    next: (res) => {
+      const response = res?.response;
 
-    // Case 1: Bot message
-    if (response?.response?.rows === null && response?.response?.message) {
-      this.chatMessages.push({ from: 'bot', text: response.response.message });
-    }
-
-    // Case 2: Bot updates fields
-    if (response?.rows?.length) {
-      const index0 = response.rows.find((r: any) => r.index === 0);
-      if (index0?.fields) {
-        this.processedFields = index0.fields;
-        this.processedFieldPairs = this.chunkFields(this.processedFields, 2);
-
-        this.chatMessages.push({
-          from: 'bot',
-          text: ' Fields updated based on the latest LLM reply.'
-        });
+      // Case 1: Simple bot message
+      if (response?.response?.rows === null && response?.response?.message) {
+        const aiReply = response.response.message;
+        this.chatMessages.push({ from: 'bot', text: aiReply });
       }
+
+      // Case 2: Fields updated
+      if (response?.rows?.length) {
+        const index0 = response.rows.find((r: any) => r.index === 0);
+        if (index0?.fields) {
+          this.processedFields = index0.fields;
+          this.processedFieldPairs = this.chunkFields(this.processedFields, 2);
+          this.chatMessages.push({ from: 'bot', text: 'Fields updated based on LLM response.' });
+        }
+      }
+    },
+
+    error: (err) => {
+      const detail = err?.error?.detail || err?.message || 'Unknown error occurred.';
+      const fallbackMsg = `Error from LLM: ${detail}`;
+      this.chatMessages.push({ from: 'bot', text: fallbackMsg });
+      console.error('LLM Chat Error:', err);
     }
   });
 }
+
+
+
+ cancelProcessing() {
+  if (!this.sessionId) {
+    console.log("no session id");
+    return;
+  }
+
+  this.isCancelling = true;
+
+  const formData = new FormData();
+  formData.append('session_id', this.sessionId);
+
+  // Cancel the ongoing HTTP request
+  if (this.processSub) {
+    this.processSub.unsubscribe();
+    this.processSub = null;
+  }
+
+  this.documentService.cancelAnalysis(formData).subscribe({
+    next: () => {
+      this.isLoading = false;
+      this.isCancelling = false;  // reset
+      this.errorMessage = 'Document processing was cancelled.';
+    },
+    error: (err) => {
+      this.isLoading = false;
+      this.isCancelling = false;  // reset
+      console.error('Cancellation failed:', err);
+      this.errorMessage = 'Failed to cancel. Try again.';
+    }
+  });
+}
+
+
+  resetAll() {
+  // Reset files
+  this.docFile = null;
+  this.fieldsFile = null;
+  this.selectedFileName = '';
+  this.selectedFieldsFileName = '';
+
+  // Reset inputs
+  this.prompt = '';
+  this.chatInput = '';
+
+  // Reset outputs and session
+  this.sessionId = '';
+  this.processedFields = [];
+  this.processedFieldPairs = [];
+  this.outputTable = [];
+  this.chatMessages = [];
+
+  // Reset flags
+  this.errorMessage = null;
+  this.uploadErrorMessage = null;
+  this.isLoading = false;
+  this.isCancelling = false;
+
+
+}
+
 
   downloadExcel() {
   const workbook = new ExcelJS.Workbook();
@@ -213,7 +415,7 @@ processDocument() {
     };
   });
 
-  // Add rows safely
+  // Add data
   this.processedFields.forEach(field => {
     const userField = field.user_field || field.custom_field || field.field || '';
     const docField = field.document_field || field.document_label || '';
@@ -231,17 +433,19 @@ processDocument() {
     });
   });
 
-  // Column sizing
-  worksheet.columns.forEach(col => {
-    col.width = 25;
-  });
+  worksheet.columns.forEach(col => (col.width = 25));
 
-  // Download
+  // Download and show popup
   workbook.xlsx.writeBuffer().then(buffer => {
     const blob = new Blob([buffer], {
       type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     });
     FileSaver.saveAs(blob, 'updated_fields.xlsx');
+
+    //  Show modal
+    this.downloadPopupMessage = 'Excel downloaded successfully!';
+  this.showDownloadPopup = true;
+
   });
 }
 

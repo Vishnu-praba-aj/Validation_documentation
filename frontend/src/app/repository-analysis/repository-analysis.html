@@ -4,41 +4,73 @@
     <div class="header-title-wrapper" (click)="isExpanded = !isExpanded">
       <h2 class="mat-title">
         Validation Report Generator
-        <mat-icon class="expand-icon" [class.rotated]="isExpanded">expand_more</mat-icon>
+        
       </h2>
     </div>
   </div>
 
-  <div *ngIf="isExpanded" class="description-text">
+  <div  class="description-text">
     This tool analyzes the provided GitHub or Bitbucket repository URL and generates a detailed validation report for all the fields mentioned in the given repository.
   </div>
 
   <div class="input-group">
-    <label class="input-label">Enter the GitHub/Bitbucket URL : </label>
+    <label class="input-label">Enter the GitHub/Bitbucket URL  </label>
     <mat-form-field appearance="outline" class="rounded-input compact-input">
       <input
         matInput
         class="custom-input"
         [(ngModel)]="repoUrl"
         placeholder="https://github.com/username/repo"
+        [disabled]="isLoading" 
       />
       <mat-icon matSuffix>link</mat-icon>
     </mat-form-field>
-
-    <button mat-raised-button class="analyze-btn" (click)="analyzeRepo()">
-      <mat-icon>analytics</mat-icon>
-      <span>Analyze</span>
-    </button>
   </div>
 
+     <!-- Buttons: Move below input and center -->
+<div class="button-center-wrapper">
+  <button
+    mat-raised-button
+    class="analyze-btn"
+    color="warn"
+    (click)="resetAnalysis()"
+    [disabled]="!repoUrl.trim() || isLoading"
+    [ngClass]="{ 'disabled-btn': !repoUrl.trim() || isLoading }"
+  >
+    <mat-icon>refresh</mat-icon>
+    <span>Reset</span>
+  </button>
 
-<div *ngIf="isLoading" class="loading-indicator-wrapper">
+  <button
+    mat-raised-button
+    class="analyze-btn"
+    (click)="analyzeRepo()"
+    [disabled]="!repoUrl.trim() || isLoading"
+    [ngClass]="{ 'disabled-btn': !repoUrl.trim() || isLoading }"
+  >
+    <mat-icon>analytics</mat-icon>
+    <span>Analyze</span>
+  </button>
+</div>
+
+
+
+  <div *ngIf="isLoading" class="loading-indicator-wrapper">
   <div class="loading-indicator">
     <mat-icon class="loading-icon spin">autorenew</mat-icon>
     Analyzing Repository...
+     <button mat-raised-button class="cancel-btn" color="warn" (click)="cancelAnalysis()">Cancel</button>
   </div>
 </div>
 
+<!-- Download confirmation popup -->
+<div *ngIf="showDownloadPopup" class="modal-backdrop">
+  <div class="modal-box">
+    <mat-icon class="modal-icon">check_circle</mat-icon>
+    <p class="modal-text">{{ downloadPopupMessage }}</p>
+    <button mat-raised-button (click)="closePopup()">OK</button>
+  </div>
+</div>
 
 
   <div *ngIf="errorMessage" class="error-alert">

@@ -17,13 +17,15 @@ class ValidationRequest(BaseModel):
     response_model=ValidationLLMResponse,
     operation_id="analyzeRepository"
 )
+
+
 async def analyze_repo(
     req: ValidationRequest,
     service=Depends(get_validation_service)
 ):
     try:
         start = time.perf_counter()
-        result = service.analyze_repo(req.repo_url)
+        result =await service.analyze_repo(req.repo_url)
         end = time.perf_counter()
         logger.info(f"Repo analysis completed in {end - start:.2f} seconds")
         return result
@@ -45,3 +47,9 @@ async def analyze_repo(
     except Exception as e:
         logger.error(f"Unexpected error: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail="An unexpected error occurred.")
+    
+
+@router.post("/cancel_analysis/")
+async def cancel_analysis(req: ValidationRequest, service=Depends(get_validation_service)):
+    service.cancel_analysis(req.repo_url)
+    return {"status": "cancelled"}

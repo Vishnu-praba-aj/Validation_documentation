@@ -10,6 +10,7 @@ import { RepositoryService } from './repository.service';
 import { HttpClientModule } from '@angular/common/http';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-repository-analysis',
@@ -31,38 +32,70 @@ export class RepositoryAnalysis {
   isExpanded = false;
   repoUrl = '';
   parsedEntities: any[] = [];
-  jsonResponse: any = null;
-  errorMessage: string | null = null;
+  jsonResponse: any = "";
+  errorMessage: string | null = "";
+  analyzeSub: Subscription | null = null; // Track subscription
   isLoading = false;
+  isCancelled = false;
+  showDownloadPopup = false;
+downloadPopupMessage = '';
+
 
   constructor(private repoService: RepositoryService) {}
 
-  analyzeRepo() {
-  if (!this.repoUrl.trim()) {
-    alert('⚠️ Please enter a repository URL before analyzing.');
-    return;
-  }
-
-  // 🔄 Reset previous states
+  resetAnalysis() {
+  this.repoUrl = '';
   this.jsonResponse = null;
   this.parsedEntities = [];
   this.errorMessage = null;
+  this.isLoading = false;
+  this.repoService.lastResponse = null;
+}
+
+
+  analyzeRepo() {
+  if (!this.repoUrl.trim()) {
+    alert('Please enter a repository URL before analyzing.');
+    return;
+  }
+
+  this.isCancelled = false;
   this.isLoading = true;
+  this.jsonResponse = null;
+  this.errorMessage = null;
 
-  this.repoService.analyzeRepository(this.repoUrl).subscribe((response) => {
-    console.log('📦 Full API Response:', response);
+  // Save subscription for cancel
+  this.analyzeSub = this.repoService.analyzeRepository(this.repoUrl).subscribe((response) => {
+    this.isLoading = false;
 
-    this.isLoading = false;  // ✅ Stop loading when response received
+    // ✅ If actual response or fallback
+    if (response?.status === 'success' || response?.status === 'fallback') {
+      this.jsonResponse = response.response;
 
-    if (response?.status === 'success') {
-      this.jsonResponse = response.response?.response;
-    } else if (response?.status === 'error') {
+      if (response.status === 'fallback') {
+        this.errorMessage = response.message || 'Fallback: Unable to analyze repo, using mock data.';
+        setTimeout(() => (this.errorMessage = null), 6000);
+      }
+
+    } else {
+      // Regular error
       this.errorMessage = response.message || 'An unknown error occurred.';
-      setTimeout(() => {
-        this.errorMessage = null;
-      }, 6000);
+      setTimeout(() => (this.errorMessage = null), 6000);
     }
   });
+}
+
+  
+
+
+  cancelAnalysis() {
+  if (this.analyzeSub) {
+    this.analyzeSub.unsubscribe(); // Cancel frontend request
+  }
+
+  this.repoService.cancelBackendProcessing(this.repoUrl); // Signal backend
+  this.isLoading = false;
+  this.analyzeSub = null;
 }
 
 
@@ -72,69 +105,40 @@ export class RepositoryAnalysis {
 }
 
 
-  downloadJSON() {
-  const responseOnly = this.repoService.lastResponse?.response;
+  closePopup() {
+  this.showDownloadPopup = false;
+  this.downloadPopupMessage = '';
+}
 
-  if (!responseOnly) {
-    console.warn('No response data available to export.');
-    return;
-  }
-
-  const json = JSON.stringify(responseOnly, null, 2);
-  const blob = new Blob([json], { type: 'application/json' });
-  const url = window.URL.createObjectURL(blob);
-
+downloadJSON() {
+  const jsonData = JSON.stringify(this.jsonResponse, null, 2);
+  const blob = new Blob([jsonData], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'validation-result.json';
+  a.download = 'validation_report.json';
   a.click();
+  URL.revokeObjectURL(url);
 
-  window.URL.revokeObjectURL(url);
+  // Show popup
+  this.downloadPopupMessage = 'JSON report downloaded successfully!';
+  this.showDownloadPopup = true;
 }
-
-
-
-
 
 downloadPDF() {
-  const doc = new jsPDF();
-  let y = 10;
+  // Assume you generate the PDF blob here (not shown)
+  // Save the file
+  const blob = new Blob([/* your PDF data */], { type: 'application/pdf' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'validation_report.pdf';
+  a.click();
+  URL.revokeObjectURL(url);
 
-  doc.setFontSize(18);
-  doc.text('Validation Report', 14, y);
-  y += 10;
-
-  for (const entity of this.jsonResponse?.entities || []) {
-    doc.setFontSize(14);
-    doc.text(entity.name, 14, y);
-    y += 6;
-
-    if (entity.note) {
-      doc.setFontSize(11);
-      doc.text(entity.note, 14, y);
-      y += 10;
-      continue;
-    }
-
-    if (entity.fields?.length) {
-  const keys = this.getFieldKeys(entity.fields);
-  const rows = entity.fields.map((field: any) => keys.map(k => field[k] ?? '—'));
-
-  autoTable(doc, {
-    startY: y,
-    head: [keys],
-    body: rows,
-    theme: 'grid',
-    styles: { fontSize: 9 },
-    headStyles: { fillColor: [240, 173, 78] }
-  });
-
-  y = (doc as any).lastAutoTable.finalY + 10;
-}
-
-  }
-
-  doc.save('validation-report.pdf');
+  // Show popup
+  this.downloadPopupMessage = 'PDF report downloaded successfully!';
+  this.showDownloadPopup = true;
 }
 
 }

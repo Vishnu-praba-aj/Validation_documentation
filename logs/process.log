@@ -1862,3 +1862,1370 @@ google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quot
 2025-07-08 15:11:18,858 INFO Field extraction completed in 34.29 seconds
 2025-07-08 15:44:54,728 INFO Received request for extracting fields
 2025-07-08 15:44:54,729 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-08 15:49:57,904 ERROR Extraction endpoint unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 2
+}
+]
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\document.py", line 28, in extract_fields
+    result = service.extract_fields(doc_bytes, doc.filename, fields, user_prompt)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\document_service.py", line 22, in extract_fields
+    session_id, chat = self.llm_client.start_session(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "DocumentAgent",
+        ^^^^^^^^^^^^^^^^
+        file_bytes=doc_bytes,
+        ^^^^^^^^^^^^^^^^^^^^^
+        filename=doc_filename
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\llm_client.py", line 37, in start_session
+    chat.send_message(agent["system_prompt"])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 2
+}
+]
+2025-07-09 09:42:01,969 INFO Fetched contents from repo in 8.66 seconds
+2025-07-09 09:42:01,972 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 09:42:06,086 INFO System prompt send took 4.11 seconds
+2025-07-09 09:42:07,000 ERROR Unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 51
+}
+]
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 28, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 81, in analyze_repo
+    chat.send_message(prompt)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 51
+}
+]
+2025-07-09 09:42:38,013 INFO Fetched contents from repo in 10.63 seconds
+2025-07-09 09:42:38,014 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 09:42:39,652 ERROR Unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 19
+}
+]
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 28, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 73, in analyze_repo
+    session_id, chat = self.llm_client.start_session("ValidationAgent")
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\llm_client.py", line 37, in start_session
+    chat.send_message(agent["system_prompt"])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 19
+}
+]
+2025-07-09 09:42:46,002 INFO Fetched contents from repo in 6.34 seconds
+2025-07-09 09:42:46,002 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 09:42:46,514 ERROR Unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 12
+}
+]
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\validation.py", line 28, in analyze_repo
+    result = service.analyze_repo(req.repo_url)
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\validation_service.py", line 73, in analyze_repo
+    session_id, chat = self.llm_client.start_session("ValidationAgent")
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\llm_client.py", line 37, in start_session
+    chat.send_message(agent["system_prompt"])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 12
+}
+]
+2025-07-09 09:44:38,438 INFO Fetched contents from repo in 5.25 seconds
+2025-07-09 09:44:38,440 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 09:44:41,304 INFO System prompt send took 2.86 seconds
+2025-07-09 09:45:28,512 INFO Prompt send took 50.07 seconds
+2025-07-09 09:45:47,251 INFO ValidationAgent response received in 18.74 seconds
+2025-07-09 09:45:47,291 INFO Repo analysis completed in 74.10 seconds
+2025-07-09 09:52:59,608 INFO Repo analysis completed in 0.00 seconds
+2025-07-09 09:55:01,134 INFO Fetched contents from repo in 10.72 seconds
+2025-07-09 09:55:01,135 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 09:55:03,796 INFO System prompt send took 2.66 seconds
+2025-07-09 09:55:43,529 INFO Fetched contents from repo in 8.80 seconds
+2025-07-09 09:55:43,530 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 09:55:45,166 INFO System prompt send took 1.64 seconds
+2025-07-09 09:56:18,223 INFO Prompt send took 77.09 seconds
+2025-07-09 09:56:52,136 INFO ValidationAgent response received in 33.91 seconds
+2025-07-09 09:56:52,137 INFO Repo analysis completed in 121.72 seconds
+2025-07-09 09:57:29,525 INFO Prompt send took 106.00 seconds
+2025-07-09 09:57:48,894 INFO ValidationAgent response received in 19.37 seconds
+2025-07-09 09:57:48,896 INFO Repo analysis completed in 134.17 seconds
+2025-07-09 10:05:36,732 INFO Fetched contents from repo in 9.90 seconds
+2025-07-09 10:05:36,733 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 10:05:40,828 INFO System prompt send took 4.09 seconds
+2025-07-09 10:06:47,303 INFO Prompt send took 70.57 seconds
+2025-07-09 10:12:16,416 INFO Fetched contents from repo in 2.99 seconds
+2025-07-09 10:12:16,416 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 10:12:17,208 INFO System prompt send took 0.79 seconds
+2025-07-09 10:13:07,826 INFO Prompt send took 51.41 seconds
+2025-07-09 10:13:26,632 INFO ValidationAgent response received in 18.81 seconds
+2025-07-09 10:13:26,634 INFO Repo analysis completed in 73.21 seconds
+2025-07-09 10:14:22,363 INFO Fetched contents from repo in 1.07 seconds
+2025-07-09 10:14:22,365 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 10:14:23,016 INFO System prompt send took 0.65 seconds
+2025-07-09 10:15:09,124 INFO Prompt send took 46.76 seconds
+2025-07-09 10:15:28,021 INFO ValidationAgent response received in 18.90 seconds
+2025-07-09 10:15:28,022 INFO Repo analysis completed in 66.73 seconds
+2025-07-09 10:15:56,892 INFO Fetched contents from repo in 0.89 seconds
+2025-07-09 10:15:56,894 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 10:15:57,532 INFO System prompt send took 0.64 seconds
+2025-07-09 10:16:44,340 INFO Prompt send took 47.45 seconds
+2025-07-09 10:17:03,246 INFO ValidationAgent response received in 18.91 seconds
+2025-07-09 10:17:03,247 INFO Repo analysis completed in 67.25 seconds
+2025-07-09 10:31:30,454 INFO Received request for extracting fields
+2025-07-09 10:31:30,456 INFO Successfully extracted fields
+2025-07-09 10:31:30,457 INFO Field extraction completed in 0.00 seconds
+2025-07-09 10:32:45,054 INFO Received request for extracting fields
+2025-07-09 10:32:45,055 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 10:32:49,483 INFO System prompt send took 4.43 seconds
+2025-07-09 10:32:55,782 INFO File send took 6.30 seconds
+2025-07-09 10:33:01,029 INFO DocumentAgent response received in 5.25 seconds
+2025-07-09 10:33:01,068 INFO Successfully extracted fields
+2025-07-09 10:33:01,069 INFO Field extraction completed in 16.01 seconds
+2025-07-09 10:39:26,045 INFO Received request for extracting fields
+2025-07-09 10:39:26,046 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 10:39:27,614 ERROR Extraction endpoint unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 31
+}
+]
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\document.py", line 29, in extract_fields
+    result = await service.extract_fields(doc_bytes, doc.filename, fields, user_prompt)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\document_service.py", line 25, in extract_fields
+    session_id, chat = self.llm_client.start_session(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "DocumentAgent",
+        ^^^^^^^^^^^^^^^^
+        file_bytes=doc_bytes,
+        ^^^^^^^^^^^^^^^^^^^^^
+        filename=doc_filename
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\llm_client.py", line 37, in start_session
+    chat.send_message(agent["system_prompt"])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 31
+}
+]
+2025-07-09 10:48:32,565 INFO Received request for extracting fields
+2025-07-09 10:48:32,567 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 10:48:35,997 INFO System prompt send took 3.43 seconds
+2025-07-09 10:48:41,990 INFO File send took 5.99 seconds
+2025-07-09 10:48:41,992 ERROR Extraction endpoint unexpected error: object tuple can't be used in 'await' expression
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\document.py", line 29, in extract_fields
+    result = await service.extract_fields(doc_bytes, doc.filename, fields, user_prompt)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\document_service.py", line 51, in extract_fields
+    return await task
+           ^^^^^^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\document_service.py", line 39, in run_extraction
+    response = await (chat.send_message, prompt.strip())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object tuple can't be used in 'await' expression
+2025-07-09 10:49:25,536 INFO Fetched contents from repo in 3.12 seconds
+2025-07-09 10:49:25,538 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 10:49:26,201 INFO System prompt send took 0.66 seconds
+2025-07-09 10:50:14,705 INFO Prompt send took 49.17 seconds
+2025-07-09 10:50:37,096 INFO ValidationAgent response received in 22.39 seconds
+2025-07-09 10:50:37,098 INFO Repo analysis completed in 74.68 seconds
+2025-07-09 10:58:40,442 INFO Received request for extracting fields
+2025-07-09 10:58:40,443 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 11:07:43,455 INFO Received request for extracting fields
+2025-07-09 11:07:43,455 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 11:07:49,693 INFO System prompt send took 6.24 seconds
+2025-07-09 11:07:55,391 INFO File send took 5.70 seconds
+2025-07-09 11:08:01,069 INFO DocumentAgent response received in 5.68 seconds
+2025-07-09 11:08:01,070 INFO Successfully extracted fields
+2025-07-09 11:08:01,071 INFO Field extraction completed in 17.62 seconds
+2025-07-09 11:25:07,469 INFO Received request for extracting fields
+2025-07-09 11:25:07,470 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 11:25:13,598 INFO System prompt send took 6.13 seconds
+2025-07-09 11:25:20,482 INFO File send took 6.88 seconds
+2025-07-09 11:25:20,502 INFO No active task to cancel for session_id: 466cbe26-a5f6-44ab-9a3c-15ec5dec4486
+2025-07-09 11:25:20,505 INFO No active task to cancel for session_id: 466cbe26-a5f6-44ab-9a3c-15ec5dec4486
+2025-07-09 11:25:20,506 INFO No active task to cancel for session_id: 466cbe26-a5f6-44ab-9a3c-15ec5dec4486
+2025-07-09 11:25:20,507 INFO No active task to cancel for session_id: 466cbe26-a5f6-44ab-9a3c-15ec5dec4486
+2025-07-09 11:25:20,508 INFO No active task to cancel for session_id: 466cbe26-a5f6-44ab-9a3c-15ec5dec4486
+2025-07-09 11:25:20,509 INFO No active task to cancel for session_id: 466cbe26-a5f6-44ab-9a3c-15ec5dec4486
+2025-07-09 11:25:26,900 INFO DocumentAgent response received in 6.42 seconds
+2025-07-09 11:25:26,901 INFO Successfully extracted fields
+2025-07-09 11:25:26,902 INFO Field extraction completed in 19.43 seconds
+2025-07-09 11:41:27,338 INFO Received request for extracting fields
+2025-07-09 11:41:27,339 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 11:44:25,562 INFO Received request for extracting fields
+2025-07-09 11:44:25,563 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 11:45:37,927 ERROR Extraction endpoint unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 21
+}
+]
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\document.py", line 30, in extract_fields
+    result = await service.extract_fields(doc_bytes, doc.filename, fields, user_prompt, client_session_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\document_service.py", line 25, in extract_fields
+    session_id, chat = self.llm_client.start_session(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "DocumentAgent",
+        ^^^^^^^^^^^^^^^^
+        file_bytes=doc_bytes,
+        ^^^^^^^^^^^^^^^^^^^^^
+        filename=doc_filename
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\llm_client.py", line 37, in start_session
+    chat.send_message(agent["system_prompt"])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 21
+}
+]
+2025-07-09 11:45:37,963 INFO No active task to cancel for session_id: 5a2ade22-112e-4f72-9b73-608894741fa2
+2025-07-09 11:45:37,967 INFO No active task to cancel for session_id: 5a2ade22-112e-4f72-9b73-608894741fa2
+2025-07-09 11:45:37,968 INFO No active task to cancel for session_id: 5a2ade22-112e-4f72-9b73-608894741fa2
+2025-07-09 11:45:37,969 INFO No active task to cancel for session_id: 5a2ade22-112e-4f72-9b73-608894741fa2
+2025-07-09 11:45:37,971 INFO No active task to cancel for session_id: 5a2ade22-112e-4f72-9b73-608894741fa2
+2025-07-09 11:45:37,972 INFO No active task to cancel for session_id: 5a2ade22-112e-4f72-9b73-608894741fa2
+2025-07-09 11:45:37,979 INFO No active task to cancel for session_id: 5a2ade22-112e-4f72-9b73-608894741fa2
+2025-07-09 11:47:20,172 INFO Received request for extracting fields
+2025-07-09 11:47:20,173 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 11:48:57,372 INFO Received request for extracting fields
+2025-07-09 11:48:57,372 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 11:49:09,114 INFO System prompt send took 11.74 seconds
+2025-07-09 11:52:48,595 INFO File send took 219.48 seconds
+2025-07-09 11:53:24,301 INFO DocumentAgent response received in 35.70 seconds
+2025-07-09 11:53:24,302 INFO Successfully extracted fields
+2025-07-09 11:53:24,302 INFO Field extraction completed in 266.93 seconds
+2025-07-09 11:54:17,143 INFO Chat continuation initiated
+2025-07-09 11:54:17,143 ERROR Chat continuation endpoint client exception (SessionNotFound): 
+2025-07-09 11:56:32,887 INFO Received request for extracting fields
+2025-07-09 11:56:32,888 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 11:57:32,539 INFO Received request for extracting fields
+2025-07-09 11:57:32,540 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 11:57:34,367 ERROR Extraction endpoint unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 24
+}
+]
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\document.py", line 30, in extract_fields
+    result = await service.extract_fields(doc_bytes, doc.filename, fields, user_prompt, client_session_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\document_service.py", line 25, in extract_fields
+    session_id, chat = self.llm_client.start_session(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "DocumentAgent",
+        ^^^^^^^^^^^^^^^^
+        file_bytes=doc_bytes,
+        ^^^^^^^^^^^^^^^^^^^^^
+        filename=doc_filename
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\llm_client.py", line 37, in start_session
+    chat.send_message(agent["system_prompt"])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 24
+}
+]
+2025-07-09 11:58:16,042 INFO Received request for extracting fields
+2025-07-09 11:58:16,042 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 11:58:22,581 INFO System prompt send took 6.54 seconds
+2025-07-09 11:58:28,929 INFO File send took 6.35 seconds
+2025-07-09 11:58:34,174 INFO DocumentAgent response received in 5.24 seconds
+2025-07-09 11:58:34,175 INFO Successfully extracted fields
+2025-07-09 11:58:34,175 INFO Field extraction completed in 18.13 seconds
+2025-07-09 11:58:46,692 INFO Chat continuation initiated
+2025-07-09 11:58:46,692 ERROR Chat continuation endpoint client exception (SessionNotFound): 
+2025-07-09 12:05:24,796 INFO Received request for extracting fields
+2025-07-09 12:05:24,796 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 12:05:32,180 INFO System prompt send took 7.38 seconds
+2025-07-09 12:05:38,707 INFO File send took 6.53 seconds
+2025-07-09 12:05:38,708 ERROR Extraction endpoint unexpected error: 'LLMClient' object has no attribute 'session_mapping'
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\document.py", line 30, in extract_fields
+    result = await service.extract_fields(doc_bytes, doc.filename, fields, user_prompt, client_session_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\document_service.py", line 35, in extract_fields
+    self.llm_client.session_mapping[client_session_id] = session_id
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'LLMClient' object has no attribute 'session_mapping'
+2025-07-09 12:07:36,372 INFO Received request for extracting fields
+2025-07-09 12:07:36,372 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 12:07:42,625 INFO System prompt send took 6.25 seconds
+2025-07-09 12:07:53,069 INFO File send took 10.44 seconds
+2025-07-09 12:08:00,457 INFO DocumentAgent response received in 7.39 seconds
+2025-07-09 12:08:00,458 INFO Successfully extracted fields
+2025-07-09 12:08:00,459 INFO Field extraction completed in 24.09 seconds
+2025-07-09 12:08:10,607 INFO Chat continuation initiated
+2025-07-09 12:08:10,608 ERROR Chat continuation endpoint client exception (SessionNotFound): 
+2025-07-09 12:12:46,408 INFO Received request for extracting fields
+2025-07-09 12:12:46,409 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 12:12:52,475 INFO System prompt send took 6.07 seconds
+2025-07-09 12:12:58,825 INFO File send took 6.35 seconds
+2025-07-09 12:13:28,247 INFO DocumentAgent response received in 29.42 seconds
+2025-07-09 12:13:28,248 INFO Successfully extracted fields
+2025-07-09 12:13:28,248 INFO Field extraction completed in 41.84 seconds
+2025-07-09 12:13:42,627 INFO Chat continuation initiated
+2025-07-09 12:13:42,628 ERROR Chat continuation endpoint client exception (SessionNotFound): 
+2025-07-09 12:17:10,577 INFO Received request for extracting fields
+2025-07-09 12:17:10,578 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 12:17:15,453 INFO System prompt send took 4.87 seconds
+2025-07-09 12:20:34,412 INFO Received request for extracting fields
+2025-07-09 12:20:34,413 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 12:20:51,301 ERROR Extraction endpoint unexpected error: 500 Internal error encountered.
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\document.py", line 30, in extract_fields
+    result = await service.extract_fields(doc_bytes, doc.filename, fields, user_prompt, client_session_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\document_service.py", line 26, in extract_fields
+    session_id, chat = self.llm_client.start_session(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "DocumentAgent",
+        ^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        session_id=client_session_id
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\llm_client.py", line 38, in start_session
+    chat.send_message(agent["system_prompt"])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.InternalServerError: 500 Internal error encountered.
+2025-07-09 12:25:22,333 INFO Received request for extracting fields
+2025-07-09 12:25:22,334 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 12:25:29,074 INFO System prompt send took 6.74 seconds
+2025-07-09 12:25:34,381 INFO File send took 5.31 seconds
+2025-07-09 12:25:47,669 INFO DocumentAgent response received in 13.29 seconds
+2025-07-09 12:25:47,670 INFO Successfully extracted fields
+2025-07-09 12:25:47,670 INFO Field extraction completed in 25.34 seconds
+2025-07-09 12:26:03,201 INFO Chat continuation initiated
+2025-07-09 12:26:13,150 INFO DocumentAgent continued chat response received in 9.95 seconds
+2025-07-09 12:26:13,151 ERROR Chat continuation unexpected error: object ExtractionLLMResponse can't be used in 'await' expression
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\document.py", line 64, in continue_chat
+    result = await service.continue_chat(session_id, prompt)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object ExtractionLLMResponse can't be used in 'await' expression
+2025-07-09 12:27:26,342 INFO Received request for extracting fields
+2025-07-09 12:27:26,343 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 12:27:32,540 INFO System prompt send took 6.20 seconds
+2025-07-09 12:27:38,786 INFO File send took 6.24 seconds
+2025-07-09 12:27:44,725 INFO DocumentAgent response received in 5.94 seconds
+2025-07-09 12:27:44,728 INFO Successfully extracted fields
+2025-07-09 12:27:44,729 INFO Field extraction completed in 18.39 seconds
+2025-07-09 12:27:55,603 INFO Chat continuation initiated
+2025-07-09 12:28:01,072 INFO DocumentAgent continued chat response received in 5.47 seconds
+2025-07-09 12:28:01,073 INFO Chat continuation completed in 5.47 seconds
+2025-07-09 12:28:12,482 INFO Received request for extracting fields
+2025-07-09 12:28:12,483 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 12:28:16,340 INFO System prompt send took 3.86 seconds
+2025-07-09 12:28:21,352 INFO File send took 5.01 seconds
+2025-07-09 12:28:21,359 INFO No active task to cancel for session_id: f823091b-7940-455c-a3ec-b99b29b0bf33
+2025-07-09 12:28:21,365 INFO No active task to cancel for session_id: f823091b-7940-455c-a3ec-b99b29b0bf33
+2025-07-09 12:28:26,873 INFO DocumentAgent response received in 5.52 seconds
+2025-07-09 12:28:26,874 INFO Successfully extracted fields
+2025-07-09 12:28:26,875 INFO Field extraction completed in 14.39 seconds
+2025-07-09 12:34:48,524 INFO Received request for extracting fields
+2025-07-09 12:34:48,525 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 12:34:51,834 INFO System prompt send took 3.31 seconds
+2025-07-09 12:34:56,836 INFO File send took 5.00 seconds
+2025-07-09 12:34:56,846 INFO No active task to cancel for session_id: 65faa6cc-cc52-4f77-96ea-a6b503491ca5
+2025-07-09 12:35:02,246 INFO DocumentAgent response received in 5.41 seconds
+2025-07-09 12:35:02,247 INFO Successfully extracted fields
+2025-07-09 12:35:02,248 INFO Field extraction completed in 13.72 seconds
+2025-07-09 12:37:18,317 INFO Received request for extracting fields
+2025-07-09 12:37:18,317 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 12:37:22,748 INFO System prompt send took 4.43 seconds
+2025-07-09 12:37:27,912 INFO File send took 5.16 seconds
+2025-07-09 12:37:27,913 INFO Storing task for session_id: 7a5a94a4-88d3-4bc1-8644-74dee4ef136a
+2025-07-09 12:37:33,127 INFO Trying to cancel task for: 7a5a94a4-88d3-4bc1-8644-74dee4ef136a (effective: 7a5a94a4-88d3-4bc1-8644-74dee4ef136a)
+2025-07-09 12:37:33,128 INFO Active keys: []
+2025-07-09 12:37:33,128 INFO No active task to cancel for session_id: 7a5a94a4-88d3-4bc1-8644-74dee4ef136a
+2025-07-09 12:37:33,426 INFO DocumentAgent response received in 5.51 seconds
+2025-07-09 12:37:33,428 INFO Successfully extracted fields
+2025-07-09 12:37:33,428 INFO Field extraction completed in 15.11 seconds
+2025-07-09 12:39:30,650 INFO Received request for extracting fields
+2025-07-09 12:39:30,651 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 12:39:34,030 INFO System prompt send took 3.38 seconds
+2025-07-09 12:39:40,182 INFO File send took 6.15 seconds
+2025-07-09 12:39:40,182 INFO Storing task for session_id: a1f16b75-2d9d-471a-864b-710ed9f6890e
+2025-07-09 12:39:40,727 INFO No active task to cancel for session_id: a1f16b75-2d9d-471a-864b-710ed9f6890e
+2025-07-09 12:39:45,347 INFO DocumentAgent response received in 5.16 seconds
+2025-07-09 12:39:45,348 INFO Successfully extracted fields
+2025-07-09 12:39:45,348 INFO Field extraction completed in 14.70 seconds
+2025-07-09 12:40:16,894 INFO Received request for extracting fields
+2025-07-09 12:40:16,895 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 12:40:20,055 INFO System prompt send took 3.16 seconds
+2025-07-09 12:40:25,536 INFO File send took 5.48 seconds
+2025-07-09 12:40:25,537 INFO Storing task for session_id: 00355582-4e1b-40d1-b508-fbaaaf4e956d
+2025-07-09 12:40:30,532 INFO DocumentAgent response received in 5.00 seconds
+2025-07-09 12:40:30,533 INFO Successfully extracted fields
+2025-07-09 12:40:30,533 INFO Field extraction completed in 13.64 seconds
+2025-07-09 12:41:38,854 INFO Received request for extracting fields
+2025-07-09 12:41:38,854 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 12:41:43,060 INFO System prompt send took 4.21 seconds
+2025-07-09 12:41:49,190 INFO File send took 6.13 seconds
+2025-07-09 12:41:49,191 INFO Storing task for session_id: 3a30d6ca-58b2-471c-ac49-2d41697eeaab
+2025-07-09 12:41:49,758 INFO No active task to cancel for session_id: 3a30d6ca-58b2-471c-ac49-2d41697eeaab
+2025-07-09 12:41:54,250 INFO DocumentAgent response received in 5.06 seconds
+2025-07-09 12:41:54,251 INFO Successfully extracted fields
+2025-07-09 12:41:54,252 INFO Field extraction completed in 15.40 seconds
+2025-07-09 12:45:18,597 INFO Received request for extracting fields
+2025-07-09 12:45:18,598 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 12:45:21,817 INFO System prompt send took 3.22 seconds
+2025-07-09 12:45:26,827 INFO File send took 5.01 seconds
+2025-07-09 12:45:26,827 INFO Storing task for session_id: b7b73af6-4474-416e-81ce-ec22587ff530
+2025-07-09 12:45:27,358 INFO No active task to cancel for session_id: b7b73af6-4474-416e-81ce-ec22587ff530
+2025-07-09 12:45:31,508 INFO DocumentAgent response received in 4.68 seconds
+2025-07-09 12:45:31,509 INFO Successfully extracted fields
+2025-07-09 12:45:31,509 INFO Field extraction completed in 12.91 seconds
+2025-07-09 12:55:02,300 INFO Received request for extracting fields
+2025-07-09 12:55:02,301 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 12:55:14,747 INFO System prompt send took 12.45 seconds
+2025-07-09 12:55:19,583 INFO File send took 4.84 seconds
+2025-07-09 12:55:19,583 INFO Storing task for session_id: 583cf744-c7fb-4e1f-b9d7-1e7c48555661
+2025-07-09 12:55:24,647 INFO DocumentAgent response received in 5.06 seconds
+2025-07-09 12:55:24,648 INFO Successfully extracted fields
+2025-07-09 12:55:24,648 INFO Field extraction completed in 22.35 seconds
+2025-07-09 13:02:02,764 INFO Received request for extracting fields
+2025-07-09 13:02:02,764 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 13:02:06,632 INFO System prompt send took 3.87 seconds
+2025-07-09 13:02:11,914 INFO File send took 5.28 seconds
+2025-07-09 13:02:11,914 INFO Storing task for session_id: 552122c7-0678-45d8-a905-02f806b60683
+2025-07-09 13:02:17,658 INFO DocumentAgent response received in 5.74 seconds
+2025-07-09 13:02:17,659 INFO Successfully extracted fields
+2025-07-09 13:02:17,659 INFO Field extraction completed in 14.90 seconds
+2025-07-09 14:15:35,993 INFO Received request for extracting fields
+2025-07-09 14:15:35,999 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 14:15:41,349 INFO System prompt send took 5.35 seconds
+2025-07-09 14:15:47,036 INFO File send took 5.69 seconds
+2025-07-09 14:15:47,037 INFO Storing task for session_id: 7ec3507b-7225-44b4-91af-830e75b38c2f
+2025-07-09 14:15:53,488 INFO DocumentAgent response received in 6.45 seconds
+2025-07-09 14:15:53,490 INFO Successfully extracted fields
+2025-07-09 14:15:53,491 INFO Field extraction completed in 17.49 seconds
+2025-07-09 14:19:56,544 INFO Received request for extracting fields
+2025-07-09 14:19:56,546 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 14:20:01,501 INFO System prompt send took 4.95 seconds
+2025-07-09 14:20:09,387 INFO File send took 7.89 seconds
+2025-07-09 14:20:09,389 INFO Storing task for session_id: 66e9a12c-0ce6-4dc9-95db-0e46d8f42dd9
+2025-07-09 14:20:16,556 INFO DocumentAgent response received in 7.17 seconds
+2025-07-09 14:20:16,558 INFO Successfully extracted fields
+2025-07-09 14:20:16,558 INFO Field extraction completed in 20.01 seconds
+2025-07-09 16:30:59,114 INFO Received request for extracting fields
+2025-07-09 16:30:59,115 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 16:31:49,950 ERROR Extraction endpoint unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 10
+}
+]
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\document.py", line 30, in extract_fields
+    result = await service.extract_fields(doc_bytes, doc.filename, fields, user_prompt, client_session_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\document_service.py", line 26, in extract_fields
+    session_id, chat = self.llm_client.start_session(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "DocumentAgent",
+        ^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        session_id=client_session_id
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\llm_client.py", line 38, in start_session
+    chat.send_message(agent["system_prompt"])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 10
+}
+]
+2025-07-09 16:34:01,929 INFO Received request for extracting fields
+2025-07-09 16:34:01,929 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 16:34:09,762 ERROR Extraction endpoint unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 50
+}
+]
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\document.py", line 30, in extract_fields
+    result = await service.extract_fields(doc_bytes, doc.filename, fields, user_prompt, client_session_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\document_service.py", line 26, in extract_fields
+    session_id, chat = self.llm_client.start_session(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "DocumentAgent",
+        ^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        session_id=client_session_id
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\llm_client.py", line 38, in start_session
+    chat.send_message(agent["system_prompt"])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 50
+}
+]
+2025-07-09 16:38:29,895 INFO Received request for extracting fields
+2025-07-09 16:38:29,896 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 16:38:42,692 INFO System prompt send took 12.79 seconds
+2025-07-09 16:38:43,357 ERROR Extraction endpoint unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 16
+}
+]
+Traceback (most recent call last):
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\api\routers\document.py", line 30, in extract_fields
+    result = await service.extract_fields(doc_bytes, doc.filename, fields, user_prompt, client_session_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\application\services\document_service.py", line 26, in extract_fields
+    session_id, chat = self.llm_client.start_session(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "DocumentAgent",
+        ^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        session_id=client_session_id
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Desktop\Projects\test\Validation_documentation\src\app\infrastructure\llm_client.py", line 45, in start_session
+    chat.send_message([file_part])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 16
+}
+]
+2025-07-09 17:32:27,659 INFO Received request for extracting fields
+2025-07-09 17:32:27,660 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 17:34:08,709 INFO System prompt send took 101.05 seconds
+2025-07-09 17:34:25,572 INFO File send took 16.86 seconds
+2025-07-09 17:34:25,573 INFO Storing task for session_id: 558d7061-6149-4843-aed3-3502b93e0c8e
+2025-07-09 17:34:42,295 INFO DocumentAgent response received in 16.72 seconds
+2025-07-09 17:34:42,296 INFO Successfully extracted fields
+2025-07-09 17:34:42,296 INFO Field extraction completed in 134.64 seconds
+2025-07-09 17:37:24,267 INFO Received request for extracting fields
+2025-07-09 17:37:24,268 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 17:38:03,911 INFO System prompt send took 39.64 seconds
+2025-07-09 17:42:50,117 INFO File send took 286.21 seconds
+2025-07-09 17:42:50,117 INFO Storing task for session_id: 7c484e7e-9129-42b1-b205-7f1ac39b2c84
+2025-07-09 17:42:50,651 INFO No active task to cancel for session_id: 7c484e7e-9129-42b1-b205-7f1ac39b2c84
+2025-07-09 17:43:18,810 INFO DocumentAgent response received in 28.69 seconds
+2025-07-09 17:43:18,811 INFO Successfully extracted fields
+2025-07-09 17:43:18,812 INFO Field extraction completed in 354.54 seconds
+2025-07-09 17:43:31,702 INFO Received request for extracting fields
+2025-07-09 17:43:31,703 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 17:44:39,752 INFO System prompt send took 68.05 seconds
+2025-07-09 17:45:36,903 INFO File send took 57.15 seconds
+2025-07-09 17:45:36,905 INFO Storing task for session_id: 8dff1669-b697-40e8-8577-fc908cad9190
+2025-07-09 17:47:16,653 INFO DocumentAgent response received in 99.75 seconds
+2025-07-09 17:47:16,655 INFO Successfully extracted fields
+2025-07-09 17:47:16,655 INFO Field extraction completed in 224.95 seconds
+2025-07-09 17:48:23,296 INFO Received request for extracting fields
+2025-07-09 17:48:23,296 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 17:48:42,957 INFO System prompt send took 19.66 seconds
+2025-07-09 17:49:20,620 INFO File send took 37.66 seconds
+2025-07-09 17:49:20,621 INFO Storing task for session_id: 695e3a88-027c-4612-a330-864dcdc9bdb7
+2025-07-09 17:49:33,981 INFO DocumentAgent response received in 13.36 seconds
+2025-07-09 17:49:33,982 INFO Successfully extracted fields
+2025-07-09 17:49:33,983 INFO Field extraction completed in 70.69 seconds
+2025-07-09 19:04:31,444 INFO Received request for extracting fields
+2025-07-09 19:04:31,445 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 19:06:10,826 INFO System prompt send took 99.38 seconds
+2025-07-09 19:31:22,736 INFO Received request for extracting fields
+2025-07-09 19:31:22,737 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 19:33:00,774 INFO Received request for extracting fields
+2025-07-09 19:33:00,775 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 19:34:50,724 INFO Received request for extracting fields
+2025-07-09 19:34:50,725 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 19:36:59,457 INFO System prompt send took 128.73 seconds
+2025-07-09 19:37:09,945 INFO File send took 10.49 seconds
+2025-07-09 19:37:09,946 INFO Storing task for session_id: 82bc7bfc-6358-47fb-8133-51ee308bcb7b
+2025-07-09 19:37:50,293 INFO DocumentAgent response received in 40.35 seconds
+2025-07-09 19:37:50,294 INFO Successfully extracted fields
+2025-07-09 19:37:50,295 INFO Field extraction completed in 179.57 seconds
+2025-07-09 19:38:31,740 INFO Chat continuation initiated
+2025-07-09 19:38:53,778 INFO DocumentAgent continued chat response received in 22.04 seconds
+2025-07-09 19:38:53,779 INFO Chat continuation completed in 22.04 seconds
