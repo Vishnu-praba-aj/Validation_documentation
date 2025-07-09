@@ -463,6 +463,7 @@ body {
   color: #2def5d;
   font-size: 48px;
   margin-bottom: 15px;
+  overflow: visible;
 }
 
 .modal-text {
