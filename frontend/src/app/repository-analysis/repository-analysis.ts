@@ -126,19 +126,45 @@ downloadJSON() {
 }
 
 downloadPDF() {
-  // Assume you generate the PDF blob here (not shown)
-  // Save the file
-  const blob = new Blob([/* your PDF data */], { type: 'application/pdf' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'validation_report.pdf';
-  a.click();
-  URL.revokeObjectURL(url);
+  const doc = new jsPDF();
+  let y = 10;
 
-  // Show popup
-  this.downloadPopupMessage = 'PDF report downloaded successfully!';
-  this.showDownloadPopup = true;
+  doc.setFontSize(18);
+  doc.text('Validation Report', 14, y);
+  y += 10;
+
+  for (const entity of this.jsonResponse?.entities || []) {
+    doc.setFontSize(14);
+    doc.text(entity.name, 14, y);
+    y += 6;
+
+    if (entity.note) {
+      doc.setFontSize(11);
+      doc.text(entity.note, 14, y);
+      y += 10;
+      continue;
+    }
+
+    if (entity.fields?.length) {
+  const keys = this.getFieldKeys(entity.fields);
+  const rows = entity.fields.map((field: any) => keys.map(k => field[k] ?? '—'));
+
+  autoTable(doc, {
+    startY: y,
+    head: [keys],
+    body: rows,
+    theme: 'grid',
+    styles: { fontSize: 9 },
+    headStyles: { fillColor: [240, 173, 78] }
+  });
+
+  y = (doc as any).lastAutoTable.finalY + 10;
 }
+
+  }
+
+  doc.save('validation-report.pdf');
+}
+
 
 }
