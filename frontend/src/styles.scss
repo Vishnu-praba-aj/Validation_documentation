@@ -22,3 +22,6 @@ button.mat-flat-button {
   border-radius: 6px;
   padding: 0.5rem 1.2rem;
 }
+.mat-mdc-form-field-infix{
+      min-height: var(--mat-form-field-container-height, 0px);
+}

@@ -5,6 +5,7 @@ from utils.helpers import parse_json
 from utils.logging import setup_logger
 from src.app.domain.exception import FileTooLargeException, InvalidFileTypeException, InvalidJSONResponseException
 import asyncio
+import json
 
 MAX_FILE_MB = 3
 MAX_FILE_SIZE = MAX_FILE_MB * 1024 * 1024
@@ -67,15 +68,16 @@ class DocumentService:
         response = chat.send_message(prompt)
         end = time.perf_counter()
         logger.info(f"DocumentAgent continued chat response received in {end - start:.2f} seconds")
+       
         parsed = parse_json(response.text)
         if parsed is None:
             raise InvalidJSONResponseException()
         return ExtractionLLMResponse(session_id=session_id, type="document_extraction", response=parsed)
-
+        
     async def cancel_analysis(self, session_id: str):
         effective_id = self.llm_client.session_mapping.get(session_id, session_id)
 
-        # 🕐 Wait up to 500ms (adjustable) for the task to appear
+       
         for _ in range(5):
             task = self.active_tasks.get(effective_id)
             if task:

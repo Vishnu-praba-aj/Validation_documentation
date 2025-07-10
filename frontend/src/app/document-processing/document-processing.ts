@@ -8,6 +8,8 @@ import * as ExcelJS from 'exceljs';
 import * as FileSaver from 'file-saver';
 import { Subscription } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
+import { ElementRef, ViewChild } from '@angular/core';
+import { AfterViewChecked } from '@angular/core';
 
 @Component({
   selector: 'app-document-processing',
@@ -18,6 +20,9 @@ import { v4 as uuidv4 } from 'uuid';
   providers: [DocumentService],
 })
 export class DocumentProcessing {
+
+  @ViewChild('chatWindow') chatWindow!: ElementRef;
+  
   docFile: File | null = null;
   fieldsFile: File | null = null;
   selectedFileName = '';
@@ -49,9 +54,15 @@ export class DocumentProcessing {
   backupFields: any[] = [];
 
   startBulkEdit() {
-    this.isBulkEditing = true;
-    this.backupFields = JSON.parse(JSON.stringify(this.processedFields));
-  }
+  this.processedFields.forEach((field) => {
+    field.document_field =
+      field.document_field || field.document_label || '';
+  });
+
+  this.isBulkEditing = true;
+  this.backupFields = JSON.parse(JSON.stringify(this.processedFields));
+}
+
 
   saveBulkEdit() {
     this.isBulkEditing = false;
@@ -82,6 +93,18 @@ export class DocumentProcessing {
     const file = (event.target as HTMLInputElement).files?.[0] || null;
     this.fieldsFile = file;
     this.selectedFieldsFileName = file ? file.name : '';
+  }
+
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.chatWindow.nativeElement.scrollTop = this.chatWindow.nativeElement.scrollHeight;
+    } catch (err) {
+      console.error('Scroll failed:', err);
+    }
   }
 
   constructor(private documentService: DocumentService) {
@@ -218,6 +241,12 @@ export class DocumentProcessing {
     }
 
     this.prompt = '';
+    this.scrollToBottom(); 
+
+    setTimeout(() => {
+    this.chatMessages.push({ from: 'bot', text: 'Processing your input...' });
+    this.scrollToBottom(); // Scroll after adding bot message
+  }, 500);
   }
 
   saveUpdatedFields() {
@@ -248,38 +277,19 @@ export class DocumentProcessing {
     this.showDownloadPopup = true;
   }
 
-  saveUpdatedFields1() {
-    const data = {
-      fields: this.processedFields,
-    };
-
-    const jsonData = JSON.stringify(data, null, 2);
-    const blob = new Blob([jsonData], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'extracted-fields.json';
-    a.click();
-
-    URL.revokeObjectURL(url);
-
-    this.downloadPopupMessage = 'JSON downloaded successfully!';
-    this.showDownloadPopup = true;
-  }
-
+  
   sendMessage() {
     if (!this.chatInput.trim() || !this.sessionId) return;
 
     const currentPrompt = this.chatInput;
     this.chatInput = '';
-
+    console.log('Sending message:', currentPrompt);
     this.documentService.continueChat(this.sessionId, currentPrompt).subscribe({
       next: (res) => {
         const response = res?.response;
-
-        if (response?.response?.rows === null && response?.response?.message) {
-          const aiReply = response.response.message;
+        console.log('LLM response:', response);
+        if (response?.rows === null && response?.message) {
+          const aiReply = response.message;
           this.chatMessages.push({ from: 'bot', text: aiReply });
         }
 

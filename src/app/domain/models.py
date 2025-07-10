@@ -40,8 +40,7 @@ class ExtractionRow(BaseModel):
     fields: List[ExtractionField]
 
 class ExtractionResponseData(BaseModel):
-    rows: Optional[List[ExtractionRow]] = None
-    message: Optional[str] = None
+    rows: List[ExtractionRow]
 
 class ExtractionLLMResponse(BaseModel):
     session_id: str

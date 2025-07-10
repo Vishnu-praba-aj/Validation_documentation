@@ -9,18 +9,21 @@
     </div>
   </div>
 
-  <div class="input-group">
+
+    
+  
+  <div class="input-group-vertical">
     <label class="input-label">Enter repository URL</label>
-    <mat-form-field appearance="outline" class="rounded-input compact-input">
-      <input
-        matInput
-        class="custom-input"
-        [(ngModel)]="repoUrl"
-        placeholder="https://github.com/username/repo"
-        [disabled]="isLoading"
-      />
-    </mat-form-field>
-  </div>
+  <input
+    type="text"
+    [(ngModel)]="repoUrl"
+    class="custom-input-field"
+    placeholder="https://github.com/username/repo"
+    [disabled]="isLoading"
+  />
+  <small class="text-muted">Github or Bitbucket url suppoerted</small>
+</div>
+
 
   <div class="button-center-wrapper">
     <button

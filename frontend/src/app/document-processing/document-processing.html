@@ -89,12 +89,16 @@
         placeholder="Ask something..."
       ></textarea>
       <button
-        class="send-button"
-        (click)="sendPrompt()"
-        [disabled]="!prompt.trim()"
-      >
-        <mat-icon>send</mat-icon>
-      </button>
+  class="send-button"
+  (click)="sendPrompt()"
+  [disabled]="!prompt.trim()"
+  [ngClass]="{
+    'disabled-btn': !prompt.trim() || isLoading || isCancelling
+  }"
+>
+  <mat-icon>send</mat-icon>
+</button>
+
     </div>
   </div>
 
