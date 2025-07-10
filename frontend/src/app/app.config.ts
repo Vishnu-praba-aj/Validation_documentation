@@ -4,7 +4,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter([]), // your existing routing config
-    provideHttpClient(withInterceptorsFromDi()) // ✅ enable HttpClient in Angular 17+
+    provideRouter([]), 
+    provideHttpClient(withInterceptorsFromDi()) 
   ]
 };

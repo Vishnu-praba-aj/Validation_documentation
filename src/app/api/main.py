@@ -3,14 +3,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.app.api.routers import validation, document
 
 app = FastAPI(
-    title="AI Repository Validation and Document Extraction",
-    description="Backend for validation and document extraction using Gemini 1.5 Flash",
+    title="Validation Report Generator and Broker Document Analyzer",
+    description="APIs for validation report generator and broker document analyzer",
     version="1.0.0"
 )
 
 origins = [
     "http://localhost:4200"
-    # Add your deployed frontend URL(s) here
 ]
 
 app.add_middleware(
@@ -21,5 +20,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(validation.router, prefix="/validation", tags=["validation"])
-app.include_router(document.router, prefix="/document", tags=["document"])
+app.include_router(validation.router, prefix="/validation", tags=["Validation Report Generator"])
+app.include_router(document.router, prefix="/document", tags=["Broker Document Analyzer"])

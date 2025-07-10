@@ -1,126 +1,122 @@
 <mat-card class="repository-card">
-  <div class="header-row center-header">
-    <mat-icon class="header-icon">code</mat-icon>
-    <div class="header-title-wrapper" (click)="isExpanded = !isExpanded">
-      <h2 class="mat-title">
-        Validation Report Generator
-        
-      </h2>
+  <div class="header-row">
+    <div class="header-title-wrapper">
+      <h2 class="mat-title">Validation Report Generator</h2>
+    </div>
+    <div class="description-text">
+      Generate validation report for input fields from a Github or Bitbucket
+      repository.
     </div>
   </div>
 
-  <div  class="description-text">
-    This tool analyzes the provided GitHub or Bitbucket repository URL and generates a detailed validation report for all the fields mentioned in the given repository.
-  </div>
-
   <div class="input-group">
-    <label class="input-label">Enter the GitHub/Bitbucket URL  </label>
+    <label class="input-label">Enter repository URL</label>
     <mat-form-field appearance="outline" class="rounded-input compact-input">
       <input
         matInput
         class="custom-input"
         [(ngModel)]="repoUrl"
         placeholder="https://github.com/username/repo"
-        [disabled]="isLoading" 
+        [disabled]="isLoading"
       />
-      <mat-icon matSuffix>link</mat-icon>
     </mat-form-field>
   </div>
 
-     <!-- Buttons: Move below input and center -->
-<div class="button-center-wrapper">
-  <button
-    mat-raised-button
-    class="analyze-btn"
-    color="warn"
-    (click)="resetAnalysis()"
-    [disabled]="!repoUrl.trim() || isLoading"
-    [ngClass]="{ 'disabled-btn': !repoUrl.trim() || isLoading }"
-  >
-    <mat-icon>refresh</mat-icon>
-    <span>Reset</span>
-  </button>
-
-  <button
-    mat-raised-button
-    class="analyze-btn"
-    (click)="analyzeRepo()"
-    [disabled]="!repoUrl.trim() || isLoading"
-    [ngClass]="{ 'disabled-btn': !repoUrl.trim() || isLoading }"
-  >
-    <mat-icon>analytics</mat-icon>
-    <span>Analyze</span>
-  </button>
-</div>
-
-
+  <div class="button-center-wrapper">
+    <button
+      mat-raised-button
+      class="analyze-btn"
+      (click)="analyzeRepo()"
+      [disabled]="!repoUrl.trim() || isLoading"
+      [ngClass]="{ 'disabled-btn': !repoUrl.trim() || isLoading }"
+    >
+      <mat-icon>search</mat-icon>
+      <span>Analyze</span>
+    </button>
+    <button
+      mat-raised-button
+      class="reset-btn"
+      color="warn"
+      (click)="resetAnalysis()"
+      [disabled]="!repoUrl.trim() || isLoading"
+      [ngClass]="{ 'disabled-btn': !repoUrl.trim() || isLoading }"
+    >
+      <mat-icon>refresh</mat-icon>
+      <span>Reset</span>
+    </button>
+  </div>
 
   <div *ngIf="isLoading" class="loading-indicator-wrapper">
-  <div class="loading-indicator">
-    <mat-icon class="loading-icon spin">autorenew</mat-icon>
-    Analyzing Repository...
-     <button mat-raised-button class="cancel-btn" color="warn" (click)="cancelAnalysis()">Cancel</button>
+    <div class="loading-indicator">
+      <mat-icon class="loading-icon spin">autorenew</mat-icon>
+      <div class="loading-text">Analyzing Repository...</div>
+      <button
+        mat-raised-button
+        class="cancel-btn"
+        color="warn"
+        (click)="cancelAnalysis()"
+      >
+        <mat-icon>cancel</mat-icon>Cancel
+      </button>
+    </div>
   </div>
-</div>
 
-<!-- Download confirmation popup -->
-<div *ngIf="showDownloadPopup" class="modal-backdrop">
-  <div class="modal-box">
-    <mat-icon class="modal-icon">check_circle</mat-icon>
-    <p class="modal-text">{{ downloadPopupMessage }}</p>
-    <button mat-raised-button (click)="closePopup()">OK</button>
+  <div *ngIf="showDownloadPopup" class="modal-backdrop">
+    <div class="modal-box">
+      <mat-icon class="modal-icon">check_circle</mat-icon>
+      <p class="modal-text">{{ downloadPopupMessage }}</p>
+      <button mat-raised-button (click)="closePopup()">OK</button>
+    </div>
   </div>
-</div>
-
 
   <div *ngIf="errorMessage" class="error-alert">
-  <mat-icon>error_outline</mat-icon>
-  {{ errorMessage }}
-</div>
+    <mat-icon>error_outline</mat-icon>
+    {{ errorMessage }}
+  </div>
 
-  <!-- Entity Tables -->
   <div *ngFor="let entity of jsonResponse?.entities" class="entity-table">
-  <h3 class="entity-title"> {{ entity.name }}</h3>
+    <h3 class="entity-title">{{ entity.name }}</h3>
 
-  <div *ngIf="entity.note" class="note-text">
-    <mat-icon>info</mat-icon>
-    {{ entity.note }}
+    <div *ngIf="entity.note" class="note-text">
+      <mat-icon>info</mat-icon>
+      {{ entity.note }}
+    </div>
+
+    <table *ngIf="entity.fields?.length" class="table">
+      <thead>
+        <tr>
+          <th *ngFor="let key of getFieldKeys(entity.fields)">{{ key }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let field of entity.fields">
+          <td *ngFor="let key of getFieldKeys(entity.fields)">
+            {{ field[key] ?? "—" }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="!entity.note && !entity.fields?.length" class="note-text">
+      <mat-icon>help</mat-icon>
+      No note or fields found for this entity.
+    </div>
   </div>
 
-  <table *ngIf="entity.fields?.length" class="table">
-    <thead>
-      <tr>
-        <th *ngFor="let key of getFieldKeys(entity.fields)">{{ key }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let field of entity.fields">
-        <td *ngFor="let key of getFieldKeys(entity.fields)">
-          {{ field[key] ?? '—' }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="button-container" *ngIf="jsonResponse">
+    <button mat-raised-button class="analyze-btn" (click)="downloadJSON()">
+      <mat-icon>download</mat-icon>
+      <span>Download JSON Report</span>
+    </button>
 
-  <div *ngIf="!entity.note && !entity.fields?.length" class="note-text">
-    <mat-icon>help</mat-icon>
-    No note or fields found for this entity.
+    <button
+      mat-raised-button
+      class="analyze-btn"
+      style="margin-left: 1rem"
+      (click)="downloadPDF()"
+    >
+      <mat-icon>picture_as_pdf</mat-icon>
+      <span>Download PDF Report</span>
+    </button>
   </div>
-</div>
-
-
-  <!-- Download Buttons -->
-<div class="button-container" *ngIf="jsonResponse">
-  <button mat-raised-button class="analyze-btn" (click)="downloadJSON()">
-    <mat-icon>download</mat-icon>
-    <span>Download JSON Report</span>
-  </button>
-
-  <!-- New PDF Button -->
-  <button mat-raised-button class="analyze-btn" style="margin-left: 1rem;" (click)="downloadPDF()">
-    <mat-icon>picture_as_pdf</mat-icon>
-    <span>Download PDF Report</span>
-  </button>
-</div>
-
 </mat-card>

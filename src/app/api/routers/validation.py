@@ -17,8 +17,6 @@ class ValidationRequest(BaseModel):
     response_model=ValidationLLMResponse,
     operation_id="analyzeRepository"
 )
-
-
 async def analyze_repo(
     req: ValidationRequest,
     service=Depends(get_validation_service)

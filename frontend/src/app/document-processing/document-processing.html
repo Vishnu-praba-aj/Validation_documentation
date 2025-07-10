@@ -1,225 +1,268 @@
 <div class="card">
   <!-- Header -->
   <div class="card-header">
-  <h5 class="centered-title">Document Processing</h5>
-  <p class="centered-description">
-    This tool analyzes the uploaded broker document and the input fields, and provides extracted values for each given field.
-  </p>
-</div>
-
-
-  <!-- Description Toggle Section -->
-  <div class="description-text" *ngIf="showDescription">
-    <p class="justified-text">This tools analyzes the uploaded the broker document and input fields and provides the extracted document fields and values for the fields given.</p>
+    <h5 class="centered-title">Broker Document Analyzer</h5>
+    <p class="centered-description">
+      Extract fields from broker templates using AI. Upload a document file and
+      a configuration file with custom fields.
+    </p>
   </div>
 
-  <!-- File Uploads Row -->
+  <div class="description-text" *ngIf="showDescription">
+    <p class="justified-text">
+      Extract fields from broker templates using AI. Upload a document file and
+      a configuration file with custom fields.
+    </p>
+  </div>
+
   <div class="input-row">
-    <!-- Document Upload -->
     <div class="file-upload">
       <label class="form-label">Document File</label>
       <div class="file-container">
         <label class="file-btn">
           Choose
-          <input type="file" accept=".pdf,.txt,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-          (change)="onFileSelected($event)">
+          <input
+            type="file"
+            accept=".pdf,.txt,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            (change)="onFileSelected($event)"
+          />
         </label>
-        <input type="text" class="file-name" [value]="selectedFileName || 'No file chosen'" readonly>
+        <input
+          type="text"
+          class="file-name"
+          [value]="selectedFileName || 'No file chosen'"
+          readonly
+        />
       </div>
       <small class="text-muted">PDF, TXT, Excel files supported</small>
     </div>
 
-    <!-- Fields Upload -->
     <div class="file-upload">
       <label class="form-label">Fields Configuration</label>
       <div class="file-container">
         <label class="file-btn">
           Choose
-          <input type="file" accept=".txt"(change)="onFieldsSelected($event)">
+          <input
+            type="file"
+            accept=".txt"
+            (change)="onFieldsSelected($event)"
+          />
         </label>
-        <input type="text" class="file-name" [value]="selectedFieldsFileName || 'No file chosen'" readonly>
+        <input
+          type="text"
+          class="file-name"
+          [value]="selectedFieldsFileName || 'No file chosen'"
+          readonly
+        />
       </div>
       <small class="text-muted">TXT file with custom fields</small>
     </div>
   </div>
 
-  
   <div *ngIf="uploadErrorMessage" class="alert-banner">
-  <button class="close-btn" (click)="uploadErrorMessage = null">✖</button>
-  <mat-icon color="warn">warning</mat-icon>
-  <span>{{ uploadErrorMessage }}</span>
-</div>
-
-<!-- Chat-style Prompt Area -->
-<div class="chat-prompt-wrapper">
-
-  <!-- Chat Display -->
- 
-<div class="chat-display">
-  <div *ngFor="let msg of chatMessages"
-       class="chat-bubble"
-       [ngClass]="{ 'user': msg.from === 'user', 'bot': msg.from === 'bot' }">
-    {{ msg.text }}
+    <button class="close-btn" (click)="uploadErrorMessage = null">✖</button>
+    <mat-icon color="warn">warning</mat-icon>
+    <span>{{ uploadErrorMessage }}</span>
   </div>
-</div>
 
+  <div class="chat-container">
+    <div class="chat-header">
+      <h5 class="chat-title" style="text-align: center">
+        <span>Chat Assistant</span> 
+        <mat-icon>chat</mat-icon>
+      </h5>
+    </div>
+    <div class="chat-display" #chatWindow>
+      <div
+        *ngFor="let msg of chatMessages"
+        class="chat-bubble"
+        [ngClass]="{ user: msg.from === 'user', bot: msg.from === 'bot' }"
+      >
+        {{ msg.text }}
+      </div>
+    </div>
 
-
-  <!-- Input Text Area + Buttons -->
-  <div class="chat-input-row">
-    <div class="chat-input-wrapper">
-  <textarea [(ngModel)]="prompt"
-            class="chat-input"
-            placeholder="Type your instruction...">
-  </textarea>
-
-  <button class="send-button"
-          (click)="sendPrompt()"
-          [disabled]="!prompt.trim()">
-    <mat-icon>send</mat-icon>
-  </button>
-</div>
-
+    <div class="chat-input-row">
+      <textarea
+        [(ngModel)]="prompt"
+        class="chat-input"
+        placeholder="Ask something..."
+      ></textarea>
+      <button
+        class="send-button"
+        (click)="sendPrompt()"
+        [disabled]="!prompt.trim()"
+      >
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
   </div>
-</div>
 
-
-  <!-- Prompt Area -->
   <div class="prompt-block">
-      <div class="center-actions">
-  <button class="btn btn-outline-light" 
-          (click)="resetAll()" 
-          [disabled]="isLoading || isCancelling || (!docFile && !fieldsFile)"
-           [ngClass]="{ 'disabled-btn': isLoading || isCancelling || (!docFile && !fieldsFile) }">
-    Reset
-  </button>
-
-  <button class="custom-button" 
-          (click)="processDocument()" 
-          [disabled]="isLoading || isCancelling || !docFile || !fieldsFile"
-           [ngClass]="{ 'disabled-btn': isLoading || isCancelling || !docFile || !fieldsFile }">
-    Process
-  </button>
-</div>
-
-
-    
+    <div class="center-actions">
+      <button
+        mat-raised-button
+        class="process-button"
+        (click)="processDocument()"
+        [disabled]="isLoading || isCancelling || !docFile || !fieldsFile"
+        [ngClass]="{
+          'disabled-btn': isLoading || isCancelling || !docFile || !fieldsFile
+        }"
+      >
+      <mat-icon>check</mat-icon>
+        <span>Submit</span>
+      </button>
+      <button
+        mat-raised-button
+        class="reset-button"
+        (click)="resetAll()"
+        [disabled]="isLoading || isCancelling || (!docFile && !fieldsFile)"
+        [ngClass]="{
+          'disabled-btn': isLoading || isCancelling || (!docFile && !fieldsFile)
+        }"
+      >
+       <mat-icon>refresh</mat-icon>
+        <span>Reset</span>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="isLoading" class="loading-indicator">
+    <mat-icon class="spin-icon">
+      {{ isCancelling ? "hourglass_disabled" : "hourglass_empty" }}
+    </mat-icon>
+    <span>
+      {{
+        isCancelling
+          ? "Cancelling request..."
+          : "Processing document, please wait..."
+      }}
+    </span>
   </div>
 
-  
-  <div *ngIf="isLoading" class="loading-indicator">
-  <mat-icon class="spin-icon">
-    {{ isCancelling ? 'hourglass_disabled' : 'hourglass_empty' }}
-  </mat-icon>
-  <span>
-    {{ isCancelling ? 'Cancelling request...' : 'Processing document, please wait...' }}
-  </span>
-</div>
-
-<!-- Show only while loading -->
-<div *ngIf="isLoading && !isCancelling" class="center-cancel-wrapper">
-  <button class="btn cancel-btn" (click)="cancelProcessing()">
-    Cancel
-  </button>
-</div>
-
+  <div *ngIf="isLoading && !isCancelling" class="center-cancel-wrapper">
+    <button class="btn cancel-btn" (click)="cancelProcessing()">Cancel</button>
+  </div>
 
   <div *ngIf="errorMessage" class="error-banner">
-  <div class="error-content">
-    <mat-icon>error</mat-icon>
-    <span>{{ errorMessage }}</span>
-    <button class="close-btn" (click)="errorMessage = null">✖</button>
+    <div class="error-content">
+      <mat-icon>error</mat-icon>
+      <span>{{ errorMessage }}</span>
+      <button class="close-btn" (click)="errorMessage = null">✖</button>
+    </div>
   </div>
-</div>
-
-
 
   <div *ngIf="processedFields.length" class="section-header">
-  <h5 class="section-title">Extracted Fields</h5>
+    <h5 class="section-title">Extracted Fields</h5>
 
-  <div class="controls-row">
-    <!-- Show: Values / Doc Fields / Both -->
-    <div class="toggle-switch">
-      <label for="viewMode">Show:</label>
-      <button class="toggle-button" [class.active]="viewMode === 'value'" (click)="viewMode = 'value'">Values</button>
-      <button class="toggle-button" [class.active]="viewMode === 'document_field'" (click)="viewMode = 'document_field'">Doc Fields</button>
-      <button class="toggle-button" [class.active]="viewMode === 'both'" (click)="viewMode = 'both'">Both</button>
+    <div class="controls-row">
+      <div class="toggle-switch">
+        <label for="viewMode">Show:</label>
+        <button
+          class="toggle-button"
+          [class.active]="viewMode === 'value'"
+          (click)="viewMode = 'value'"
+        >
+          Values
+        </button>
+        <button
+          class="toggle-button"
+          [class.active]="viewMode === 'document_field'"
+          (click)="viewMode = 'document_field'"
+        >
+          Doc Fields
+        </button>
+        <button
+          class="toggle-button"
+          [class.active]="viewMode === 'both'"
+          (click)="viewMode = 'both'"
+        >
+          Both
+        </button>
+      </div>
+
+      <div class="top-right-buttons">
+        <button
+          class="btn btn-outline-light"
+          (click)="startBulkEdit()"
+          *ngIf="!isBulkEditing"
+        >
+          Edit All
+        </button>
+        <button
+          class="btn btn-outline-light"
+          (click)="saveBulkEdit()"
+          *ngIf="isBulkEditing"
+        >
+          Save
+        </button>
+        <button
+          class="btn btn-outline-light"
+          (click)="resetBulkEdit()"
+          *ngIf="isBulkEditing"
+        >
+          Reset
+        </button>
+      </div>
     </div>
+  </div>
 
-    <!-- Right aligned edit buttons -->
-    <div class="top-right-buttons">
-      <button class="btn btn-outline-light" (click)="startBulkEdit()" *ngIf="!isBulkEditing">Edit All</button>
-      <button class="btn btn-outline-light" (click)="saveBulkEdit()" *ngIf="isBulkEditing">Save</button>
-      <button class="btn btn-outline-light" (click)="resetBulkEdit()" *ngIf="isBulkEditing">Reset</button>
+  <div *ngIf="processedFields.length" class="extracted-fields-container">
+    <div *ngFor="let field of processedFields" class="field-card">
+      <div class="field-column">
+        <label>Custom Field</label>
+        <div class="value">
+          {{ field.custom_field || field.user_field || field.field }}
+        </div>
+      </div>
+
+      <div
+        class="field-column"
+        *ngIf="viewMode === 'document_field' || viewMode === 'both'"
+      >
+        <label>Document Field</label>
+        <div class="editable-box">
+          <ng-container *ngIf="isBulkEditing">
+            <input class="edit-input" [(ngModel)]="field.document_field" />
+          </ng-container>
+          <ng-container *ngIf="!isBulkEditing">
+            <span class="editable-text">{{
+              field.document_field || field.document_label || "-"
+            }}</span>
+          </ng-container>
+        </div>
+      </div>
+
+      <div
+        class="field-column"
+        *ngIf="viewMode === 'value' || viewMode === 'both'"
+      >
+        <label>Extracted Value</label>
+        <div class="editable-box">
+          <ng-container *ngIf="isBulkEditing">
+            <input class="edit-input" [(ngModel)]="field.value" />
+          </ng-container>
+          <ng-container *ngIf="!isBulkEditing">
+            <span class="editable-text">{{ field.value || "-" }}</span>
+          </ng-container>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-
-
-  <!-- Display Extracted Fields -->
-<div *ngIf="processedFields.length" class="extracted-fields-container">
-  
-
-  <!-- Fields Display -->
-  <div *ngFor="let field of processedFields" class="field-card">
-
-  <!-- Custom/User Field -->
-  <div class="field-column">
-    <label>Custom Field</label>
-    <div class="value">{{ field.custom_field || field.user_field || field.field }}</div>
+  <div *ngIf="processedFields.length" class="button-actions">
+    <button class="btn btn-outline-light" (click)="saveUpdatedFields()">
+      Save JSON
+    </button>
+    <button class="btn btn-outline-light" (click)="downloadExcel()">
+      Export Excel
+    </button>
   </div>
 
-  <!-- Document Field Column -->
-  <!-- Document Field Column -->
-<div class="field-column" *ngIf="viewMode === 'document_field' || viewMode === 'both'">
-  <label>Document Field</label>
-  <div class="editable-box">
-    <ng-container *ngIf="isBulkEditing">
-      <input class="edit-input" [(ngModel)]="field.document_field" />
-    </ng-container>
-    <ng-container *ngIf="!isBulkEditing">
-      <span class="editable-text">{{ field.document_field || field.document_label || '-' }}</span>
-    </ng-container>
+  <div *ngIf="showDownloadPopup" class="modal-backdrop">
+    <div class="modal-box">
+      <mat-icon class="modal-icon">check_circle</mat-icon>
+      <p class="modal-text">{{ downloadPopupMessage }}</p>
+      <button class="modal-btn" (click)="closeDownloadPopup()">OK</button>
+    </div>
   </div>
-</div>
-
-
-  <!-- Value Column -->
-  <!-- Value Column -->
-<div class="field-column" *ngIf="viewMode === 'value' || viewMode === 'both'">
-  <label>Extracted Value</label>
-  <div class="editable-box">
-    <ng-container *ngIf="isBulkEditing">
-      <input class="edit-input" [(ngModel)]="field.value" />
-    </ng-container>
-    <ng-container *ngIf="!isBulkEditing">
-      <span class="editable-text">{{ field.value || '-' }}</span>
-    </ng-container>
-  </div>
-</div>
-
-
-  </div>
-
-</div>
-
-
-
-  <!-- Save Buttons (visible only if fields are processed) -->
-<div *ngIf="processedFields.length" class="button-actions">
-  <button class="btn btn-outline-light" (click)="saveUpdatedFields()">Save JSON</button>
-  <button class="btn btn-outline-light" (click)="downloadExcel()">Export Excel</button>
-</div>
-
-
-  <!-- Fullscreen Modal Popup -->
-<div *ngIf="showDownloadPopup" class="modal-backdrop">
-  <div class="modal-box">
-    <mat-icon class="modal-icon">check_circle</mat-icon>
-    <p class="modal-text">{{ downloadPopupMessage }}</p>
-    <button class="modal-btn" (click)="closeDownloadPopup()">OK</button>
-  </div>
-</div>
-
 </div>

@@ -3229,3 +3229,1169 @@ google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quot
 2025-07-09 19:38:31,740 INFO Chat continuation initiated
 2025-07-09 19:38:53,778 INFO DocumentAgent continued chat response received in 22.04 seconds
 2025-07-09 19:38:53,779 INFO Chat continuation completed in 22.04 seconds
+2025-07-09 23:32:52,859 ERROR Validation endpoint client exception (UnsupportedURL): Not a URL
+2025-07-09 23:33:03,023 ERROR Validation endpoint client exception (UnsupportedURL): Not a URL
+2025-07-09 23:33:11,421 ERROR Validation endpoint client exception (UnsupportedURL): 
+2025-07-09 23:33:31,398 INFO Fetched contents from repo in 5.60 seconds
+2025-07-09 23:33:31,414 INFO ValidationAgent and chat initialization took 0.01 seconds
+2025-07-09 23:33:34,287 INFO System prompt send took 2.87 seconds
+2025-07-09 23:34:09,479 INFO Fetched contents from repo in 2.23 seconds
+2025-07-09 23:34:09,480 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 23:34:10,219 INFO System prompt send took 0.74 seconds
+2025-07-09 23:34:36,876 INFO Prompt send took 65.48 seconds
+2025-07-09 23:35:02,775 INFO ValidationAgent response received in 25.90 seconds
+2025-07-09 23:35:02,804 ERROR Unexpected error: 1 validation error for ValidationLLMResponse
+session_id
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 28, in analyze_repo
+    result =await service.analyze_repo(req.repo_url)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 112, in analyze_repo
+    return ValidationLLMResponse(session_id=session_id, type="validation", response=parsed)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\pydantic\main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for ValidationLLMResponse
+session_id
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-07-09 23:35:20,721 INFO Fetched contents from repo in 2.24 seconds
+2025-07-09 23:35:20,722 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 23:35:21,482 INFO System prompt send took 0.76 seconds
+2025-07-09 23:35:31,272 INFO Fetched contents from repo in 5.66 seconds
+2025-07-09 23:35:31,300 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 23:35:32,210 INFO System prompt send took 0.91 seconds
+2025-07-09 23:35:37,498 INFO Fetched contents from repo in 1.33 seconds
+2025-07-09 23:35:37,499 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 23:35:38,967 INFO System prompt send took 1.47 seconds
+2025-07-09 23:36:15,721 INFO Prompt send took 126.24 seconds
+2025-07-09 23:36:56,702 INFO ValidationAgent response received in 40.98 seconds
+2025-07-09 23:36:56,706 ERROR Unexpected error: 1 validation error for ValidationLLMResponse
+session_id
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 28, in analyze_repo
+    result =await service.analyze_repo(req.repo_url)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 112, in analyze_repo
+    return ValidationLLMResponse(session_id=session_id, type="validation", response=parsed)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\pydantic\main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for ValidationLLMResponse
+session_id
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-07-09 23:38:41,977 INFO Fetched contents from repo in 4.80 seconds
+2025-07-09 23:38:41,980 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 23:38:42,756 INFO System prompt send took 0.78 seconds
+2025-07-09 23:38:48,319 INFO Fetched contents from repo in 1.38 seconds
+2025-07-09 23:38:48,320 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 23:38:49,037 INFO System prompt send took 0.72 seconds
+2025-07-09 23:38:53,240 INFO Prompt send took 212.52 seconds
+2025-07-09 23:39:12,064 INFO Prompt send took 220.79 seconds
+2025-07-09 23:39:32,368 INFO Prompt send took 234.87 seconds
+2025-07-09 23:40:01,495 INFO ValidationAgent response received in 68.25 seconds
+2025-07-09 23:40:01,498 ERROR Unexpected error: 1 validation error for ValidationLLMResponse
+session_id
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 28, in analyze_repo
+    result =await service.analyze_repo(req.repo_url)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 112, in analyze_repo
+    return ValidationLLMResponse(session_id=session_id, type="validation", response=parsed)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\pydantic\main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for ValidationLLMResponse
+session_id
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-07-09 23:40:01,532 INFO ValidationAgent response received in 49.47 seconds
+2025-07-09 23:40:01,534 ERROR Unexpected error: 1 validation error for ValidationLLMResponse
+session_id
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 28, in analyze_repo
+    result =await service.analyze_repo(req.repo_url)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 112, in analyze_repo
+    return ValidationLLMResponse(session_id=session_id, type="validation", response=parsed)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\pydantic\main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for ValidationLLMResponse
+session_id
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-07-09 23:40:01,540 INFO ValidationAgent response received in 29.17 seconds
+2025-07-09 23:40:01,543 ERROR Unexpected error: 1 validation error for ValidationLLMResponse
+session_id
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 28, in analyze_repo
+    result =await service.analyze_repo(req.repo_url)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 112, in analyze_repo
+    return ValidationLLMResponse(session_id=session_id, type="validation", response=parsed)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\pydantic\main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for ValidationLLMResponse
+session_id
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_type
+2025-07-09 23:40:33,500 INFO Fetched contents from repo in 2.96 seconds
+2025-07-09 23:40:33,501 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 23:40:34,633 INFO System prompt send took 1.13 seconds
+2025-07-09 23:40:41,940 INFO Fetched contents from repo in 2.71 seconds
+2025-07-09 23:40:41,941 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 23:40:42,708 INFO System prompt send took 0.77 seconds
+2025-07-09 23:41:29,938 ERROR Unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 30
+}
+]
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 28, in analyze_repo
+    result =await service.analyze_repo(req.repo_url)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 83, in analyze_repo
+    chat.send_message(prompt)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 30
+}
+]
+2025-07-09 23:41:30,453 INFO Prompt send took 168.48 seconds
+2025-07-09 23:41:31,275 ERROR Unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 29
+}
+]
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 28, in analyze_repo
+    result =await service.analyze_repo(req.repo_url)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 102, in analyze_repo
+    response = chat.send_message(final_prompt)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 29
+}
+]
+2025-07-09 23:41:32,220 ERROR Unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 28
+}
+]
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 28, in analyze_repo
+    result =await service.analyze_repo(req.repo_url)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 83, in analyze_repo
+    chat.send_message(prompt)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 28
+}
+]
+2025-07-09 23:41:33,178 ERROR Unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 27
+}
+]
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 28, in analyze_repo
+    result =await service.analyze_repo(req.repo_url)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 83, in analyze_repo
+    chat.send_message(prompt)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 27
+}
+]
+2025-07-09 23:41:33,217 ERROR Validation endpoint client exception (UnsupportedURL): 
+2025-07-09 23:41:33,295 ERROR Validation endpoint client exception (UnsupportedURL): 
+2025-07-09 23:41:33,340 ERROR Validation endpoint client exception (UnsupportedURL): 
+2025-07-09 23:41:33,347 ERROR Validation endpoint client exception (UnsupportedURL): 
+2025-07-09 23:41:33,404 ERROR Validation endpoint client exception (UnsupportedURL): 
+2025-07-09 23:41:33,413 ERROR Validation endpoint client exception (UnsupportedURL): 
+2025-07-09 23:41:38,703 ERROR Validation endpoint client exception (UnsupportedURL): 
+2025-07-09 23:41:47,527 ERROR Validation endpoint client exception (InvalidRepoURL): 
+2025-07-09 23:41:56,208 ERROR Validation endpoint client exception (NoDefaultBranch): 
+2025-07-09 23:42:02,451 INFO Fetched contents from repo in 1.96 seconds
+2025-07-09 23:42:02,452 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 23:42:02,961 ERROR Unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 57
+}
+]
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 28, in analyze_repo
+    result =await service.analyze_repo(req.repo_url)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 74, in analyze_repo
+    session_id, chat = self.llm_client.start_session("ValidationAgent")
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\infrastructure\llm_client.py", line 38, in start_session
+    chat.send_message(agent["system_prompt"])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 57
+}
+]
+2025-07-09 23:44:33,811 INFO Fetched contents from repo in 4.83 seconds
+2025-07-09 23:44:33,812 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-09 23:44:34,320 ERROR Unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 26
+}
+]
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 28, in analyze_repo
+    result =await service.analyze_repo(req.repo_url)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 74, in analyze_repo
+    session_id, chat = self.llm_client.start_session("ValidationAgent")
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\infrastructure\llm_client.py", line 38, in start_session
+    chat.send_message(agent["system_prompt"])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 26
+}
+]
+2025-07-09 23:47:57,621 INFO Received request for extracting fields
+2025-07-09 23:47:57,624 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-09 23:47:58,094 ERROR Extraction endpoint unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 2
+}
+]
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\document.py", line 30, in extract_fields
+    result = await service.extract_fields(doc_bytes, doc.filename, fields, user_prompt, client_session_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 26, in extract_fields
+    session_id, chat = self.llm_client.start_session(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "DocumentAgent",
+        ^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        session_id=client_session_id
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\infrastructure\llm_client.py", line 38, in start_session
+    chat.send_message(agent["system_prompt"])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 2
+}
+]
+2025-07-09 23:49:10,041 INFO Chat continuation initiated
+2025-07-09 23:49:10,044 ERROR Chat continuation endpoint client exception (SessionNotFound): 
+2025-07-10 00:05:42,309 ERROR Validation endpoint client exception (UnsupportedURL): Not a URL
+2025-07-10 01:42:10,604 INFO Received request for extracting fields
+2025-07-10 01:42:10,627 INFO DocumentAgent and chat initialization took 0.01 seconds
+2025-07-10 01:42:15,459 INFO System prompt send took 4.83 seconds
+2025-07-10 01:42:20,404 INFO File send took 4.94 seconds
+2025-07-10 01:42:20,411 INFO Storing task for session_id: 4ead4764-54d9-4281-97b5-ddaaa6725651
+2025-07-10 01:42:21,148 ERROR Extraction endpoint unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 38
+}
+]
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\document.py", line 30, in extract_fields
+    result = await service.extract_fields(doc_bytes, doc.filename, fields, user_prompt, client_session_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 59, in extract_fields
+    return await task
+           ^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 46, in run_extraction
+    response = await asyncio.to_thread(chat.send_message, prompt.strip())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 38
+}
+]
+2025-07-10 01:42:21,303 INFO No active task to cancel for session_id: 4ead4764-54d9-4281-97b5-ddaaa6725651
+2025-07-10 01:42:27,114 INFO Received request for extracting fields
+2025-07-10 01:42:27,115 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-10 01:42:27,612 ERROR Extraction endpoint unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 32
+}
+]
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\document.py", line 30, in extract_fields
+    result = await service.extract_fields(doc_bytes, doc.filename, fields, user_prompt, client_session_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 26, in extract_fields
+    session_id, chat = self.llm_client.start_session(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "DocumentAgent",
+        ^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        session_id=client_session_id
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\infrastructure\llm_client.py", line 38, in start_session
+    chat.send_message(agent["system_prompt"])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 32
+}
+]
+2025-07-10 10:16:37,528 ERROR Validation endpoint client exception (UnsupportedURL): Not a URL
+2025-07-10 10:17:01,964 INFO Fetched contents from repo in 10.14 seconds
+2025-07-10 10:17:01,970 INFO ValidationAgent and chat initialization took 0.00 seconds
+2025-07-10 10:17:03,709 INFO System prompt send took 1.74 seconds
+2025-07-10 10:17:04,123 ERROR Unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 56
+}
+]
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\validation.py", line 26, in analyze_repo
+    result =await service.analyze_repo(req.repo_url)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\validation_service.py", line 83, in analyze_repo
+    chat.send_message(prompt)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 56
+}
+]
+2025-07-10 10:19:55,620 ERROR Validation endpoint client exception (UnsupportedURL): Not a URL
+2025-07-10 10:20:29,699 INFO Received request for extracting fields
+2025-07-10 10:20:29,701 INFO DocumentAgent and chat initialization took 0.00 seconds
+2025-07-10 10:20:35,790 INFO System prompt send took 6.09 seconds
+2025-07-10 10:20:37,337 ERROR Extraction endpoint unexpected error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 23
+}
+]
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\document.py", line 30, in extract_fields
+    result = await service.extract_fields(doc_bytes, doc.filename, fields, user_prompt, client_session_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\application\services\document_service.py", line 26, in extract_fields
+    session_id, chat = self.llm_client.start_session(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "DocumentAgent",
+        ^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        session_id=client_session_id
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\infrastructure\llm_client.py", line 45, in start_session
+    chat.send_message([file_part])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 578, in send_message
+    response = self.model.generate_content(
+        contents=history,
+    ...<5 lines>...
+        request_options=request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\venv\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 23
+}
+]
