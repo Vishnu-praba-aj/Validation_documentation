@@ -1,11 +1,24 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.app.api.routers import validation, document
+from src.app.infrastructure.db import pool
+from src.app.api.routers import validation, document, broker
+from utils.logging import setup_logger
+
+logger=setup_logger()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    logger.info("App started")
+    yield
+    logger.info("Closing Oracle connection pool")
+    pool.close()
 
 app = FastAPI(
-    title="Validation Report Generator and Broker Document Analyzer",
-    description="APIs for validation report generator and broker document analyzer",
-    version="1.0.0"
+    title="Validation Report Generator and Broker Template Configuration",
+    description="APIs for validation report generator and broker template configuration",
+    version="1.0.0",
+    lifespan=lifespan
 )
 
 origins = [
@@ -20,5 +33,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(validation.router, prefix="/validation", tags=["validation-report-generator"])
-app.include_router(document.router, prefix="/document", tags=["broker-document-analyzer"])
+app.include_router(validation.router, prefix="/api/validation", tags=["validation-report-generator"])
+app.include_router(document.router, prefix="/api/broker", tags=["document-analyzer"])
+app.include_router(broker.router, prefix="/api/config", tags=["broker-config"])

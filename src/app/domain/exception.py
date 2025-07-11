@@ -33,3 +33,15 @@ class NoDefaultBranchException(Exception):
 class UnsupportedURLException(Exception):
     def __init__(self, detail="Not a github or bitbucket URL."):
         self.detail = detail
+
+class BrokersNotFoundException(Exception):
+    def __init__(self, detail="No brokers found in the database"):
+        self.detail = detail
+
+class TableMissingException(Exception):
+    def __init__(self, detail="Table does not exist in the database"):
+        self.detail = detail
+
+class OracleQueryException(Exception):
+    def __init__(self, detail="Failed to execute query on Oracle DB"):
+        self.detail = detail

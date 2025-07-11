@@ -5331,3 +5331,28 @@ google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quot
   seconds: 44
 }
 ]
+2025-07-12 00:54:22,824 INFO App started
+2025-07-12 00:54:40,244 INFO All brokers extracted in 0.12 seconds
+2025-07-12 00:54:58,027 INFO All brokers extracted in 0.00 seconds
+2025-07-12 00:55:50,324 INFO Closing Oracle connection pool
+2025-07-12 00:56:00,869 INFO App started
+2025-07-12 00:56:11,091 INFO All brokers extracted in 0.00 seconds
+2025-07-12 00:57:53,261 INFO All brokers extracted in 0.05 seconds
+2025-07-12 00:58:21,260 INFO Closing Oracle connection pool
+2025-07-12 00:58:33,263 INFO App started
+2025-07-12 00:58:47,371 INFO All brokers extracted in 0.11 seconds
+2025-07-12 00:59:06,510 INFO Closing Oracle connection pool
+2025-07-12 00:59:33,859 INFO App started
+2025-07-12 00:59:46,617 INFO All brokers extracted in 0.00 seconds
+2025-07-12 01:02:07,776 INFO Closing Oracle connection pool
+2025-07-12 01:02:18,537 INFO App started
+2025-07-12 01:03:00,016 INFO All brokers extracted in 0.04 seconds
+2025-07-12 01:06:25,896 INFO Closing Oracle connection pool
+2025-07-12 01:09:05,260 INFO App started
+2025-07-12 01:09:17,077 INFO All brokers extracted in 0.03 seconds
+2025-07-12 01:09:32,248 INFO Closing Oracle connection pool
+2025-07-12 01:09:40,287 INFO App started
+2025-07-12 01:10:30,691 INFO Closing Oracle connection pool
+2025-07-12 01:10:57,903 INFO App started
+2025-07-12 01:11:14,248 INFO All brokers extracted in 0.04 seconds
+2025-07-12 01:11:26,510 INFO Closing Oracle connection pool

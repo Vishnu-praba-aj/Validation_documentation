@@ -1,7 +1,6 @@
 requests
 google-generativeai
 pandas
-openpyxl
 uuid
 fastapi
 uvicorn
@@ -12,3 +11,4 @@ python-multipart
 pytest
 httpx
 pytest-asyncio
+oracledb

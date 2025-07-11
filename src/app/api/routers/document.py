@@ -46,7 +46,7 @@ async def extract_fields(
         raise HTTPException(status_code=400, detail=e.detail)
     except Exception as e:
         logger.error(f"Extraction endpoint unexpected error: {str(e)}", exc_info=True)
-        raise HTTPException(status_code=500, detail="An unexpected error occurred")
+        raise HTTPException(status_code=500, detail="Unexpected server error")
 
 @router.post(
     "/continue_chat/",
@@ -76,4 +76,4 @@ async def continue_chat(
         raise HTTPException(status_code=400, detail=e.detail)
     except Exception as e:
         logger.error(f"Chat continuation unexpected error: {str(e)}", exc_info=True)
-        raise HTTPException(status_code=500, detail="An unexpected error occurred.")
+        raise HTTPException(status_code=500, detail="Unexpected server error")

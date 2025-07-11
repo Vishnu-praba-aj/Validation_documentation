@@ -41,4 +41,4 @@ async def analyze_repo(
         raise HTTPException(status_code=400, detail=e.detail)
     except Exception as e:
         logger.error(f"Unexpected error: {str(e)}", exc_info=True)
-        raise HTTPException(status_code=500, detail="An unexpected error occurred.")
+        raise HTTPException(status_code=500, detail="Unexpected server error")
