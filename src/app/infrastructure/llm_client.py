@@ -18,9 +18,8 @@ def load_agent_definitions():
 class LLMClient:
     def __init__(self):
         self.agents = load_agent_definitions()
-        self.session_mapping = {} 
 
-    def start_session(self, agent_name, file_bytes=None, filename=None,session_id=None):
+    def start_session(self, agent_name, file_bytes=None, filename=None, doc_type=None, session_id=None,):
         start = time.perf_counter()
         agent = self.agents[agent_name]
         model = genai.GenerativeModel(
@@ -30,7 +29,7 @@ class LLMClient:
             )
         )
         chat = model.start_chat(history=[])
-        #session_id = str(uuid.uuid4())
+        session_id = str(uuid.uuid4())
         end = time.perf_counter()
         logger.info(f"{agent_name} and chat initialization took {end-start:.2f} seconds")
 
@@ -46,11 +45,15 @@ class LLMClient:
             end = time.perf_counter()
             logger.info(f"File send took {end-start:.2f} seconds")
 
-        session_manager.add(session_id, chat)
+        session_manager.add(session_id, chat, doc_type)
         return session_id, chat
 
     def get_chat(self, session_id):
-        chat = session_manager.get(session_id)
-        if not chat:
+        session = session_manager.get(session_id)
+        if not session:
             raise SessionNotFoundException()
-        return chat
+
+        chat = session["chat"]
+        doc_type = session["doc_type"]
+
+        return chat, doc_type

@@ -1,6 +1,9 @@
 from pydantic import BaseModel
-from typing import List, Optional, Union, Dict, Any
+from typing import List, Optional, Union
 
+class ValidationRequest(BaseModel):
+    repo_url: str
+    
 class ValidationField(BaseModel):
     field: str
     required: Optional[bool] = None
@@ -30,10 +33,27 @@ class ValidationLLMResponse(BaseModel):
     type: str = "validation"
     response: ValidationResponseData
 
+class ExtractionFieldMetadata(BaseModel):
+    start_index_nbr: Optional[int] = None
+    end_index_nbr: Optional[int] = None
+    row_adder_cnt: Optional[int] = None
+    col_adder_cnt: Optional[int] = None
+    param_ref_delim_txt: Optional[str] = None
+    param_value_pos_cd: Optional[str] = None
+    unit_price_pct_ind: Optional[str] = None
+    param_nm_occur_ind: Optional[int] = None
+    date_format_cd: Optional[str] = None
+    decimal_separator_cd: Optional[str] = None
+    param_def_value_txt: Optional[str] = None
+    derivation_col: Optional[str] = None
+    operations_seq: Optional[str] = None
+    param_val_fn_txt: Optional[str] = None
+
 class ExtractionField(BaseModel):
     custom_field: str
     document_label: Optional[str] = None
     value: Optional[str] = None
+    metadata: ExtractionFieldMetadata
 
 class ExtractionRow(BaseModel):
     index: int
@@ -44,5 +64,4 @@ class ExtractionResponseData(BaseModel):
 
 class ExtractionLLMResponse(BaseModel):
     session_id: str
-    type: str = "document_extraction"
     response: ExtractionResponseData

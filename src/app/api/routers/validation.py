@@ -3,19 +3,16 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from src.app.domain.exception import InvalidJSONResponseException, InvalidRepoURLException, NoDefaultBranchException, RepoProcessingException, UnsupportedURLException
 from src.app.api.deps import get_validation_service
-from src.app.domain.models import ValidationLLMResponse
+from src.app.domain.models import ValidationLLMResponse, ValidationRequest
 from utils.logging import setup_logger
 
 router = APIRouter()
 logger = setup_logger()
 
-class ValidationRequest(BaseModel):
-    repo_url: str
-
 @router.post(
     "/analyze_repo/",
     response_model=ValidationLLMResponse,
-    operation_id="analyzeRepository"
+    operation_id="analyze-repository"
 )
 async def analyze_repo(
     req: ValidationRequest,
@@ -23,7 +20,7 @@ async def analyze_repo(
 ):
     try:
         start = time.perf_counter()
-        result =await service.analyze_repo(req.repo_url)
+        result = service.analyze_repo(req.repo_url)
         end = time.perf_counter()
         logger.info(f"Repo analysis completed in {end - start:.2f} seconds")
         return result
@@ -45,9 +42,3 @@ async def analyze_repo(
     except Exception as e:
         logger.error(f"Unexpected error: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail="An unexpected error occurred.")
-    
-
-@router.post("/cancel_analysis/")
-async def cancel_analysis(req: ValidationRequest, service=Depends(get_validation_service)):
-    service.cancel_analysis(req.repo_url)
-    return {"status": "cancelled"}
