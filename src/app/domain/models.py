@@ -1,8 +1,5 @@
 from pydantic import BaseModel
 from typing import List, Optional, Union
-
-class ValidationRequest(BaseModel):
-    repo_url: str
     
 class ValidationField(BaseModel):
     field: str
@@ -41,7 +38,7 @@ class ExtractionFieldMetadata(BaseModel):
     param_ref_delim_txt: Optional[str] = None
     param_value_pos_cd: Optional[str] = None
     unit_price_pct_ind: Optional[str] = None
-    param_nm_occur_ind: Optional[int] = None
+    param_nm_occur_ind: Optional[str] = None
     date_format_cd: Optional[str] = None
     decimal_separator_cd: Optional[str] = None
     param_def_value_txt: Optional[str] = None
@@ -65,3 +62,16 @@ class ExtractionResponseData(BaseModel):
 class ExtractionLLMResponse(BaseModel):
     session_id: str
     response: ExtractionResponseData
+
+class BrokerOut(BaseModel):
+    broker_code: str
+    broker_name: str
+
+class AllBrokers(BaseModel):
+    broker: List[BrokerOut]
+
+class ExtractUniqueIdRequest(BaseModel):
+    session_id: str
+    broker_code: str
+    unique_id: str
+    message: Optional[str] = None

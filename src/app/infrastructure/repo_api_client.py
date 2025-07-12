@@ -2,7 +2,7 @@ import os
 import time
 import requests
 import fnmatch
-from src.app.domain.exception import InvalidRepoURLException, NoDefaultBranchException, RepoProcessingException, UnsupportedURLException
+from src.app.domain.exception import RepoProcessingException
 from utils.logging import setup_logger
 
 EXCLUDED_DIRS = [
@@ -39,13 +39,13 @@ class RepoApiClient:
     def parse_repo_url(self, url):
         parts = url.rstrip('/').split('/')
         if len(parts) < 2:
-            raise InvalidRepoURLException()
+            raise RepoProcessingException("Invalid Repo URL (no user or repo name)")
 
         owner = parts[-2]
         repo = parts[-1]
 
         if not owner or not repo:
-            raise InvalidRepoURLException()
+            raise RepoProcessingException("Invalid Repo URL (no user or repo name)")
 
         if repo.endswith('.git'):
             repo = repo[:-4]
@@ -67,7 +67,7 @@ class RepoApiClient:
         url = f"https://api.github.com/repos/{owner}/{repo}"
         resp = requests.get(url)
         if resp.status_code != 200:
-            raise NoDefaultBranchException()
+            raise RepoProcessingException("No default branch found")
         return resp.json().get('default_branch', 'main')
 
     def get_github_code_files(self, owner, repo, branch):
@@ -94,7 +94,7 @@ class RepoApiClient:
         url = f"https://api.bitbucket.org/2.0/repositories/{owner}/{repo}"
         resp = requests.get(url)
         if resp.status_code != 200:
-            raise NoDefaultBranchException()
+            raise RepoProcessingException("No default branch found")
         return resp.json()['mainbranch']['name']
 
     def get_bitbucket_code_files(self, owner, repo, branch):
@@ -137,9 +137,9 @@ class RepoApiClient:
             code_files = self.get_github_code_files(owner, repo, branch)
             fetch_content = lambda f: self.fetch_github_file_content(owner, repo, f, branch)
         elif not (url.startswith("http")):
-            raise UnsupportedURLException("Not a URL")
+            raise RepoProcessingException("Not a URL")
         else:
-            raise UnsupportedURLException()
+            raise RepoProcessingException("Not a github or bitbucket URL")
         file_objs = []
         for f in code_files:
             file_objs.append({

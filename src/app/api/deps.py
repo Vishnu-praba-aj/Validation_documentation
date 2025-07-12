@@ -8,7 +8,8 @@ def get_validation_service():
     return ValidationService()
 
 def get_document_service():
-    return DocumentService()
+    dao = BrokerDAO(pool)
+    return DocumentService(dao)
 
 def get_broker_service():
     dao = BrokerDAO(pool)

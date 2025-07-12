@@ -1,0 +1,140 @@
+<div class="card">
+  <!-- Header -->
+  <div class="collapsible-header" (click)="toggleDescription()">
+    <h5>
+      Document Processing
+      <i class="bi bi-chevron-down small-icon" [ngClass]="{ 'rotated': showDescription }"></i>
+    </h5>
+  </div>
+
+  <!-- Description Toggle Section -->
+  <div class="description-text" *ngIf="showDescription">
+    <p class="justified-text">This section allows you to upload the broker document and input fields and provides the extracted document fields and values for the fields given.</p>
+  </div>
+
+  <!-- File Uploads Row -->
+  <div class="input-row">
+    <!-- Document Upload -->
+    <div class="file-upload">
+      <label class="form-label">Document File</label>
+      <div class="file-container">
+        <label class="file-btn">
+          Choose
+          <input type="file" (change)="onFileSelected($event)">
+        </label>
+        <input type="text" class="file-name" [value]="selectedFileName || 'No file chosen'" readonly>
+      </div>
+      <small class="text-muted">PDF, TXT, Excel files supported</small>
+    </div>
+
+    <!-- Fields Upload -->
+    <div class="file-upload">
+      <label class="form-label">Fields Configuration</label>
+      <div class="file-container">
+        <label class="file-btn">
+          Choose
+          <input type="file" (change)="onFieldsSelected($event)">
+        </label>
+        <input type="text" class="file-name" [value]="selectedFieldsFileName || 'No file chosen'" readonly>
+      </div>
+      <small class="text-muted">TXT file with custom fields</small>
+    </div>
+  </div>
+
+  <!-- Prompt Area -->
+  <div class="prompt-block">
+    <label class="form-label">Prompt</label>
+    <textarea [(ngModel)]="prompt"
+              class="form-control"
+              placeholder="Enter your query..."></textarea>
+    <div class="text-end">
+      <button class="custom-button" (click)="processDocument()">
+        <i class="bi bi-cpu me-1"></i>Process
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-indicator">
+  <mat-icon class="spin-icon">hourglass_empty</mat-icon>
+  <span>Processing document, please wait...</span>
+</div>
+
+
+  <div *ngIf="errorMessage" class="error-banner">
+  <mat-icon>error</mat-icon>
+  {{ errorMessage }}
+  </div>
+
+
+  <!-- Display Toggle -->
+  <div *ngIf="processedFields.length" class="display-toggle text-center">
+    <label for="viewMode" class="form-label">Display:</label>
+    <select id="viewMode" [(ngModel)]="viewMode" class="form-control mode-dropdown">
+      <option value="value">Only Value</option>
+      <option value="document_field">Only Document Field</option>
+      <option value="both">Both</option>
+    </select>
+  </div>
+
+  <!-- Display Extracted Fields -->
+  <div *ngIf="processedFields.length" class="extracted-grid">
+    <div class="field-box" *ngFor="let field of processedFields; let i = index">
+      <label class="form-label">{{ field.custom_field }}</label>
+
+      <!-- Show based on selected mode -->
+      <ng-container [ngSwitch]="viewMode">
+        
+        <!-- Only Value -->
+        <input *ngSwitchCase="'value'"
+              class="form-control"
+              [(ngModel)]="processedFields[i].value"
+              placeholder="" />
+
+        <!-- Only Document Field -->
+        <input *ngSwitchCase="'document_field'"
+              class="form-control"
+              [(ngModel)]="processedFields[i].document_label"
+              placeholder="" />
+
+        <!-- Both -->
+        <div *ngSwitchCase="'both'" class="dual-inputs">
+          <input
+            class="form-control"
+            [(ngModel)]="processedFields[i].document_label"
+            placeholder="" />
+          <input
+            class="form-control"
+            [(ngModel)]="processedFields[i].value"
+            placeholder="" />
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Save Buttons -->
+  <div class="button-actions">
+    <button class="btn btn-outline-light" (click)="saveUpdatedFields()">💾 Save JSON</button>
+    <button class="btn btn-outline-light" (click)="downloadExcel()">⬇️ Export Excel</button>
+  </div>
+
+  <!-- Chat Section -->
+  <div *ngIf="outputTable.length" class="chat-section">
+    <h6 class="section-title">💬 Chat Assistant</h6>
+    <div class="chat-box">
+      <div *ngFor="let message of chatMessages">
+        <strong *ngIf="message.from === 'user'">🧑 You:</strong>
+        <strong *ngIf="message.from === 'bot'">🤖 Bot:</strong>
+        <span> {{ message.text }}</span>
+      </div>
+    </div>
+
+    <div class="chat-input-wrapper">
+      <input type="text"
+            class="form-control"
+            placeholder="Ask something..."
+            [(ngModel)]="chatInput"
+            (keydown.enter)="sendMessage()">
+      <button class="btn btn-outline-light" (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>

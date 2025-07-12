@@ -5356,3 +5356,258 @@ google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quot
 2025-07-12 01:10:57,903 INFO App started
 2025-07-12 01:11:14,248 INFO All brokers extracted in 0.04 seconds
 2025-07-12 01:11:26,510 INFO Closing Oracle connection pool
+2025-07-12 09:17:42,888 INFO App started
+2025-07-12 09:21:17,640 INFO Closing Oracle connection pool
+2025-07-12 09:21:25,647 INFO App started
+2025-07-12 09:21:34,831 INFO All brokers extracted in 0.01 seconds
+2025-07-12 09:22:11,322 INFO Closing Oracle connection pool
+2025-07-12 09:47:16,916 INFO App started
+2025-07-12 09:49:02,762 INFO Closing Oracle connection pool
+2025-07-12 09:49:10,162 INFO App started
+2025-07-12 09:50:38,669 INFO Closing Oracle connection pool
+2025-07-12 09:50:47,599 INFO App started
+2025-07-12 09:51:16,319 INFO Closing Oracle connection pool
+2025-07-12 09:51:32,709 INFO App started
+2025-07-12 09:51:35,445 INFO Closing Oracle connection pool
+2025-07-12 09:51:41,741 INFO App started
+2025-07-12 09:51:51,608 INFO Closing Oracle connection pool
+2025-07-12 09:51:58,089 INFO App started
+2025-07-12 09:52:05,131 INFO Closing Oracle connection pool
+2025-07-12 09:52:11,364 INFO App started
+2025-07-12 09:52:18,611 INFO Closing Oracle connection pool
+2025-07-12 09:52:24,964 INFO App started
+2025-07-12 09:52:27,487 INFO Closing Oracle connection pool
+2025-07-12 09:52:33,908 INFO App started
+2025-07-12 09:52:44,161 INFO Closing Oracle connection pool
+2025-07-12 10:52:38,204 INFO App started
+2025-07-12 10:55:19,903 INFO Closing Oracle connection pool
+2025-07-12 10:55:32,479 INFO App started
+2025-07-12 10:55:40,778 INFO App started
+2025-07-12 10:55:58,190 INFO Closing Oracle connection pool
+2025-07-12 10:56:08,156 INFO App started
+2025-07-12 10:57:33,526 INFO Closing Oracle connection pool
+2025-07-12 10:57:43,106 INFO App started
+2025-07-12 10:57:48,400 INFO Closing Oracle connection pool
+2025-07-12 10:57:55,008 INFO App started
+2025-07-12 11:02:16,943 INFO Closing Oracle connection pool
+2025-07-12 11:13:52,637 INFO App started
+2025-07-12 11:16:45,026 INFO Closing Oracle connection pool
+2025-07-12 11:17:08,456 INFO App started
+2025-07-12 11:17:17,389 INFO Closing Oracle connection pool
+2025-07-12 11:17:30,048 INFO App started
+2025-07-12 11:19:43,678 INFO Closing Oracle connection pool
+2025-07-12 11:19:55,705 INFO App started
+2025-07-12 11:19:58,508 INFO Closing Oracle connection pool
+2025-07-12 11:20:06,215 INFO App started
+2025-07-12 11:20:51,704 INFO Closing Oracle connection pool
+2025-07-12 11:21:00,402 INFO App started
+2025-07-12 11:21:57,523 INFO Closing Oracle connection pool
+2025-07-12 11:22:21,489 INFO App started
+2025-07-12 11:23:10,550 INFO Closing Oracle connection pool
+2025-07-12 11:23:32,094 INFO App started
+2025-07-12 11:23:41,175 INFO Closing Oracle connection pool
+2025-07-12 11:26:51,398 INFO App started
+2025-07-12 11:26:54,718 INFO Closing Oracle connection pool
+2025-07-12 11:27:04,664 INFO App started
+2025-07-12 12:04:53,468 INFO Closing Oracle connection pool
+2025-07-12 12:05:10,661 INFO App started
+2025-07-12 14:17:30,846 INFO App started
+2025-07-12 14:17:35,970 INFO Closing Oracle connection pool
+2025-07-12 14:19:05,091 INFO App started
+2025-07-12 14:19:56,800 INFO Closing Oracle connection pool
+2025-07-12 14:20:00,645 INFO App started
+2025-07-12 14:20:06,022 INFO Closing Oracle connection pool
+2025-07-12 14:20:10,122 INFO App started
+2025-07-12 14:20:19,522 INFO Closing Oracle connection pool
+2025-07-12 14:20:23,320 INFO App started
+2025-07-12 14:20:26,538 INFO Closing Oracle connection pool
+2025-07-12 14:20:30,441 INFO App started
+2025-07-12 14:21:03,898 INFO Closing Oracle connection pool
+2025-07-12 14:21:07,886 INFO App started
+2025-07-12 14:21:08,942 INFO Closing Oracle connection pool
+2025-07-12 14:21:12,913 INFO App started
+2025-07-12 14:21:22,642 INFO Closing Oracle connection pool
+2025-07-12 14:21:26,859 INFO App started
+2025-07-12 14:22:36,875 INFO Closing Oracle connection pool
+2025-07-12 14:22:40,542 INFO App started
+2025-07-12 14:23:17,448 INFO Closing Oracle connection pool
+2025-07-12 14:23:25,991 INFO App started
+2025-07-12 14:23:33,242 INFO Closing Oracle connection pool
+2025-07-12 14:23:37,159 INFO App started
+2025-07-12 14:24:09,871 INFO Closing Oracle connection pool
+2025-07-12 14:24:13,876 INFO App started
+2025-07-12 14:24:30,124 INFO Closing Oracle connection pool
+2025-07-12 14:24:34,244 INFO App started
+2025-07-12 14:24:46,146 INFO Closing Oracle connection pool
+2025-07-12 14:24:50,872 INFO App started
+2025-07-12 14:24:52,126 INFO Closing Oracle connection pool
+2025-07-12 14:24:56,181 INFO App started
+2025-07-12 14:25:09,335 INFO All brokers extracted in 0.03 seconds
+2025-07-12 14:25:29,975 ERROR Unique ID already exists
+2025-07-12 14:25:29,976 ERROR Check unique ID endpoint client exception (UniqueIdExists): 
+2025-07-12 14:25:40,839 ERROR Unexpected error: unsupported operand type(s) for -: 'builtin_function_or_method' and 'builtin_function_or_method'
+Traceback (most recent call last):
+  File "C:\Users\tasss\OneDrive\Documents\Citi-Internship\citi-ai\src\app\api\routers\broker.py", line 49, in check_unique_id
+    logger.info(f"Check unique ID exists in {end-start:.2f} seconds")
+                                             ~~~^~~~~~
+TypeError: unsupported operand type(s) for -: 'builtin_function_or_method' and 'builtin_function_or_method'
+2025-07-12 14:28:17,155 INFO Closing Oracle connection pool
+2025-07-12 14:28:22,680 INFO App started
+2025-07-12 14:28:33,000 INFO Closing Oracle connection pool
+2025-07-12 14:28:36,951 INFO App started
+2025-07-12 14:28:40,484 INFO Closing Oracle connection pool
+2025-07-12 14:28:44,554 INFO App started
+2025-07-12 14:29:46,606 INFO Closing Oracle connection pool
+2025-07-12 14:29:50,871 INFO App started
+2025-07-12 14:29:55,996 INFO Closing Oracle connection pool
+2025-07-12 14:30:00,103 INFO App started
+2025-07-12 14:30:26,725 ERROR Unique ID already exists
+2025-07-12 14:30:26,726 ERROR Check unique ID endpoint client exception (UniqueIdExists): 
+2025-07-12 14:30:34,260 INFO Check unique ID exists in 0.00 seconds
+2025-07-12 14:30:39,606 INFO Check unique ID exists in 0.00 seconds
+2025-07-12 14:30:43,312 INFO Check unique ID exists in 0.00 seconds
+2025-07-12 15:21:06,942 INFO Closing Oracle connection pool
+2025-07-12 15:21:15,913 INFO App started
+2025-07-12 15:21:29,594 INFO Closing Oracle connection pool
+2025-07-12 15:22:02,595 INFO App started
+2025-07-12 15:22:06,681 INFO Closing Oracle connection pool
+2025-07-12 15:22:11,303 INFO App started
+2025-07-12 15:22:27,923 INFO Closing Oracle connection pool
+2025-07-12 15:22:32,588 INFO App started
+2025-07-12 15:22:50,893 INFO Closing Oracle connection pool
+2025-07-12 15:22:55,582 INFO App started
+2025-07-12 15:22:57,077 INFO Closing Oracle connection pool
+2025-07-12 15:23:01,870 INFO App started
+2025-07-12 15:23:14,193 INFO Closing Oracle connection pool
+2025-07-12 15:23:18,947 INFO App started
+2025-07-12 15:23:50,792 INFO Closing Oracle connection pool
+2025-07-12 15:23:55,864 INFO App started
+2025-07-12 15:24:02,356 INFO Closing Oracle connection pool
+2025-07-12 15:24:06,993 INFO App started
+2025-07-12 15:25:09,554 INFO Closing Oracle connection pool
+2025-07-12 15:25:14,321 INFO App started
+2025-07-12 15:25:15,403 INFO Closing Oracle connection pool
+2025-07-12 15:25:20,049 INFO App started
+2025-07-12 15:25:31,609 INFO Closing Oracle connection pool
+2025-07-12 15:25:36,419 INFO App started
+2025-07-12 15:25:37,706 INFO Closing Oracle connection pool
+2025-07-12 15:25:42,539 INFO App started
+2025-07-12 15:25:54,153 INFO Closing Oracle connection pool
+2025-07-12 15:25:59,138 INFO App started
+2025-07-12 15:26:05,835 INFO Closing Oracle connection pool
+2025-07-12 15:26:10,838 INFO App started
+2025-07-12 15:26:14,847 INFO Closing Oracle connection pool
+2025-07-12 15:26:19,701 INFO App started
+2025-07-12 15:26:21,126 INFO Closing Oracle connection pool
+2025-07-12 15:26:25,764 INFO App started
+2025-07-12 15:26:29,779 INFO Closing Oracle connection pool
+2025-07-12 15:26:34,515 INFO App started
+2025-07-12 15:26:35,791 INFO Closing Oracle connection pool
+2025-07-12 15:26:40,474 INFO App started
+2025-07-12 15:26:41,859 INFO Closing Oracle connection pool
+2025-07-12 15:26:46,448 INFO App started
+2025-07-12 15:28:22,095 INFO Closing Oracle connection pool
+2025-07-12 15:28:41,055 INFO App started
+2025-07-12 15:28:47,639 INFO Closing Oracle connection pool
+2025-07-12 15:28:52,947 INFO App started
+2025-07-12 15:28:56,837 INFO Closing Oracle connection pool
+2025-07-12 15:30:00,469 INFO App started
+2025-07-12 15:31:35,108 INFO Closing Oracle connection pool
+2025-07-12 15:31:39,866 INFO App started
+2025-07-12 15:32:07,947 INFO Closing Oracle connection pool
+2025-07-12 15:32:18,214 INFO App started
+2025-07-12 15:32:21,978 INFO Closing Oracle connection pool
+2025-07-12 15:32:26,490 INFO App started
+2025-07-12 15:32:39,037 INFO Closing Oracle connection pool
+2025-07-12 15:32:43,668 INFO App started
+2025-07-12 15:32:50,507 INFO Closing Oracle connection pool
+2025-07-12 15:32:55,194 INFO App started
+2025-07-12 15:39:58,612 INFO Closing Oracle connection pool
+2025-07-12 15:40:07,182 INFO App started
+2025-07-12 15:40:12,336 INFO Closing Oracle connection pool
+2025-07-12 15:40:17,121 INFO App started
+2025-07-12 15:40:18,295 INFO Closing Oracle connection pool
+2025-07-12 15:40:22,805 INFO App started
+2025-07-12 15:40:52,103 INFO Closing Oracle connection pool
+2025-07-12 15:40:56,969 INFO App started
+2025-07-12 15:40:58,359 INFO Closing Oracle connection pool
+2025-07-12 15:41:03,022 INFO App started
+2025-07-12 15:41:04,309 INFO Closing Oracle connection pool
+2025-07-12 15:41:09,339 INFO App started
+2025-07-12 15:41:10,631 INFO Closing Oracle connection pool
+2025-07-12 15:41:15,287 INFO App started
+2025-07-12 15:41:16,814 INFO Closing Oracle connection pool
+2025-07-12 15:41:21,622 INFO App started
+2025-07-12 15:41:38,527 INFO Closing Oracle connection pool
+2025-07-12 15:41:43,153 INFO App started
+2025-07-12 15:41:46,930 INFO Closing Oracle connection pool
+2025-07-12 15:41:51,625 INFO App started
+2025-07-12 15:41:58,319 INFO Closing Oracle connection pool
+2025-07-12 15:42:03,120 INFO App started
+2025-07-12 15:42:34,032 INFO Closing Oracle connection pool
+2025-07-12 15:42:39,033 INFO App started
+2025-07-12 15:42:45,631 INFO Closing Oracle connection pool
+2025-07-12 15:42:50,577 INFO App started
+2025-07-12 15:48:29,279 INFO Closing Oracle connection pool
+2025-07-12 15:48:35,503 INFO App started
+2025-07-12 15:48:47,382 INFO Closing Oracle connection pool
+2025-07-12 15:48:52,044 INFO App started
+2025-07-12 15:49:07,427 INFO Closing Oracle connection pool
+2025-07-12 15:49:23,108 INFO App started
+2025-07-12 15:50:44,931 INFO Closing Oracle connection pool
+2025-07-12 15:50:50,130 INFO App started
+2025-07-12 15:51:04,553 INFO Closing Oracle connection pool
+2025-07-12 15:51:09,329 INFO App started
+2025-07-12 15:51:15,923 INFO Closing Oracle connection pool
+2025-07-12 15:51:20,644 INFO App started
+2025-07-12 15:51:30,163 INFO Closing Oracle connection pool
+2025-07-12 15:51:34,890 INFO App started
+2025-07-12 15:52:25,533 INFO Closing Oracle connection pool
+2025-07-12 15:52:30,098 INFO App started
+2025-07-12 15:52:41,780 INFO Closing Oracle connection pool
+2025-07-12 16:06:52,607 INFO App started
+2025-07-12 16:07:37,419 INFO Closing Oracle connection pool
+2025-07-12 16:07:42,048 INFO App started
+2025-07-12 16:07:48,763 INFO Closing Oracle connection pool
+2025-07-12 16:07:53,368 INFO App started
+2025-07-12 16:07:54,984 INFO Closing Oracle connection pool
+2025-07-12 16:07:59,759 INFO App started
+2025-07-12 16:08:03,856 INFO Closing Oracle connection pool
+2025-07-12 16:08:08,801 INFO App started
+2025-07-12 16:08:48,362 INFO Closing Oracle connection pool
+2025-07-12 16:08:53,041 INFO App started
+2025-07-12 16:09:07,404 INFO All brokers extracted in 0.13 seconds
+2025-07-12 16:09:18,526 ERROR Check unique ID endpoint client exception (DBQuery): 
+2025-07-12 16:10:03,663 ERROR Check unique ID endpoint client exception (DBQuery): 
+2025-07-12 16:13:40,667 INFO Closing Oracle connection pool
+2025-07-12 16:13:50,240 INFO App started
+2025-07-12 16:14:37,134 INFO All brokers extracted in 0.02 seconds
+2025-07-12 16:14:48,804 ERROR Check unique ID endpoint client exception (DBQuery): 
+2025-07-12 16:16:20,195 INFO Closing Oracle connection pool
+2025-07-12 16:16:24,970 INFO App started
+2025-07-12 16:16:39,378 ERROR Check unique ID endpoint client exception (DBQuery): DPY-4009: 3 positional bind values are required but 2 were provided
+2025-07-12 16:18:43,938 INFO Closing Oracle connection pool
+2025-07-12 16:18:47,834 INFO App started
+2025-07-12 16:18:53,145 INFO Closing Oracle connection pool
+2025-07-12 16:18:57,524 INFO App started
+2025-07-12 16:18:58,467 INFO Closing Oracle connection pool
+2025-07-12 16:19:02,480 INFO App started
+2025-07-12 16:19:11,303 ERROR Check unique ID endpoint client exception (DBQuery): DPY-4009: 3 positional bind values are required but 2 were provided
+2025-07-12 16:20:40,885 INFO Closing Oracle connection pool
+2025-07-12 16:20:45,118 INFO App started
+2025-07-12 16:20:54,555 ERROR Check unique ID endpoint client exception (DBQuery): DPY-4009: 3 positional bind values are required but 2 were provided
+2025-07-12 16:24:01,184 INFO Closing Oracle connection pool
+2025-07-12 16:24:06,519 INFO App started
+2025-07-12 16:24:11,153 INFO Closing Oracle connection pool
+2025-07-12 16:24:15,194 INFO App started
+2025-07-12 16:24:18,099 INFO Closing Oracle connection pool
+2025-07-12 16:24:21,931 INFO App started
+2025-07-12 16:24:40,471 ERROR Check unique ID endpoint client exception (UniqueIdExists): 
+2025-07-12 16:24:47,363 ERROR Check unique ID endpoint client exception (BrokerNotFound): Broker not found in Broker Reference TABLE
+2025-07-12 16:25:03,064 INFO Closing Oracle connection pool
+2025-07-12 16:25:07,097 INFO App started
+2025-07-12 16:25:20,184 ERROR Check unique ID endpoint client exception (UniqueIdExists): 
+2025-07-12 16:25:31,574 INFO All brokers extracted in 0.01 seconds
+2025-07-12 16:25:44,017 INFO Closing Oracle connection pool
+2025-07-12 16:25:48,121 INFO App started
+2025-07-12 16:58:28,612 INFO Closing Oracle connection pool

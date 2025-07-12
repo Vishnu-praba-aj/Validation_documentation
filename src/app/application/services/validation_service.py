@@ -18,10 +18,10 @@ class ValidationService:
         self.llm_client = LLMClient()
         self.repo_client = RepoApiClient()
 
-    def analyze_repo(self, repo_url):
+    def analyze_repo(self, repo_url: str):
         files = self.repo_client.get_files_from_repo(repo_url)
         if not files:
-            raise RepoProcessingException()
+            raise RepoProcessingException("Failed to process repository")
 
         code_blocks = []
         html_files = {f["path"]: f["content"] for f in files if f["type"] == ".html"}
