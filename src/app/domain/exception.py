@@ -1,3 +1,6 @@
+import oracledb
+
+
 class FileTooLargeException(Exception):
     def __init__(self, detail="File is too large."):
         self.detail = detail
@@ -32,4 +35,8 @@ class UniqueIdExistsException(Exception):
 
 class ResourceNotFoundException(Exception):
     def __init__(self, detail="Resource Not found"):
+        self.detail = detail
+
+class VersionConflictException(Exception):
+    def __init__(self, detail="Version Conflict"):
         self.detail = detail

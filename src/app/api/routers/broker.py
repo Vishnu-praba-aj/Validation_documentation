@@ -1,7 +1,7 @@
 import time
 from fastapi import APIRouter, Depends, Form, HTTPException
-from src.app.domain.models import AllBrokers, BrokerConfigResponse, BrokerTemplateInfo, InsertConfigRequest
-from src.app.domain.exception import DBQueryException, ResourceNotFoundException, TableMissingException, UniqueIdExistsException
+from src.app.domain.models import AllBrokers, BrokerConfig, BrokerTemplateInfo, InsertConfigRequest
+from src.app.domain.exception import DBQueryException, ResourceNotFoundException, TableMissingException, UniqueIdExistsException, VersionConflictException
 from src.app.application.services.broker_service import BrokerService
 from src.app.api.deps import get_broker_service
 from utils.logging import setup_logger
@@ -70,7 +70,7 @@ async def insert_config(
     service=Depends(get_broker_service)
 ):
     try:
-        logger.info(f"Received request to update config for broker: {request.broker_code}")
+        logger.info(f"Received request to insert config for broker: {request.broker_code}")
         start = time.perf_counter()
         service.insert_template(request.broker_code,request.response)
         end = time.perf_counter()
@@ -114,12 +114,12 @@ async def get_template_info(
         logger.error(f"Template info error (DBQuery): {str(e)}")
         raise HTTPException(status_code=502, detail=e.detail)
     except Exception as e:
-        logger.error(f"Unexpected template info error: {str(e)}", exc_info=True)
+        logger.error(f"Unexpected error: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail="Unexpected server error")
     
 @router.get(
     "/get_config",
-    response_model=BrokerConfigResponse,
+    response_model=BrokerConfig,
     operation_id="get-broker-config"
 )
 async def get_config(
@@ -133,5 +133,36 @@ async def get_config(
         logger.error(f"Broker config not found: {str(e)}")
         raise HTTPException(status_code=404, detail=e.detail)
     except Exception as e:
-        logger.error(f"Unexpected error while fetching config: {str(e)}", exc_info=True)
+        logger.error(f"Unexpected error: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Unexpected server error")
+
+@router.post(
+    "/update-config",
+    operation_id="update-broker-config"
+)
+async def update_config(
+    request: BrokerConfig,
+    service: BrokerService = Depends(get_broker_service)
+):
+    try:
+        logger.info(f"Received request to update config for broker: {request.broker_code}")
+        start = time.perf_counter()
+        result = service.update_broker_config(request)
+        end = time.perf_counter()
+        logger.info(f"Config updated in {end - start:.2f} seconds")
+        return result
+    except ResourceNotFoundException as e:
+        logger.error(f"Update config client endpoint error (UniqueIDNotFound): {str(e)}")
+        raise HTTPException(status_code=404, detail=e.detail)
+    except TableMissingException as e:
+        logger.error(f"Update config client endpoint error (TableMissing): {str(e)}")
+        raise HTTPException(status_code=500, detail=e.detail)
+    except DBQueryException as e:
+        logger.error(f"Update config client endpoint error (DBQuery): {str(e)}")
+        raise HTTPException(status_code=502, detail=e.detail)
+    except VersionConflictException as e:
+        logger.error(f"Update config client endpoint error (VersionConflict): {str(e)}")
+        raise HTTPException(status_code=409, detail=e.detail)
+    except Exception as e:
+        logger.error(f"Unexpected error: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail="Unexpected server error")

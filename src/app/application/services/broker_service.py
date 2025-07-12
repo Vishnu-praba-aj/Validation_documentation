@@ -1,5 +1,5 @@
 from src.app.domain.exception import ResourceNotFoundException, UniqueIdExistsException
-from src.app.domain.models import AllBrokers, BrokerConfigResponse, Field, FieldMetadata, Response, Row
+from src.app.domain.models import AllBrokers, BrokerConfig, Field, FieldMetadata, Response, Row
 from src.app.infrastructure.db.broker_dao import BrokerDAO
 
 class BrokerService:
@@ -28,7 +28,7 @@ class BrokerService:
             raise ResourceNotFoundException("No broker found")
         return result
 
-    def get_broker_config(self, broker_code: str, broker_template_no: int)->BrokerConfigResponse:
+    def get_broker_config(self, broker_code: str, broker_template_no: int)->BrokerConfig:
         rows = self.dao.get_broker_config(broker_code, broker_template_no)
         if not rows:
             raise ResourceNotFoundException("No config found for given broker and template")
@@ -63,9 +63,21 @@ class BrokerService:
 
             response_rows.append(Row(index=idx, fields=[field]))
 
-        return BrokerConfigResponse(
+        return BrokerConfig(
             version=version,
             broker_code=broker_code,
             broker_template_no=broker_template_no,
             response=Response(rows=response_rows),
         )
+    
+    def update_broker_config(self, request: BrokerConfig):
+        broker_code = request.broker_code
+        template_no = request.broker_template_no
+        response = request.response
+
+        unique_id = next((f.document_label for row in response.rows for f in row.fields if f.custom_field == "unique_identifier"), None)
+        if not unique_id:
+            raise ResourceNotFoundException("Unique identifier not found in Response")
+
+        result = self.dao.update_config(broker_code,template_no,request.version,unique_id,response.rows)
+        return result

@@ -84,8 +84,8 @@ class BrokerTemplateInfo(BaseModel):
     broker_code: str
     no_template: int
 
-class BrokerConfigResponse(BaseModel):
-    version: int
+class BrokerConfig(BaseModel):
     broker_code: str
+    version: int
     broker_template_no: int
     response: Response

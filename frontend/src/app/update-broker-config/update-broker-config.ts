@@ -1,4 +1,3 @@
-// File: new-broker-config.component.ts
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -12,7 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrokerConfigService } from './broker-config.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
 
 interface Broker {
   'broker-code': string;
@@ -45,8 +43,8 @@ interface Field {
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule
-  ]
+    MatMenuModule,
+  ],
 })
 export class UpdateBrokerConfig implements OnInit {
   brokers: Broker[] = [];
@@ -65,7 +63,7 @@ export class UpdateBrokerConfig implements OnInit {
   newIdentifierFieldName: string = '';
   optionalPhrase: string = '';
   identifierSet: boolean = false;
-  promptHistory: { from: 'user' | 'bot', text: string }[] = [];
+  promptHistory: { from: 'user' | 'bot'; text: string }[] = [];
   initialPrompt: string = '';
   templateCount: number = 0;
   availableTemplates: number[] = [];
@@ -78,77 +76,81 @@ export class UpdateBrokerConfig implements OnInit {
   isEditingIdentifier: boolean = false;
   originalUniqueIdentifierField: Field | null = null;
 
-
-onBrokerChange(code: string) {
-  this.selectedBrokerCode = code;
-  this.selectedTemplateNumber = null;
-  this.responseData = [];
-  this.templateDataLoaded = false;
-  this.showUploadSection = false;
-
-  this.brokerService.getTemplateCount(code).subscribe((res: any) => {
-    this.templateCount = res.count;
-    this.availableTemplates = Array.from({ length: res.count }, (_, i) => i + 1);
-  });
-}
-
-onTemplateSelected(templateNumber: number) {
-  const payload = {
-    broker_code: this.selectedBrokerCode,
-    template_number: templateNumber
-  };
-  this.brokerService.getTemplateData(payload).subscribe(res => {
-    this.version_no = res.version_no;
-    this.responseData = res.response.rows[0].fields;
-
-    this.findUniqueIdentifierField(); 
-
-    this.expandedCardIndex = -1;
-    this.templateDataLoaded = true;
+  onBrokerChange(code: string) {
+    this.selectedBrokerCode = code;
+    this.selectedTemplateNumber = null;
+    this.responseData = [];
+    this.templateDataLoaded = false;
     this.showUploadSection = false;
-  });
-}
 
+    this.brokerService.getTemplateCount(code).subscribe((res: any) => {
+      this.templateCount = res.count;
+      this.availableTemplates = Array.from(
+        { length: res.count },
+        (_, i) => i + 1
+      );
+    });
+  }
 
-findUniqueIdentifierField() {
-  const possibleKeys = [ 'unique_identifier']; 
-  this.uniqueIdentifierField = this.responseData.find(
-    (field) =>
-      possibleKeys.includes(field.custom_field.trim().toLowerCase()) ||
-      possibleKeys.includes(field.document_label.trim().toLowerCase())
-  ) || null;
-}
+  onTemplateSelected(templateNumber: number) {
+    const payload = {
+      broker_code: this.selectedBrokerCode,
+      broker_template_no: templateNumber,
+    };
+    this.brokerService.getTemplateData(payload).subscribe((res) => {
+      this.version_no = res.version_no;
+      this.responseData = res.response.rows[0].fields;
 
-saveUniqueIdentifierEdit() {
-  if (!this.uniqueIdentifierField) return;
+      this.findUniqueIdentifierField();
 
-  const payload = {
-    broker_code: this.selectedBrokerCode,
-    field_name: this.uniqueIdentifierField.document_label
-  };
+      this.expandedCardIndex = -1;
+      this.templateDataLoaded = true;
+      this.showUploadSection = false;
+    });
+  }
 
-  this.brokerService.validateUniqueIdentifier(payload).subscribe((res: any) => {
-    if (res.valid) {
-      this.snackBar.open('Unique identifier validated successfully!', 'Close', {
-        panelClass: ['snack-success'],
+  findUniqueIdentifierField() {
+    const possibleKeys = ['unique_identifier'];
+    this.uniqueIdentifierField =
+      this.responseData.find(
+        (field) =>
+          possibleKeys.includes(field.custom_field.trim().toLowerCase()) ||
+          possibleKeys.includes(field.document_label.trim().toLowerCase())
+      ) || null;
+  }
+
+  saveUniqueIdentifierEdit() {
+    if (!this.uniqueIdentifierField) return;
+
+    const payload = {
+      broker_code: this.selectedBrokerCode,
+      field_name: this.uniqueIdentifierField.document_label,
+    };
+
+    this.brokerService
+      .validateUniqueIdentifier(payload)
+      .subscribe((res: any) => {
+        if (res.valid) {
+          this.snackBar.open(
+            'Unique identifier validated successfully!',
+            'Close',
+            {
+              panelClass: ['snack-success'],
+            }
+          );
+
+          this.isEditingIdentifier = false;
+        } else {
+          this.snackBar.open("Can't use this as unique identifier.", 'Close', {
+            panelClass: ['snack-error'],
+          });
+        }
       });
+  }
 
-      this.isEditingIdentifier = false;
-    } else {
-      this.snackBar.open("Can't use this as unique identifier.", 'Close', {
-        panelClass: ['snack-error'],
-      });
-    }
-  });
-}
-
-
-
-startUpload() {
-  this.showUploadSection = true;
-}
-
-
+  startUpload() {
+    this.showUploadSection = true;
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -156,17 +158,15 @@ startUpload() {
     private snackBar: MatSnackBar
   ) {}
 
-
   ngOnInit(): void {
     this.fetchBrokers();
   }
 
   fetchBrokers() {
-    this.brokerService.getBrokers().subscribe(data => {
+    this.brokerService.getBrokers().subscribe((data) => {
       this.brokers = data.broker;
     });
   }
-
 
   onFileSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
@@ -180,223 +180,232 @@ startUpload() {
     this.selectedFieldsFileName = file ? file.name : '';
   }
   canAdd(): boolean {
-  return !!(this.selectedBrokerCode && this.documentFile && this.customFieldFile);
-}
+    return !!(
+      this.selectedBrokerCode &&
+      this.documentFile &&
+      this.customFieldFile
+    );
+  }
 
-canReset(): boolean {
-  return (
-    this.selectedBrokerCode !== '' ||
-    this.documentFile !== null ||
-    this.customFieldFile !== null ||
-    this.prompt.trim().length > 0 ||
-    this.responseData.length > 0
-  );
-}
+  canReset(): boolean {
+    return (
+      this.selectedBrokerCode !== '' ||
+      this.documentFile !== null ||
+      this.customFieldFile !== null ||
+      this.prompt.trim().length > 0 ||
+      this.responseData.length > 0
+    );
+  }
   keyvalueCompare = (a: any, b: any): number => {
-  return a.key.localeCompare(b.key);
-};
+    return a.key.localeCompare(b.key);
+  };
 
-trackByKey(index: number, item: any): string {
-  return item.key;
-}
+  trackByKey(index: number, item: any): string {
+    return item.key;
+  }
 
-getMetadataValue(field: any, key: any): any {
-  return field.metadata[key as string];
-}
+  getMetadataValue(field: any, key: any): any {
+    return field.metadata[key as string];
+  }
 
-setMetadataValue(field: any, key: any, value: any): void {
-  field.metadata[key as string] = value;
-}
+  setMetadataValue(field: any, key: any, value: any): void {
+    field.metadata[key as string] = value;
+  }
 
   onAdd() {
-  const formData = new FormData();
-  formData.append('broker_code', this.selectedBrokerCode);
-  if (this.documentFile) formData.append('document_file', this.documentFile);
-  if (this.customFieldFile) formData.append('custom_field_file', this.customFieldFile);
-  if (this.prompt) formData.append('prompt', this.initialPrompt);
-  console.log(this.initialPrompt);
+    const formData = new FormData();
+    formData.append('broker_code', this.selectedBrokerCode);
+    if (this.documentFile) formData.append('document_file', this.documentFile);
+    if (this.customFieldFile)
+      formData.append('custom_field_file', this.customFieldFile);
+    if (this.prompt) formData.append('prompt', this.initialPrompt);
+    console.log(this.initialPrompt);
 
-  this.brokerService.submitBrokerConfiguration(formData).subscribe(res => {
-    this.sessionId = res.session_id;
-    this.responseData = res.response.rows[0].fields;
-    this.expandedCardIndex = -1; 
-  });
-}
-onPromptSend() {
-  if (!this.prompt.trim()) return;
-
-  if (!this.sessionId) {
-    this.initialPrompt = this.initialPrompt+' '+this.prompt;  
-    this.promptHistory.push({ from: 'user', text: this.prompt });
-    this.promptHistory.push({ from: 'bot', text: 'Now click Add to proceed.' });
-  } else {
-    this.callFollowUpAPI(this.sessionId, this.prompt);
-    
+    this.brokerService.submitBrokerConfiguration(formData).subscribe((res) => {
+      this.sessionId = res.session_id;
+      this.responseData = res.response.rows[0].fields;
+      this.expandedCardIndex = -1;
+    });
   }
+  onPromptSend() {
+    if (!this.prompt.trim()) return;
 
-  this.prompt = '';
-  setTimeout(() => {
-  const chatBox = document.querySelector('.chat-prompt-box');
-  if (chatBox) chatBox.scrollTop = chatBox.scrollHeight;
-}, 50);
-
-}
-
-callInitialAddAPI(prompt: string) {
-
-  const payload = {
-    prompt: prompt,
-    documentFile: this.documentFile,
-    fieldsFile: this.customFieldFile,
-    brokerCode: this.selectedBrokerCode
-  };
-
-  this.brokerService.initialAdd(payload).subscribe((response: any) => {
-    this.sessionId = response.session_id;
-    this.responseData = response.fields; 
-  });
-}
-
-callFollowUpAPI(sessionId: string, prompt: string) {
-  const payload = {
-    session_id: sessionId,
-    prompt: prompt
-  };
-
-  this.brokerService.continueChat(payload).subscribe((response: any) => {
-    this.responseData = response.updatedFields;
-    this.promptHistory.push({ from: 'user', text: this.prompt });
-    this.promptHistory.push({ from: 'bot', text: "The fields got updated, please look the data." });
-  });
-}
-
-toggleMetadata(index: number) {
-  this.expandedCardIndex = this.expandedCardIndex === index ? -1 : index;
-}
-getMetadataEntries(metadata: { [key: string]: any }) {
-  return Object.entries(metadata);
-}
-
-onIdentifierChange(value: string) {
-  this.newIdentifierFieldName = '';
-  this.optionalPhrase = '';
-}
-
-addCustomUniqueIdentifier() {
-  if (!this.newIdentifierFieldName.trim()) {
-    alert('Please enter a field name.');
-    return;
-  }
-  const payload = {
-    session_id: this.sessionId,
-    broker_code: this.selectedBrokerCode,
-    field_name: this.newIdentifierFieldName,
-    phrase: this.optionalPhrase || ''
-  };
-
-  this.brokerService.setUniqueIdentifier(payload).subscribe((res: any) => {
-    this.responseData = res.response.rows[0].fields;
-    this.identifierSet = true;
-    alert('Identifier added successfully!');
-  });
-}
-
-validateExistingIdentifier() {
-  const payload = {
-    broker_code: this.selectedBrokerCode,
-    field_name: this.selectedIdentifierField
-  };
-  this.brokerService.validateUniqueIdentifier(payload).subscribe((res: any) => {
-    if (res.valid) {
-      this.identifierSet = true;
-      this.snackBar.open('Identifier added successfully!', 'Close', {
-        panelClass: ['snack-success'],
-      
+    if (!this.sessionId) {
+      this.initialPrompt = this.initialPrompt + ' ' + this.prompt;
+      this.promptHistory.push({ from: 'user', text: this.prompt });
+      this.promptHistory.push({
+        from: 'bot',
+        text: 'Now click Add to proceed.',
       });
     } else {
-      this.snackBar.open("Can't use this as unique identifier.", 'Close', {
-        panelClass: ['snack-error'],
-      });
+      this.callFollowUpAPI(this.sessionId, this.prompt);
     }
-  });
-}
 
+    this.prompt = '';
+    setTimeout(() => {
+      const chatBox = document.querySelector('.chat-prompt-box');
+      if (chatBox) chatBox.scrollTop = chatBox.scrollHeight;
+    }, 50);
+  }
 
+  callInitialAddAPI(prompt: string) {
+    const payload = {
+      prompt: prompt,
+      documentFile: this.documentFile,
+      fieldsFile: this.customFieldFile,
+      broker_code: this.selectedBrokerCode,
+    };
 
-onSubmit() {
-  const payload = {
-    broker_code: this.selectedBrokerCode,
-    session_id: this.sessionId,
-    response: this.responseData,
-    version_no:this.version_no
-  };
+    this.brokerService.initialAdd(payload).subscribe((response: any) => {
+      this.sessionId = response.session_id;
+      this.responseData = response.fields;
+    });
+  }
 
-  console.log('Submitting payload:', payload);
+  callFollowUpAPI(sessionId: string, prompt: string) {
+    const payload = {
+      session_id: sessionId,
+      prompt: prompt,
+    };
 
-  this.brokerService.submitFinalConfiguration(payload).subscribe({
-    next: (res) => {
-      this.snackBar.open('Configuration submitted successfully!', 'Close', {
-        panelClass: ['snack-success'],
-        horizontalPosition: 'center',
-        verticalPosition: 'top'
+    this.brokerService.continueChat(payload).subscribe((response: any) => {
+      this.responseData = response.updatedFields;
+      this.promptHistory.push({ from: 'user', text: this.prompt });
+      this.promptHistory.push({
+        from: 'bot',
+        text: 'The fields got updated, please look the data.',
       });
-    },
-    error: (err) => {
-      console.error('Submission failed:', err);
-      this.snackBar.open('Failed to submit configuration.', 'Close', {
-        panelClass: ['snack-error'],
-        horizontalPosition: 'center',
-        verticalPosition: 'top'
-      });
+    });
+  }
+
+  toggleMetadata(index: number) {
+    this.expandedCardIndex = this.expandedCardIndex === index ? -1 : index;
+  }
+  getMetadataEntries(metadata: { [key: string]: any }) {
+    return Object.entries(metadata);
+  }
+
+  onIdentifierChange(value: string) {
+    this.newIdentifierFieldName = '';
+    this.optionalPhrase = '';
+  }
+
+  addCustomUniqueIdentifier() {
+    if (!this.newIdentifierFieldName.trim()) {
+      alert('Please enter a field name.');
+      return;
     }
-  });
-}
+    const payload = {
+      session_id: this.sessionId,
+      broker_code: this.selectedBrokerCode,
+      field_name: this.newIdentifierFieldName,
+      phrase: this.optionalPhrase || '',
+    };
 
+    this.brokerService.setUniqueIdentifier(payload).subscribe((res: any) => {
+      this.responseData = res.response.rows[0].fields;
+      this.identifierSet = true;
+      alert('Identifier added successfully!');
+    });
+  }
+
+  validateExistingIdentifier() {
+    const payload = {
+      broker_code: this.selectedBrokerCode,
+      field_name: this.selectedIdentifierField,
+    };
+    this.brokerService
+      .validateUniqueIdentifier(payload)
+      .subscribe((res: any) => {
+        if (res.valid) {
+          this.identifierSet = true;
+          this.snackBar.open('Identifier added successfully!', 'Close', {
+            panelClass: ['snack-success'],
+          });
+        } else {
+          this.snackBar.open("Can't use this as unique identifier.", 'Close', {
+            panelClass: ['snack-error'],
+          });
+        }
+      });
+  }
+
+  onSubmit() {
+    const payload = {
+      broker_code: this.selectedBrokerCode,
+      version: this.version_no,
+      broker_template_no: this.selectedTemplateNumber,
+      response: this.responseData
+    };
+
+    console.log('Submitting payload:', payload);
+
+    this.brokerService.submitFinalConfiguration(payload).subscribe({
+      next: (res) => {
+        this.snackBar.open('Configuration submitted successfully!', 'Close', {
+          panelClass: ['snack-success'],
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      },
+      error: (err) => {
+        console.error('Submission failed:', err);
+        this.snackBar.open('Failed to submit configuration.', 'Close', {
+          panelClass: ['snack-error'],
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      },
+    });
+  }
 
   toggleEdit() {
-  this.backupFields = JSON.parse(JSON.stringify(this.responseData)); // deep copy
-  this.isEditing = true;
-}
-
-onSave() {
-  this.isEditing = false;
-}
-
-// Top-level form reset
-onFormReset() {
-  this.selectedBrokerCode = '';
-  this.documentFile = null;
-  this.customFieldFile = null;
-  this.prompt = '';
-  this.selectedFileName = '';
-  this.selectedFieldsFileName = '';
-  this.responseData = [];
-  this.selectedIdentifierField = '';
-  this.newIdentifierFieldName = '';
-  this.optionalPhrase = '';
-  this.identifierSet = false;
-  this.isEditing = false;
-  this.expandedCardIndex = -1;
-}
-  // Editing reset (used in edit mode)
-onEditReset() {
-  this.toggleEdit();
-  this.onAdd(); // Or refetch latest processed data if needed
-}
-toggleIdentifierMetadata() {
-  this.isIdentifierExpanded = !this.isIdentifierExpanded;
-}
-
-toggleIdentifierEdit() {
-  this.isEditingIdentifier = true;
-  this.originalUniqueIdentifierField = JSON.parse(JSON.stringify(this.uniqueIdentifierField));
-}
-
-cancelIdentifierEdit() {
-  if (this.originalUniqueIdentifierField) {
-    this.uniqueIdentifierField = JSON.parse(JSON.stringify(this.originalUniqueIdentifierField));
+    this.backupFields = JSON.parse(JSON.stringify(this.responseData)); // deep copy
+    this.isEditing = true;
   }
-  this.isEditingIdentifier = false;
-}
 
+  onSave() {
+    this.isEditing = false;
+  }
+
+  // Top-level form reset
+  onFormReset() {
+    this.selectedBrokerCode = '';
+    this.documentFile = null;
+    this.customFieldFile = null;
+    this.prompt = '';
+    this.selectedFileName = '';
+    this.selectedFieldsFileName = '';
+    this.responseData = [];
+    this.selectedIdentifierField = '';
+    this.newIdentifierFieldName = '';
+    this.optionalPhrase = '';
+    this.identifierSet = false;
+    this.isEditing = false;
+    this.expandedCardIndex = -1;
+  }
+  // Editing reset (used in edit mode)
+  onEditReset() {
+    this.toggleEdit();
+    this.onAdd(); // Or refetch latest processed data if needed
+  }
+  toggleIdentifierMetadata() {
+    this.isIdentifierExpanded = !this.isIdentifierExpanded;
+  }
+
+  toggleIdentifierEdit() {
+    this.isEditingIdentifier = true;
+    this.originalUniqueIdentifierField = JSON.parse(
+      JSON.stringify(this.uniqueIdentifierField)
+    );
+  }
+
+  cancelIdentifierEdit() {
+    if (this.originalUniqueIdentifierField) {
+      this.uniqueIdentifierField = JSON.parse(
+        JSON.stringify(this.originalUniqueIdentifierField)
+      );
+    }
+    this.isEditingIdentifier = false;
+  }
 }
