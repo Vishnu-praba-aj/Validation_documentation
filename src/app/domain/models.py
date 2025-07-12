@@ -30,7 +30,7 @@ class ValidationLLMResponse(BaseModel):
     type: str = "validation"
     response: ValidationResponseData
 
-class ExtractionFieldMetadata(BaseModel):
+class FieldMetadata(BaseModel):
     start_index_nbr: Optional[int] = None
     end_index_nbr: Optional[int] = None
     row_adder_cnt: Optional[int] = None
@@ -46,22 +46,22 @@ class ExtractionFieldMetadata(BaseModel):
     operations_seq: Optional[str] = None
     param_val_fn_txt: Optional[str] = None
 
-class ExtractionField(BaseModel):
+class Field(BaseModel):
     custom_field: str
     document_label: Optional[str] = None
     value: Optional[str] = None
-    metadata: ExtractionFieldMetadata
+    metadata: FieldMetadata
 
-class ExtractionRow(BaseModel):
+class Row(BaseModel):
     index: int
-    fields: List[ExtractionField]
+    fields: List[Field]
 
-class ExtractionResponseData(BaseModel):
-    rows: List[ExtractionRow]
+class Response(BaseModel):
+    rows: List[Row]
 
 class ExtractionLLMResponse(BaseModel):
     session_id: str
-    response: ExtractionResponseData
+    response: Response
 
 class BrokerOut(BaseModel):
     broker_code: str
@@ -75,3 +75,17 @@ class ExtractUniqueIdRequest(BaseModel):
     broker_code: str
     unique_id: str
     message: Optional[str] = None
+
+class InsertConfigRequest(BaseModel):
+    broker_code: str
+    response: Response
+
+class BrokerTemplateInfo(BaseModel):
+    broker_code: str
+    no_template: int
+
+class BrokerConfigResponse(BaseModel):
+    version: int
+    broker_code: str
+    broker_template_no: int
+    response: Response

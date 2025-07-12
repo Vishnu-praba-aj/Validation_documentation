@@ -8,7 +8,5 @@ pydantic
 pyyaml
 python-dotenv
 python-multipart
-pytest
 httpx
-pytest-asyncio
 oracledb

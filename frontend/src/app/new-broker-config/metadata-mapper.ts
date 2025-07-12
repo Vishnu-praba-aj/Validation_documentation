@@ -1,22 +1,21 @@
 
 
 export const metadataKeyMap: Record<string, string> = {
-  'start-index-nbr': 'StartIndex',
-  'end-index-nbr': 'EndIndex',
-  'row_adder-cnt': 'RowAdderCount',
-  'Col_Adder_CNT': 'ColumnAdderCount',
-  'PARAM_Rref_Delim_txt': 'ParamRefDelimiter',
-  'Param_value_pos_cd': 'ParamValuePositionCode',
-  'Unit_price_pct_ind': 'UnitPricePercentIndicator',
-  'Param_nm_occur_ind': 'ParamOccurrenceIndicator',
-  'Date_format_cd': 'DateFormatCode',
-  'Decimal_seperator_cd': 'DecimalSeparatorCode',
-  'Param_def_value_txt': 'ParamDefaultValue',
-  'Derivation_col': 'DerivationColumn',
-  'Operations_seq': 'OperationsSequence',
-  'Param_val_fn_txt': 'ParamValueText'
+  'start-index-nbr': 'Start Index',
+  'end-index-nbr': 'End Index',
+  'row_adder-cnt': 'Row Adder Count',
+  'col_adder_cnt': 'Column Adder Count',
+  'param-ref_delim_txt': 'Parameter Delimiter',
+  'param_value_pos_cd': 'Parameter Value Position Code',
+  'unit_price_pct_ind': 'Unit Price Percent Indicator',
+  'param_nm_occur_ind': 'Parameter Occurrence Indicator',
+  'date_format_cd': 'Date Format Code',
+  'decimal_seperator_cd': 'Decimal Separator Code',
+  'param_def_value_txt': 'Parameter Default Value',
+  'derivation_col': 'Derivation Column',
+  'operations_seq': 'Operations Sequence',
+  'param_val_fn_txt': 'Parameter Value Text'
 };
-
 
 
 export function mapMetadataKeys(

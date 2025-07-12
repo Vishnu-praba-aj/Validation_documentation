@@ -33,6 +33,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(validation.router, prefix="/api/validation", tags=["validation-report-generator"])
-app.include_router(document.router, prefix="/api/broker", tags=["document-analyzer"])
-app.include_router(broker.router, prefix="/api/config", tags=["broker-config"])
+app.include_router(validation.router, prefix="/api/validation", tags=["Validation Report Generator"])
+app.include_router(broker.router, prefix="/api/broker/config", tags=["Broker Configuration"])
+app.include_router(document.router, prefix="/api/broker/template", tags=["Broker Template Analyzer"])

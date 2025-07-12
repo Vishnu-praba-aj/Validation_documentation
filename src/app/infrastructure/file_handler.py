@@ -3,7 +3,7 @@ import base64
 import mimetypes
 import pandas as pd
 import io
-from src.app.domain.models import ExtractionField, ExtractionFieldMetadata, ExtractionLLMResponse, ExtractionResponseData, ExtractionRow
+from src.app.domain.models import ExtractionLLMResponse, Field, FieldMetadata, Response, Row
 from src.app.domain.exception import InvalidFileTypeException
 
 EXTENSION_MIME_MAP = {
@@ -79,14 +79,14 @@ def transform_llm_output(parsed, session_id, doc_type):
                     else:
                         metadata[key] = None
 
-            fields.append(ExtractionField(
+            fields.append(Field(
                 custom_field=custom_field,
                 document_label=document_label,
                 value=value,
-                metadata=ExtractionFieldMetadata(**metadata)
+                metadata=FieldMetadata(**metadata)
             ))
 
-        extracted_rows.append(ExtractionRow(
+        extracted_rows.append(Row(
             index=row.get("index", 0),
             fields=fields
         ))
@@ -94,5 +94,5 @@ def transform_llm_output(parsed, session_id, doc_type):
     return ExtractionLLMResponse(
         session_id=session_id,
         type="document_extraction",
-        response=ExtractionResponseData(rows=extracted_rows)
+        response=Response(rows=extracted_rows)
     )
